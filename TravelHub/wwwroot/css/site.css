@@ -16,3 +16,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.header-logo {
+    max-height: 50px;
+    margin-left: 24px;
+    margin-right: 24px;
+}

@@ -21,6 +21,9 @@
         public string Name { get; set; } = null!;
 
         [Required]
+        public string ImageUrl { get; set; } = null!;
+
+        [Required]
         [Range(RatingMinValue, RatingMaxValue)]
         public int Rating { get; set; }
 

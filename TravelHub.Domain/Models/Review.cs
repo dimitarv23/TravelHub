@@ -18,7 +18,7 @@
         public string? Comment { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; } = null!;
 
         [ForeignKey(nameof(UserId))]
         public User User { get; set; } = null!;

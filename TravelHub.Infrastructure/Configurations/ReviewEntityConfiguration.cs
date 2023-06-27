@@ -8,7 +8,13 @@
     {
         public void Configure(EntityTypeBuilder<Review> builder)
         {
-            throw new NotImplementedException();
+            builder.HasOne(r => r.User)
+                .WithMany(u => u.Reviews)
+                .HasForeignKey(r => r.UserId);
+
+            builder.HasOne(r => r.Destination)
+                .WithMany(u => u.Reviews)
+                .HasForeignKey(r => r.DestinationId);
         }
     }
 }

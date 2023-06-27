@@ -12,8 +12,8 @@
 
         public static class User
         {
-            public const int UsernameMinLength = 5;
-            public const int UsernameMaxLength = 15;
+            public const int NamesMinLength = 2;
+            public const int NamesMaxLength = 30;
 
             public const int PasswordMinLength = 8;
             public const int PasswordMaxLength = 20;
@@ -36,8 +36,8 @@
             public const int CountryMinLength = 4;
             public const int CountryMaxLength = 50;
 
-            public const int CityMinLength = 2;
-            public const int CityMaxLength = 50;
+            public const int PlaceMinLength = 2;
+            public const int PlaceMaxLength = 50;
 
             public const int CurrencyMinLength = 3;
             public const int CurrencyMaxLength = 20;

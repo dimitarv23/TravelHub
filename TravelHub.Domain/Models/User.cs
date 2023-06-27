@@ -5,7 +5,6 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using Microsoft.AspNetCore.Identity;
 
-    [Table("Users")]
     public class User : IdentityUser
     {
         public User()
@@ -23,12 +22,20 @@
         }
 
         [Required]
-        [StringLength(UsernameMaxLength, MinimumLength = UsernameMinLength)]
+        [StringLength(NamesMaxLength, MinimumLength = NamesMinLength)]
         public override string UserName
         {
             get => base.UserName;
             set => base.UserName = value;
         }
+
+        [Required]
+        [StringLength(NamesMaxLength, MinimumLength = NamesMinLength)]
+        public string FirstName { get; set; } = null!;
+
+        [Required]
+        [StringLength(NamesMaxLength, MinimumLength = NamesMinLength)]
+        public string LastName { get; set; } = null!;
 
         [NotMapped]
         public int LoyaltyPoints => this.Bookings.Count * 10 + this.Reviews.Count;

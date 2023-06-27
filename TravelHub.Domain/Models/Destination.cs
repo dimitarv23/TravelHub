@@ -22,15 +22,15 @@
         public string Country { get; set; } = null!;
 
         [Required]
-        [StringLength(CityMaxLength, MinimumLength = CityMinLength)]
-        public string City { get; set; } = null!;
+        [StringLength(PlaceMaxLength, MinimumLength = PlaceMinLength)]
+        public string Place { get; set; } = null!;
 
         [Required]
         [StringLength(CurrencyMaxLength, MinimumLength = CurrencyMinLength)]
         public string Currency { get; set; } = null!;
 
         [Required]
-        public byte[] Image { get; set; } = null!;
+        public string ImageUrl { get; set; } = null!;
 
         public virtual ICollection<Hotel> Hotels { get; set; }
 

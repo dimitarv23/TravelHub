@@ -1,9 +1,10 @@
 ﻿namespace TravelHub.Infrastructure
 {
     using TravelHub.Domain.Models;
+    using System.Reflection;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
-    using System.Reflection;
+    using Microsoft.AspNetCore.Identity;
 
     public class TravelHubContext : IdentityDbContext
     {

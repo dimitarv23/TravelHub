@@ -2,7 +2,25 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6">
+            <h1 class="display-4 text-center mb-4">Welcome to TravelHub</h1>
+            <p class="text-center" style="font-size: 24px;">
+                Your Ultimate Destination for Memorable Journeys and Adventures!
+                Start exploring the world with TravelHub and unlock extraordinary experiences.
+            </p>
+            <div class="text-center">
+                <a asp-action="Register" asp-controller="User" class="btn btn-primary btn-lg mt-3">
+                    Register here
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center align-items-center mt-5">
+        <img src="~/img/TravelHub-index.png" class="img-fluid col-md-4">
+    </div>
+    <div class="row justify-content-center align-items-center mt-5">
+        <img src="https://localhost:7276/img/TravelHub-index.png" class="img-fluid col-md-4">
+    </div>
 </div>
