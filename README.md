@@ -11,8 +11,8 @@ It has the following functionalities:
 
 ### Organizers can:
 - Organize travels
-- Edit travels (organized by them)
-- Delete travels (organized by them)
+- Edit travels
+- Delete travels
 - Add new destinations
 - Edit destinations
 - Delete destinations
