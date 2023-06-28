@@ -1,4 +1,4 @@
-﻿namespace TravelHub.Infrastructure.Configurations
+﻿namespace TravelHub.Infrastructure.Configurations.Account
 {
     using TravelHub.Domain.Models;
     using Microsoft.AspNetCore.Identity;
@@ -26,7 +26,7 @@
 
             var organizer = new User()
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = "ac5688a2-417e-4a2d-973c-503b7c8eb951",
                 FirstName = "Organizer",
                 LastName = "Organizer",
                 UserName = "Organizer1",

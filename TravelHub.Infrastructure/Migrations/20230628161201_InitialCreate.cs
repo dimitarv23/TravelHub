@@ -160,14 +160,14 @@ namespace TravelHub.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4c4fa568-5033-40d9-8064-9db512d3de49", "b760fa23-fba3-45ab-9a2a-aee06d4a010e", "User", "USER" },
-                    { "613e9a9a-de45-4cec-8519-81625c7e603e", "f4e78e79-f55f-47fd-af97-30bec3a8209b", "Organizer", "ORGANIZER" }
+                    { "4c4fa568-5033-40d9-8064-9db512d3de49", "0b9ed84e-0bb5-47b9-aa5a-02d2fbbbd29f", "User", "USER" },
+                    { "613e9a9a-de45-4cec-8519-81625c7e603e", "2f6a706d-9b3f-4c06-a410-deb4549e2d28", "Organizer", "ORGANIZER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "ac5688a2-417e-4a2d-973c-503b7c8eb951", 0, "af8bc255-489d-4d3e-bc58-781ec088da28", "User", "organizer@email.com", false, "Organizer", "Organizer", false, null, "ORGANIZER@EMAIL.COM", "ORGANIZER1", "AQAAAAEAACcQAAAAEFJUAqXZpk2PPCdhUinIhIjlRQ+lBANK1HYOPDqUSkS6pD+m77DPM3Rsm39bp+kItQ==", null, false, "b8d365cc-4dcb-4bf0-bbeb-06faaa51b218", false, "Organizer1" });
+                values: new object[] { "ac5688a2-417e-4a2d-973c-503b7c8eb951", 0, "bc2d9f57-5621-480a-8d9c-952c9b3d02c3", "User", "organizer@email.com", false, "Organizer", "Organizer", false, null, "ORGANIZER@EMAIL.COM", "ORGANIZER1", "AQAAAAEAACcQAAAAEEevn2sFcJRNeD9CtSb05T08VGEneqR8+9axex9VS053vV75FJRdYiUO8P/qKUSanQ==", null, false, "3e392b56-2cac-4d50-9578-1d7f444b729a", false, "Organizer1" });
 
             migrationBuilder.InsertData(
                 table: "Destinations",
@@ -179,14 +179,18 @@ namespace TravelHub.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Hotels",
-                columns: new[] { "Id", "DestinationId", "FoodService", "HasPool", "HasSpa", "ImageUrl", "Name", "Rating" },
-                values: new object[] { 1, 1, "AllInclusive", true, true, "https://cf.bstatic.com/xdata/images/hotel/max1024x768/340492725.jpg?k=e27fd2bc7277de6b6794b15d1d258441ecb5e85929edc499bff3cb69e8742779&o=&hp=1", "Diamant Residence", 4 });
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "613e9a9a-de45-4cec-8519-81625c7e603e", "ac5688a2-417e-4a2d-973c-503b7c8eb951" });
 
             migrationBuilder.InsertData(
                 table: "Hotels",
                 columns: new[] { "Id", "DestinationId", "FoodService", "HasPool", "HasSpa", "ImageUrl", "Name", "Rating" },
-                values: new object[] { 2, 1, "UltraAllInclusive", true, true, "https://cf.bstatic.com/xdata/images/hotel/max1024x768/60906632.jpg?k=845e3aa0d06eba8ca8a546425f6100f8b9609e836228d3c3966d45607b4807cb&o=&hp=1", "Effect Grand Victoria Hotel", 4 });
+                values: new object[,]
+                {
+                    { 1, 1, "AllInclusive", true, true, "https://cf.bstatic.com/xdata/images/hotel/max1024x768/340492725.jpg?k=e27fd2bc7277de6b6794b15d1d258441ecb5e85929edc499bff3cb69e8742779&o=&hp=1", "Diamant Residence", 4 },
+                    { 2, 1, "UltraAllInclusive", true, true, "https://cf.bstatic.com/xdata/images/hotel/max1024x768/60906632.jpg?k=845e3aa0d06eba8ca8a546425f6100f8b9609e836228d3c3966d45607b4807cb&o=&hp=1", "Effect Grand Victoria Hotel", 4 }
+                });
 
             migrationBuilder.InsertData(
                 table: "Travels",
@@ -255,6 +259,11 @@ namespace TravelHub.Infrastructure.Migrations
                 table: "AspNetRoles",
                 keyColumn: "Id",
                 keyValue: "4c4fa568-5033-40d9-8064-9db512d3de49");
+
+            migrationBuilder.DeleteData(
+                table: "AspNetUserRoles",
+                keyColumns: new[] { "RoleId", "UserId" },
+                keyValues: new object[] { "613e9a9a-de45-4cec-8519-81625c7e603e", "ac5688a2-417e-4a2d-973c-503b7c8eb951" });
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",

@@ -12,7 +12,7 @@ using TravelHub.Infrastructure;
 namespace TravelHub.Infrastructure.Migrations
 {
     [DbContext(typeof(TravelHubContext))]
-    [Migration("20230627181658_InitialCreate")]
+    [Migration("20230628161201_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,14 +54,14 @@ namespace TravelHub.Infrastructure.Migrations
                         new
                         {
                             Id = "4c4fa568-5033-40d9-8064-9db512d3de49",
-                            ConcurrencyStamp = "b760fa23-fba3-45ab-9a2a-aee06d4a010e",
+                            ConcurrencyStamp = "0b9ed84e-0bb5-47b9-aa5a-02d2fbbbd29f",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "613e9a9a-de45-4cec-8519-81625c7e603e",
-                            ConcurrencyStamp = "f4e78e79-f55f-47fd-af97-30bec3a8209b",
+                            ConcurrencyStamp = "2f6a706d-9b3f-4c06-a410-deb4549e2d28",
                             Name = "Organizer",
                             NormalizedName = "ORGANIZER"
                         });
@@ -225,6 +225,13 @@ namespace TravelHub.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "ac5688a2-417e-4a2d-973c-503b7c8eb951",
+                            RoleId = "613e9a9a-de45-4cec-8519-81625c7e603e"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -513,15 +520,15 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             Id = "ac5688a2-417e-4a2d-973c-503b7c8eb951",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "af8bc255-489d-4d3e-bc58-781ec088da28",
+                            ConcurrencyStamp = "bc2d9f57-5621-480a-8d9c-952c9b3d02c3",
                             Email = "organizer@email.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ORGANIZER@EMAIL.COM",
                             NormalizedUserName = "ORGANIZER1",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFJUAqXZpk2PPCdhUinIhIjlRQ+lBANK1HYOPDqUSkS6pD+m77DPM3Rsm39bp+kItQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEevn2sFcJRNeD9CtSb05T08VGEneqR8+9axex9VS053vV75FJRdYiUO8P/qKUSanQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b8d365cc-4dcb-4bf0-bbeb-06faaa51b218",
+                            SecurityStamp = "3e392b56-2cac-4d50-9578-1d7f444b729a",
                             TwoFactorEnabled = false,
                             UserName = "Organizer1",
                             FirstName = "Organizer",
