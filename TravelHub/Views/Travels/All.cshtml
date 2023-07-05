@@ -1,0 +1,33 @@
+﻿@model List<TravelViewModel>
+@{
+    ViewData["Title"] = "All Travels";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+
+    <div class="row">
+        @foreach (var travel in Model)
+        {
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <img src="@travel.ImageUrl" class="card-img-top">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="col-md-10">
+                            <h5 class="card-title">@travel.Destination</h5>
+                            <p class="card-text">
+                                Type: @travel.Type.ToString() <br />
+                                Price: @travel.Price BGN <br />
+                                From: @travel.DateFrom.ToString("d") To: @travel.DateTo.ToString("d") <br />
+                                Places Left: @travel.PlacesLeft
+                            </p>
+                        </div>
+                        <div class="col-md-2 d-flex flex-column">
+                            <a></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

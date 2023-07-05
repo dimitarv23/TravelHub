@@ -40,6 +40,7 @@
                     Price = 780,
                     DateFrom = new DateTime(2023, 7, 3),
                     DateTo = new DateTime(2023, 7, 8),
+                    MeetingLocation = "Hotel 'Alen Mak', Blagoevgrad",
                     MaxNumberOfPeople = 58,
                     DestinationId = 1,
                     HotelId = 1
@@ -52,6 +53,7 @@
                     Price = 820,
                     DateFrom = new DateTime(2023, 7, 10),
                     DateTo = new DateTime(2023, 7, 16),
+                    MeetingLocation = "Hotel 'Ezerets', Blagoevgrad",
                     MaxNumberOfPeople = 62,
                     DestinationId = 1,
                     HotelId = 2
@@ -64,6 +66,7 @@
                     Price = 30,
                     DateFrom = new DateTime(2023, 7, 2),
                     DateTo = new DateTime(2023, 7, 2),
+                    MeetingLocation = "Park 'Bachinovo', Blagoevgrad",
                     MaxNumberOfPeople = 40,
                     DestinationId = 2
                 }

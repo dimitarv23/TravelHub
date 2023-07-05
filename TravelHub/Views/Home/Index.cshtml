@@ -2,22 +2,42 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container flex-column align-items-center mt-5">
+<div class="container d-flex flex-column align-items-center mt-5">
     <div class="row justify-content-center align-items-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <h1 class="display-4 text-center mb-4">Welcome to TravelHub</h1>
             <p class="text-center" style="font-size: 24px;">
                 Your Ultimate Destination for Memorable Journeys and Adventures!
                 Start exploring the world with TravelHub and unlock extraordinary experiences.
             </p>
+
+            <div class="row mt-5">
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <img src="~/img/index/beach-holiday.png" class="card-img-top" alt="Sea Travel">
+                        <div class="card-body">
+                            <h5 class="card-title">Sea Travel</h5>
+                            <p class="card-text">Experience the beauty of pristine beaches, azure waters, and breathtaking sunsets.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <img src="~/img/index/mountain-holiday.png" class="card-img-top " alt="Mountain Travel">
+                        <div class="card-body">
+                            <h5 class="card-title">Mountain Travel</h5>
+                            <p class="card-text">Embark on thrilling adventures, conquer majestic peaks, and witness stunning landscapes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="text-center">
-                <a asp-action="Register" asp-controller="User" class="btn btn-primary btn-lg mt-3">
+                <a asp-action="Register" asp-controller="User" class="btn btn-primary col-md-4 btn-lg mt-3">
                     Register here
                 </a>
             </div>
         </div>
-    </div>
-    <div class="row justify-content-center align-items-center mt-5">
-        <img src="~/img/TravelHub-index.png" class="img-fluid col-md-5">
     </div>
 </div>

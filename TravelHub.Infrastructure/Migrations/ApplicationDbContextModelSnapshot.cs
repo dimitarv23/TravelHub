@@ -52,14 +52,14 @@ namespace TravelHub.Infrastructure.Migrations
                         new
                         {
                             Id = "4c4fa568-5033-40d9-8064-9db512d3de49",
-                            ConcurrencyStamp = "0b9ed84e-0bb5-47b9-aa5a-02d2fbbbd29f",
+                            ConcurrencyStamp = "eb7a88fe-1a8f-46d5-9c11-068a989dab46",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "613e9a9a-de45-4cec-8519-81625c7e603e",
-                            ConcurrencyStamp = "2f6a706d-9b3f-4c06-a410-deb4549e2d28",
+                            ConcurrencyStamp = "65e5f5b2-a382-4ee9-886b-371e3c3996a5",
                             Name = "Organizer",
                             NormalizedName = "ORGANIZER"
                         });
@@ -444,6 +444,10 @@ namespace TravelHub.Infrastructure.Migrations
                     b.Property<int>("MaxNumberOfPeople")
                         .HasColumnType("int");
 
+                    b.Property<string>("MeetingLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -469,6 +473,7 @@ namespace TravelHub.Infrastructure.Migrations
                             DestinationId = 1,
                             HotelId = 1,
                             MaxNumberOfPeople = 58,
+                            MeetingLocation = "Hotel 'Alen Mak', Blagoevgrad",
                             Price = 780m,
                             Type = "BeachVacation"
                         },
@@ -481,6 +486,7 @@ namespace TravelHub.Infrastructure.Migrations
                             DestinationId = 1,
                             HotelId = 2,
                             MaxNumberOfPeople = 62,
+                            MeetingLocation = "Hotel 'Ezerets', Blagoevgrad",
                             Price = 820m,
                             Type = "BeachVacation"
                         },
@@ -492,6 +498,7 @@ namespace TravelHub.Infrastructure.Migrations
                             Description = "A mountain hike to gorgeous Seven Rila Lakes. We are starting our trip at 8AM on 02/07/2023 and will be back in town around 5PM on the same day. Come with us to enjoy the beauty of our bulgarian nature!",
                             DestinationId = 2,
                             MaxNumberOfPeople = 40,
+                            MeetingLocation = "Park 'Bachinovo', Blagoevgrad",
                             Price = 30m,
                             Type = "MountainVacation"
                         });
@@ -518,15 +525,15 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             Id = "ac5688a2-417e-4a2d-973c-503b7c8eb951",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bc2d9f57-5621-480a-8d9c-952c9b3d02c3",
+                            ConcurrencyStamp = "af510c1d-4881-4486-b16c-f976616490ab",
                             Email = "organizer@email.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ORGANIZER@EMAIL.COM",
                             NormalizedUserName = "ORGANIZER1",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEevn2sFcJRNeD9CtSb05T08VGEneqR8+9axex9VS053vV75FJRdYiUO8P/qKUSanQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENGZ/Ie6UG58Kc/EhS5NndhBJTPCDbsIZzYwxibwbHZOqzk3bfkTkRWcbMXd6JKBJA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3e392b56-2cac-4d50-9578-1d7f444b729a",
+                            SecurityStamp = "41b9766d-c879-4be2-8b3e-d0f232deb0b5",
                             TwoFactorEnabled = false,
                             UserName = "Organizer1",
                             FirstName = "Organizer",

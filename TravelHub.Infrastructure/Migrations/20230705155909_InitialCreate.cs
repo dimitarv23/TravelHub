@@ -110,6 +110,7 @@ namespace TravelHub.Infrastructure.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DateFrom = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateTo = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MeetingLocation = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MaxNumberOfPeople = table.Column<int>(type: "int", nullable: false),
                     DestinationId = table.Column<int>(type: "int", nullable: false),
                     HotelId = table.Column<int>(type: "int", nullable: true)
@@ -160,14 +161,14 @@ namespace TravelHub.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4c4fa568-5033-40d9-8064-9db512d3de49", "0b9ed84e-0bb5-47b9-aa5a-02d2fbbbd29f", "User", "USER" },
-                    { "613e9a9a-de45-4cec-8519-81625c7e603e", "2f6a706d-9b3f-4c06-a410-deb4549e2d28", "Organizer", "ORGANIZER" }
+                    { "4c4fa568-5033-40d9-8064-9db512d3de49", "eb7a88fe-1a8f-46d5-9c11-068a989dab46", "User", "USER" },
+                    { "613e9a9a-de45-4cec-8519-81625c7e603e", "65e5f5b2-a382-4ee9-886b-371e3c3996a5", "Organizer", "ORGANIZER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "ac5688a2-417e-4a2d-973c-503b7c8eb951", 0, "bc2d9f57-5621-480a-8d9c-952c9b3d02c3", "User", "organizer@email.com", false, "Organizer", "Organizer", false, null, "ORGANIZER@EMAIL.COM", "ORGANIZER1", "AQAAAAEAACcQAAAAEEevn2sFcJRNeD9CtSb05T08VGEneqR8+9axex9VS053vV75FJRdYiUO8P/qKUSanQ==", null, false, "3e392b56-2cac-4d50-9578-1d7f444b729a", false, "Organizer1" });
+                values: new object[] { "ac5688a2-417e-4a2d-973c-503b7c8eb951", 0, "af510c1d-4881-4486-b16c-f976616490ab", "User", "organizer@email.com", false, "Organizer", "Organizer", false, null, "ORGANIZER@EMAIL.COM", "ORGANIZER1", "AQAAAAEAACcQAAAAENGZ/Ie6UG58Kc/EhS5NndhBJTPCDbsIZzYwxibwbHZOqzk3bfkTkRWcbMXd6JKBJA==", null, false, "41b9766d-c879-4be2-8b3e-d0f232deb0b5", false, "Organizer1" });
 
             migrationBuilder.InsertData(
                 table: "Destinations",
@@ -194,18 +195,18 @@ namespace TravelHub.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Travels",
-                columns: new[] { "Id", "DateFrom", "DateTo", "Description", "DestinationId", "HotelId", "MaxNumberOfPeople", "Price", "Type" },
-                values: new object[] { 3, new DateTime(2023, 7, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "A mountain hike to gorgeous Seven Rila Lakes. We are starting our trip at 8AM on 02/07/2023 and will be back in town around 5PM on the same day. Come with us to enjoy the beauty of our bulgarian nature!", 2, null, 40, 30m, "MountainVacation" });
+                columns: new[] { "Id", "DateFrom", "DateTo", "Description", "DestinationId", "HotelId", "MaxNumberOfPeople", "MeetingLocation", "Price", "Type" },
+                values: new object[] { 3, new DateTime(2023, 7, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "A mountain hike to gorgeous Seven Rila Lakes. We are starting our trip at 8AM on 02/07/2023 and will be back in town around 5PM on the same day. Come with us to enjoy the beauty of our bulgarian nature!", 2, null, 40, "Park 'Bachinovo', Blagoevgrad", 30m, "MountainVacation" });
 
             migrationBuilder.InsertData(
                 table: "Travels",
-                columns: new[] { "Id", "DateFrom", "DateTo", "Description", "DestinationId", "HotelId", "MaxNumberOfPeople", "Price", "Type" },
-                values: new object[] { 1, new DateTime(2023, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 03/07/2023 and we will be back in town at around 7PM on 08/07/2023. Come and party with us!", 1, 1, 58, 780m, "BeachVacation" });
+                columns: new[] { "Id", "DateFrom", "DateTo", "Description", "DestinationId", "HotelId", "MaxNumberOfPeople", "MeetingLocation", "Price", "Type" },
+                values: new object[] { 1, new DateTime(2023, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 03/07/2023 and we will be back in town at around 7PM on 08/07/2023. Come and party with us!", 1, 1, 58, "Hotel 'Alen Mak', Blagoevgrad", 780m, "BeachVacation" });
 
             migrationBuilder.InsertData(
                 table: "Travels",
-                columns: new[] { "Id", "DateFrom", "DateTo", "Description", "DestinationId", "HotelId", "MaxNumberOfPeople", "Price", "Type" },
-                values: new object[] { 2, new DateTime(2023, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 10/07/2023 and we will be back in town at around 7PM on 16/07/2023. Come and party with us!", 1, 2, 62, 820m, "BeachVacation" });
+                columns: new[] { "Id", "DateFrom", "DateTo", "Description", "DestinationId", "HotelId", "MaxNumberOfPeople", "MeetingLocation", "Price", "Type" },
+                values: new object[] { 2, new DateTime(2023, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 10/07/2023 and we will be back in town at around 7PM on 16/07/2023. Come and party with us!", 1, 2, 62, "Hotel 'Ezerets', Blagoevgrad", 820m, "BeachVacation" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_TravelId",

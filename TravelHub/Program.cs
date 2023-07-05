@@ -18,22 +18,28 @@ namespace TravelHub
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<User>(options =>
-                {
-                    options.SignIn.RequireConfirmedAccount = builder.Configuration
-                        .GetValue<bool>("Identity:SignIn:RequireConfirmedAccount");
-                    options.Password.RequiredLength = builder.Configuration
-                        .GetValue<int>("Identity:Password:RequiredLength");
-                    options.Password.RequireDigit = builder.Configuration
-                        .GetValue<bool>("Identity:Password:RequireDigit");
-                    options.Password.RequireUppercase = builder.Configuration
-                        .GetValue<bool>("Identity:Password:RequireUppercase");
-                    options.Password.RequireLowercase = builder.Configuration
-                        .GetValue<bool>("Identity:Password:RequireLowercase");
-                    options.Password.RequireNonAlphanumeric = builder.Configuration
-                        .GetValue<bool>("Identity:Password:RequireNonAlphanumeric");
-                })
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<TravelHubContext>();
+            {
+                options.SignIn.RequireConfirmedAccount = builder.Configuration
+                    .GetValue<bool>("Identity:SignIn:RequireConfirmedAccount");
+                options.Password.RequiredLength = builder.Configuration
+                    .GetValue<int>("Identity:Password:RequiredLength");
+                options.Password.RequireDigit = builder.Configuration
+                    .GetValue<bool>("Identity:Password:RequireDigit");
+                options.Password.RequireUppercase = builder.Configuration
+                    .GetValue<bool>("Identity:Password:RequireUppercase");
+                options.Password.RequireLowercase = builder.Configuration
+                    .GetValue<bool>("Identity:Password:RequireLowercase");
+                options.Password.RequireNonAlphanumeric = builder.Configuration
+                    .GetValue<bool>("Identity:Password:RequireNonAlphanumeric");
+            })
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<TravelHubContext>();
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/Error/AccessDenied";
+                options.LoginPath = "/User/Login";
+            });
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddApplicationServices();
