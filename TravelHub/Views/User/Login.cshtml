@@ -18,6 +18,12 @@
             </label>
             <input asp-for="Password" class="form-control" id="Password" placeholder="Enter your password" required />
         </div>
+        <div class="form-check mt-3 d-flex justify-content-center">
+            <input asp-for="RememberMe" class="form-check-input me-2" id="RememberMe" />
+            <label class="form-check-label" for="RememberMe">
+                Remember Me?
+            </label>
+        </div>
         <div class="d-flex justify-content-center mt-4">
             <button type="submit" class="btn btn-primary btn-block col-md-4" style="font-size: 20px;">
                 Login

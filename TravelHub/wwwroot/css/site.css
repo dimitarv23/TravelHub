@@ -30,3 +30,13 @@ body {
 .card-img-top {
     max-height: 300px;
 }
+
+.red-background {
+    background-color: rgb(247, 41, 41);
+    border-color: rgb(247, 41, 41);
+}
+
+.green-background {
+    background-color: rgb(106, 247, 101);
+    border-color: rgb(106, 247, 101);
+}

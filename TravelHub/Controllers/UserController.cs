@@ -2,10 +2,10 @@
 {
     using TravelHub.Domain.Models;
     using TravelHub.ViewModels.Account;
+    using System.ComponentModel.DataAnnotations;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
-    using System.ComponentModel.DataAnnotations;
 
     [Authorize]
     public class UserController : Controller
@@ -62,7 +62,7 @@
             if (user != null)
             {
                 var result = await this.signInManager
-                    .PasswordSignInAsync(user, model.Password, false, false);
+                    .PasswordSignInAsync(user, model.Password, model.RememberMe, false);
 
                 if (result.Succeeded)
                 {
@@ -123,6 +123,7 @@
             return View(model);
         }
 
+        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await this.signInManager.SignOutAsync();
