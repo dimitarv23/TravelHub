@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/TravelHub.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
+    <header class="header" style="position: fixed;">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-controller="Home" asp-action="Index">
@@ -35,7 +35,7 @@
             @RenderBody()
         </main>
     </div>
-    <footer class="border-top footer text-muted d-flex justify-content-around align-items-center">
+    <footer class="border-top footer text-muted d-flex justify-content-around align-items-center bg-white">
         <div class="container col-md-6">
             &copy; 2023 - TravelHub - All rights reserved
         </div>
