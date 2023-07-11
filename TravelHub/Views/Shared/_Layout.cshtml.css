@@ -40,14 +40,13 @@ button.accept-policy {
     line-height: inherit;
 }
 
-.header {
-    position: fixed;
-}
-
 .footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    white-space: nowrap;
-    line-height: 60px;
+    height: 70px;
+}
+
+.footer-element {
+    max-height: 65px;
 }

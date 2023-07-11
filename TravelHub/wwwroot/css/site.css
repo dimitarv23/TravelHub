@@ -1,30 +1,20 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
-}
-
-.header-logo {
-    max-height: 50px;
-    margin-left: 24px;
-    margin-right: 24px;
-}
-
-.footer-logo {
-    max-width: 175px;
+    margin-bottom: 60px;
 }
 
 .card-img-top {
@@ -39,4 +29,22 @@ body {
 .green-background {
     background-color: rgb(106, 247, 101);
     border-color: rgb(106, 247, 101);
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    white-space: nowrap;
+    z-index: 100;
+}
+
+.header-logo {
+    max-height: 50px;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.footer-logo {
+    max-width: 175px;
 }
