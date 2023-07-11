@@ -36,7 +36,7 @@
         [DisplayFormat(DataFormatString = DateFormat, ApplyFormatInEditMode = true)]
         public DateTime DateTo { get; set; }
 
-        public string MeetingLocation { get; set; }
+        public string MeetingLocation { get; set; } = null!;
 
         [Required]
         [Range(NumOfPeopleMinValue, NumOfPeopleMaxValue)]

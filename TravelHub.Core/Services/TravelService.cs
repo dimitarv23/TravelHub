@@ -22,6 +22,7 @@
             return await this.repository.All<Travel>()
                 .Select(t => new TravelViewModel()
                 {
+                    Id = t.Id,
                     Type = t.Type,
                     ImageUrl = t.Destination.ImageUrl,
                     Destination = $"{t.Destination.Place}, {t.Destination.Country}",
@@ -30,6 +31,25 @@
                     DateTo = t.DateTo,
                     PlacesLeft = t.PlacesLeft
                 }).ToListAsync();
+        }
+
+        public async Task<TravelDetailsViewModel?> GetDetailsByIdAsync(int id)
+        {
+            return await this.repository.All<Travel>()
+                .Select(t => new TravelDetailsViewModel()
+                {
+                    Id = t.Id,
+                    Description = t.Description,
+                    Type = t.Type,
+                    ImageUrl = t.Destination.ImageUrl,
+                    Destination = $"{t.Destination.Place}, {t.Destination.Country}",
+                    HotelName = t.Hotel == null ? null : t.Hotel.Name,
+                    Price = t.Price,
+                    DateFrom = t.DateFrom,
+                    DateTo = t.DateTo,
+                    PlacesLeft = t.PlacesLeft,
+                    MeetingLocation = t.MeetingLocation
+                }).FirstOrDefaultAsync(t => t.Id == id);
         }
     }
 }

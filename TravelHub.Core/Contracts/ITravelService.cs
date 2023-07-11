@@ -5,5 +5,8 @@
     public interface ITravelService
     {
         public Task<ICollection<TravelViewModel>> GetAllTravelsAsync();
+
+        public Task<TravelDetailsViewModel?> GetDetailsByIdAsync(int id);
+
     }
 }

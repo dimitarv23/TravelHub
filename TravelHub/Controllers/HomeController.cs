@@ -13,6 +13,7 @@
             this.logger = _logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             if (User?.Identity?.IsAuthenticated ?? false)
