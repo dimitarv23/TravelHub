@@ -4,9 +4,13 @@
 
     public interface ITravelService
     {
-        public Task<ICollection<TravelViewModel>> GetAllTravelsAsync();
+        public Task<ICollection<TravelViewModel>> GetAllAsync();
 
-        public Task<TravelDetailsViewModel?> GetDetailsByIdAsync(int id);
+        public Task<TravelDetailsViewModel?> GetDetailsByIdAsync(int id, string userId);
+
+        public Task BookAsync(int travelId, string userId);
+
+        public Task RemoveBookingAsync(int travelId, string userId);
 
     }
 }

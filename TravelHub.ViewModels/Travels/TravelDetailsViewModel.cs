@@ -8,7 +8,7 @@ namespace TravelHub.ViewModels.Travels
 
         public string Description { get; set; } = null!;
 
-        public eTravelType Type { get; set; }
+        public string Type { get; set; } = null!;
 
         public string ImageUrl { get; set; } = null!;
 
@@ -25,5 +25,7 @@ namespace TravelHub.ViewModels.Travels
         public int PlacesLeft { get; set; }
 
         public string MeetingLocation { get; set; } = null!;
+
+        public bool IsBooked { get; set; }
     }
 }

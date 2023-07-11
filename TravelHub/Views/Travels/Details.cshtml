@@ -16,38 +16,38 @@
             <hr>
             <dl class="row m-0">
                 <div class="d-flex">
-                    <dt class="col-sm-4">Type:</dt>
+                    <dt class="col-sm-4">Type: </dt>
                     <dd class="col-sm-8">@Model.Type</dd>
                 </div>
                 <div class="d-flex mt-2">
-                    <dt class="col-sm-4">Destination:</dt>
+                    <dt class="col-sm-4">Destination: </dt>
                     <dd class="col-sm-8">@Model.Destination</dd>
                 </div>
                 @if (Model.HotelName != null)
                 {
                     <div class="d-flex mt-2">
-                        <dt class="col-sm-4">Hotel Name:</dt>
+                        <dt class="col-sm-4">Hotel Name: </dt>
                         <dd class="col-sm-8">@Model.HotelName</dd>
                     </div>
                 }
                 <div class="d-flex mt-2">
-                    <dt class="col-sm-4">Price:</dt>
+                    <dt class="col-sm-4">Price: </dt>
                     <dd class="col-sm-8">$@Model.Price</dd>
                 </div>
                 <div class="d-flex mt-2">
-                    <dt class="col-sm-4">Date From:</dt>
+                    <dt class="col-sm-4">Date From: </dt>
                     <dd class="col-sm-8">@Model.DateFrom.ToString("d")</dd>
                 </div>
                 <div class="d-flex mt-2">
-                    <dt class="col-sm-4">Date To:</dt>
+                    <dt class="col-sm-4">Date To: </dt>
                     <dd class="col-sm-8">@Model.DateTo.ToString("d")</dd>
                 </div>
                 <div class="d-flex mt-2">
-                    <dt class="col-sm-4">Places Left:</dt>
+                    <dt class="col-sm-4">Places Left: </dt>
                     <dd class="col-sm-8">@Model.PlacesLeft</dd>
                 </div>
                 <div class="d-flex mt-2">
-                    <dt class="col-sm-4">Meeting Location:</dt>
+                    <dt class="col-sm-4">Meeting Location: </dt>
                     <dd class="col-sm-8">@Model.MeetingLocation</dd>
                 </div>
             </dl>
@@ -55,11 +55,8 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <hr class="mb-2" />
-            <div class="text-center">
-                <a asp-controller="Travels" asp-action="AddToFavorites" asp-route-travelId="@Model.Id" class="btn green-background">
-                    <i class="fas fa-star"></i>
-                </a>
+            <hr />
+            <div class="text-center d-flex justify-content-center align-items-center">
                 @if (User.IsInRole("Organizer"))
                 {
                     <a asp-controller="Travels" asp-action="Edit" asp-route-travelId="@Model.Id" class="btn btn-info">
@@ -68,6 +65,46 @@
                     <a asp-controller="Travels" asp-action="Delete" asp-route-travelId="@Model.Id" class="btn red-background">
                         <i class="fas fa-trash"></i>
                     </a>
+                }
+                else
+                {
+                    if (!Model.IsBooked)
+                    {
+                        <form asp-controller="Travels" asp-action="Book" asp-route-travelId="@Model.Id" method="post">
+                            <button type="submit" class="btn green-background">
+                                Book Now
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <h5 class="text-success mb-0 me-3">You've booked this travel!</h5>
+
+                        <form asp-controller="Travels" asp-action="RemoveBooking" asp-route-travelId="@Model.Id" method="post">
+                            <button type="submit" class="btn btn-danger">
+                                Remove Booking
+                            </button>
+                        </form>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <hr class="mb-2" />
+            <div class="text-center d-flex flex-column align-items-center">
+                @if (User.IsInRole("User"))
+                {
+                    <h4>Leave a comment</h4>
+
+                    <form asp-controller="Travels" asp-action="AddReview" asp-route-travelId="@Model.Id" method="post" class="col-md-5 mt-3">
+                        
+                        <input class="form-control" id="Comment" placeholder="Enter your comment" required />
+                        <button type="submit" class="btn btn-primary mt-2">
+                            Add Comment
+                        </button>
+                    </form>
                 }
             </div>
         </div>
