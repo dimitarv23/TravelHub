@@ -1,6 +1,6 @@
 ﻿namespace TravelHub.Domain.Models
 {
-    using static Common.GlobalConstants.Shared;
+    using static TravelHub.Domain.Common.GlobalConstants.Shared;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,7 +20,7 @@
         public Travel Travel { get; set; } = null!;
 
         [Required]
-        [DisplayFormat(DataFormatString = DateFormat, ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = DateFormatString, ApplyFormatInEditMode = true)]
         public DateTime BookDate { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace TravelHub.Domain.Models
 {
-    using static Common.GlobalConstants.Review;
+    using static TravelHub.Domain.Common.GlobalConstants.Review;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 

@@ -1,6 +1,6 @@
 ﻿namespace TravelHub.Domain.Models
 {
-    using static Common.GlobalConstants.User;
+    using static TravelHub.Domain.Common.GlobalConstants.User;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using Microsoft.AspNetCore.Identity;

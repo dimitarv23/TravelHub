@@ -1,6 +1,6 @@
 ﻿namespace TravelHub.Domain.Models
 {
-    using static Common.GlobalConstants.Destination;
+    using static TravelHub.Domain.Common.GlobalConstants.Destination;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 

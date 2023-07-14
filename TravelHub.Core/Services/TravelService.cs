@@ -54,25 +54,9 @@
                 }).FirstOrDefaultAsync(t => t.Id == id);
         }
 
-        public async Task BookAsync(int travelId, string userId)
+        public async Task DeleteAsync(int id)
         {
-            Booking booking = new Booking()
-            {
-                TravelId = travelId,
-                UserId = userId,
-                BookDate = DateTime.UtcNow
-            };
-
-            await this.repository.AddAsync(booking);
-            await this.repository.SaveChangesAsync();
-        }
-
-        public async Task RemoveBookingAsync(int travelId, string userId)
-        {
-            Booking booking = await this.repository.All<Booking>()
-                .FirstAsync(b => b.UserId == userId && b.TravelId == travelId);
-
-            this.repository.Delete(booking);
+            await this.repository.DeleteAsync<Travel>(id);
             await this.repository.SaveChangesAsync();
         }
     }

@@ -1,22 +1,12 @@
-﻿namespace TravelHub.Domain.Models
+﻿namespace TravelHub.ViewModels.Travels
 {
     using static TravelHub.Domain.Common.GlobalConstants.Travel;
     using static TravelHub.Domain.Common.GlobalConstants.Shared;
     using TravelHub.Domain.Enums;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("Travels")]
-    public class Travel
+    public class TravelFormModel
     {
-        public Travel()
-        {
-            this.Bookings = new List<Booking>();
-        }
-
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         public eTravelType Type { get; set; }
 
@@ -42,20 +32,9 @@
         [Range(NumOfPeopleMinValue, NumOfPeopleMaxValue)]
         public int MaxNumberOfPeople { get; set; }
 
-        [NotMapped]
-        public int PlacesLeft => this.MaxNumberOfPeople - this.Bookings.Count;
-
         [Required]
         public int DestinationId { get; set; }
 
-        [ForeignKey(nameof(DestinationId))]
-        public Destination Destination { get; set; } = null!;
-
         public int? HotelId { get; set; }
-
-        [ForeignKey(nameof(HotelId))]
-        public Hotel? Hotel { get; set; }
-
-        public virtual ICollection<Booking> Bookings { get; set; }
     }
 }

@@ -12,6 +12,7 @@
             services.AddScoped<IRepository, Repository>();
 
             services.AddScoped<ITravelService, TravelService>();
+            services.AddScoped<IBookingService, BookingService>();
 
             return services;
         }

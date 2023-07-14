@@ -21,12 +21,16 @@
                 </div>
                 <div class="d-flex mt-2">
                     <dt class="col-sm-4">Destination: </dt>
-                    <dd class="col-sm-8">@Model.Destination</dd>
+                    <dd class="col-sm-8">
+                        <a asp-controller="Destinations" asp-action="Details" asp-route-destinationId="">
+                            @Model.Destination
+                        </a>
+                    </dd>
                 </div>
                 @if (Model.HotelName != null)
                 {
                     <div class="d-flex mt-2">
-                        <dt class="col-sm-4">Hotel Name: </dt>
+                        <dt class="col-sm-4">Hotel: </dt>
                         <dd class="col-sm-8">@Model.HotelName</dd>
                     </div>
                 }
@@ -59,10 +63,10 @@
             <div class="text-center d-flex justify-content-center align-items-center">
                 @if (User.IsInRole("Organizer"))
                 {
-                    <a asp-controller="Travels" asp-action="Edit" asp-route-travelId="@Model.Id" class="btn btn-info">
+                    <a asp-controller="Travels" asp-action="Edit" asp-route-travelId="@Model.Id" class="btn btn-info me-1">
                         <i class="fas fa-pencil-alt"></i>
                     </a>
-                    <a asp-controller="Travels" asp-action="Delete" asp-route-travelId="@Model.Id" class="btn red-background">
+                    <a onclick="fireSweetAlert(@Model.Id)" class="btn red-background">
                         <i class="fas fa-trash"></i>
                     </a>
                 }
@@ -70,7 +74,7 @@
                 {
                     if (!Model.IsBooked)
                     {
-                        <form asp-controller="Travels" asp-action="Book" asp-route-travelId="@Model.Id" method="post">
+                        <form asp-controller="Bookings" asp-action="CreateBooking" asp-route-travelId="@Model.Id" method="post">
                             <button type="submit" class="btn green-background">
                                 Book Now
                             </button>
@@ -80,7 +84,7 @@
                     {
                         <h5 class="text-success mb-0 me-3">You've booked this travel!</h5>
 
-                        <form asp-controller="Travels" asp-action="RemoveBooking" asp-route-travelId="@Model.Id" method="post">
+                        <form asp-controller="Bookings" asp-action="RemoveBooking" asp-route-travelId="@Model.Id" method="post">
                             <button type="submit" class="btn btn-danger">
                                 Remove Booking
                             </button>
@@ -90,23 +94,21 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <hr class="mb-2" />
-            <div class="text-center d-flex flex-column align-items-center">
-                @if (User.IsInRole("User"))
-                {
+    @if (User.IsInRole("User"))
+    {
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <hr class="mb-2" />
+                <div class="text-center d-flex flex-column align-items-center">
                     <h4>Leave a comment</h4>
-
                     <form asp-controller="Travels" asp-action="AddReview" asp-route-travelId="@Model.Id" method="post" class="col-md-5 mt-3">
-                        
                         <input class="form-control" id="Comment" placeholder="Enter your comment" required />
                         <button type="submit" class="btn btn-primary mt-2">
                             Add Comment
                         </button>
                     </form>
-                }
+                </div>
             </div>
         </div>
-    </div>
+    }
 </div>
