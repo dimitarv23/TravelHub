@@ -18,7 +18,7 @@
         {
             await this.bookingService.CreateBookingAsync(travelId, User.GetId());
 
-            return RedirectToAction("Details", "Travels", new { travelId = travelId });
+            return RedirectToAction(nameof(My));
         }
 
         [HttpPost]
@@ -26,7 +26,13 @@
         {
             await this.bookingService.RemoveBookingAsync(travelId, User.GetId());
 
-            return RedirectToAction("Details", "Travels", new { travelId = travelId });
+            return RedirectToAction(nameof(My));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> My()
+        {
+            return View();
         }
     }
 }

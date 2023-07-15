@@ -8,7 +8,7 @@
     @if (User.IsInRole("Organizer"))
     {
         <div class="text-center mb-4">
-            <a asp-controller="Travels" asp-action="Create" class="btn btn-success">
+            <a asp-controller="Travels" asp-action="Add" class="btn btn-success">
                 Add Travel
             </a>
         </div>
@@ -48,7 +48,7 @@
                                     <a asp-controller="Travels" asp-action="Edit" asp-route-travelId="@travel.Id" class="btn btn-info mt-1">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
-                                    <a onclick="fireSweetAlert(@travel.Id)" class="btn red-background">
+                                    <a onclick="fireSweetAlert(@travel.Id)" class="btn red-background mt-1">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 }

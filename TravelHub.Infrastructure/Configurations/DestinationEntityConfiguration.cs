@@ -8,6 +8,9 @@
     {
         public void Configure(EntityTypeBuilder<Destination> builder)
         {
+            builder.HasIndex(d => new { d.Country, d.Place })
+                .IsUnique(true);
+
             builder.HasMany(d => d.Hotels)
                 .WithOne(h => h.Destination)
                 .HasForeignKey(h => h.DestinationId);

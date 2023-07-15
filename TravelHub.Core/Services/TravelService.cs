@@ -2,12 +2,13 @@
 {
     using TravelHub.Core.Contracts;
     using TravelHub.Core.Repositories;
+    using TravelHub.Domain.Enums;
     using TravelHub.Domain.Models;
     using TravelHub.ViewModels.Travels;
     using System.Collections.Generic;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
-    using System.Text.RegularExpressions;
 
     public class TravelService : ITravelService
     {
@@ -34,7 +35,7 @@
                 }).ToListAsync();
         }
 
-        public async Task<TravelDetailsViewModel?> GetDetailsByIdAsync(int id, string userId)
+        public async Task<TravelDetailsViewModel?> GetByIdForDetailsAsync(int id, string userId)
         {
             return await this.repository.All<Travel>()
                 .Select(t => new TravelDetailsViewModel()
@@ -57,6 +58,71 @@
         public async Task DeleteAsync(int id)
         {
             await this.repository.DeleteAsync<Travel>(id);
+            await this.repository.SaveChangesAsync();
+        }
+
+        public async Task CreateAsync(TravelFormModel model)
+        {
+            Travel travelToAdd = new Travel()
+            {
+                Type = model.Type,
+                Description = model.Description,
+                Price = model.Price,
+                DateFrom = model.DateFrom,
+                DateTo = model.DateTo,
+                MeetingLocation = model.MeetingLocation,
+                MaxNumberOfPeople = model.MaxNumberOfPeople,
+                DestinationId = model.DestinationId,
+                HotelId = model.HotelId
+            };
+
+            await this.repository.AddAsync(travelToAdd);
+            await this.repository.SaveChangesAsync();
+        }
+
+        public async Task<TravelFormModel?> GetByIdForEditAsync(int id)
+        {
+            var travel = await this.repository.GetByIdAsync<Travel>(id);
+
+            if (travel == null)
+            {
+                return null;
+            }
+
+            return new TravelFormModel()
+            {
+                Description = travel.Description,
+                Type = travel.Type,
+                Price = travel.Price,
+                DateFrom = travel.DateFrom,
+                DateTo = travel.DateTo,
+                MeetingLocation = travel.MeetingLocation,
+                MaxNumberOfPeople = travel.MaxNumberOfPeople,
+                DestinationId = travel.DestinationId,
+                HotelId = travel.HotelId
+            };
+        }
+
+        public async Task EditAsync(int id, TravelFormModel model)
+        {
+            var travelToEdit = await this.repository.GetByIdAsync<Travel>(id);
+
+            if (travelToEdit == null)
+            {
+                return;
+            }
+
+            travelToEdit.Description = model.Description;
+            travelToEdit.Type = model.Type;
+            travelToEdit.Price = model.Price;
+            travelToEdit.DateFrom = model.DateFrom;
+            travelToEdit.DateTo = model.DateTo;
+            travelToEdit.MeetingLocation = model.MeetingLocation;
+            travelToEdit.MaxNumberOfPeople = model.MaxNumberOfPeople;
+            travelToEdit.DestinationId = model.DestinationId;
+            travelToEdit.HotelId = model.HotelId;
+
+            this.repository.Update(travelToEdit);
             await this.repository.SaveChangesAsync();
         }
     }

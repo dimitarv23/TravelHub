@@ -17,9 +17,9 @@
                 .WithOne(t => t.Hotel)
                 .HasForeignKey(t => t.HotelId);
 
-            builder.Property(t => t.FoodService)
-                .HasConversion(t => t.ToString(),
-                    t => (eFoodService)Enum.Parse(typeof(eTravelType), t));
+            builder.Property(h => h.FoodService)
+                .HasConversion(f => f.ToString(),
+                    t => (eFoodService)Enum.Parse(typeof(eFoodService), t));
 
             builder.HasData(this.GenerateHotels());
         }

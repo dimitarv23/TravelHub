@@ -4,7 +4,7 @@
     {
         public static class Shared
         {
-            public const string DateFormatString = "{0:dd/MM/yyyy}";
+            public const string DateFormatString = "{0:dd-MMM-yyyy}";
 
             public const string RequiredErrorMessage = "This field is required.";
             public const string StringLengthErrorMessage = "Length should be between {0} and {1} characters.";

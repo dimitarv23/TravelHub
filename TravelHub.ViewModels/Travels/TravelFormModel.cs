@@ -7,12 +7,18 @@
 
     public class TravelFormModel
     {
-        [Required]
-        public eTravelType Type { get; set; }
+        public TravelFormModel()
+        {
+            this.Destinations = new List<TravelDestinationViewModel>();
+            this.Hotels = new List<TravelHotelViewModel>();
+        }
 
         [Required]
         [StringLength(DescriptionMaxLength, MinimumLength = DescriptionMinLength)]
         public string Description { get; set; } = null!;
+
+        [Required]
+        public eTravelType Type { get; set; }
 
         [Required]
         [Range(PriceMinValue, PriceMaxValue)]
@@ -35,6 +41,10 @@
         [Required]
         public int DestinationId { get; set; }
 
+        public ICollection<TravelDestinationViewModel> Destinations { get; set; }
+
         public int? HotelId { get; set; }
+
+        public ICollection<TravelHotelViewModel> Hotels { get; set; }
     }
 }

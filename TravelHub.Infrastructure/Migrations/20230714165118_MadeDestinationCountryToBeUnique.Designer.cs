@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelHub.Infrastructure;
 
@@ -11,9 +12,10 @@ using TravelHub.Infrastructure;
 namespace TravelHub.Infrastructure.Migrations
 {
     [DbContext(typeof(TravelHubContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230714165118_MadeDestinationCountryToBeUnique")]
+    partial class MadeDestinationCountryToBeUnique
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -268,7 +270,7 @@ namespace TravelHub.Infrastructure.Migrations
 
                     b.HasIndex("TravelId");
 
-                    b.ToTable("Bookings", (string)null);
+                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("TravelHub.Domain.Models.Destination", b =>
@@ -303,7 +305,7 @@ namespace TravelHub.Infrastructure.Migrations
                     b.HasIndex("Country", "Place")
                         .IsUnique();
 
-                    b.ToTable("Destinations", (string)null);
+                    b.ToTable("Destinations");
 
                     b.HasData(
                         new
@@ -361,7 +363,7 @@ namespace TravelHub.Infrastructure.Migrations
 
                     b.HasIndex("DestinationId");
 
-                    b.ToTable("Hotels", (string)null);
+                    b.ToTable("Hotels");
 
                     b.HasData(
                         new
@@ -416,7 +418,7 @@ namespace TravelHub.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reviews", (string)null);
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("TravelHub.Domain.Models.Travel", b =>
@@ -464,7 +466,7 @@ namespace TravelHub.Infrastructure.Migrations
 
                     b.HasIndex("HotelId");
 
-                    b.ToTable("Travels", (string)null);
+                    b.ToTable("Travels");
 
                     b.HasData(
                         new

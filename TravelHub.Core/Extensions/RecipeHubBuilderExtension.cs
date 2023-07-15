@@ -13,6 +13,8 @@
 
             services.AddScoped<ITravelService, TravelService>();
             services.AddScoped<IBookingService, BookingService>();
+            services.AddScoped<IDestinationService, DestinationService>();
+            services.AddScoped<IHotelService, HotelService>();
 
             return services;
         }

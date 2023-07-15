@@ -6,11 +6,13 @@
     {
         public Task<ICollection<TravelViewModel>> GetAllAsync();
 
-        //public Task CreateAsync(TravelFormModel model);
+        public Task CreateAsync(TravelFormModel model);
 
-        public Task<TravelDetailsViewModel?> GetDetailsByIdAsync(int id, string userId);
+        public Task<TravelDetailsViewModel?> GetByIdForDetailsAsync(int id, string userId);
 
-        //public Task EditAsync(int id, TravelFormModel model);
+        public Task<TravelFormModel?> GetByIdForEditAsync(int id);
+
+        public Task EditAsync(int id, TravelFormModel model);
 
         public Task DeleteAsync(int id);
     }
