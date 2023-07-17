@@ -10,7 +10,7 @@
             <label asp-for="Description" class="col-sm-9">
                 <span class="h6 small text-muted">Description <span class="text-danger">*</span></span>
             </label>
-            <textarea asp-for="Description" class="form-control" id="Description" placeholder="Enter a description" rows="4">
+            <textarea asp-for="Description" class="form-control" id="description" placeholder="Enter a description" rows="4">
             </textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
@@ -18,7 +18,7 @@
             <label asp-for="Type" class="col-sm-9">
                 <span class="h6 small text-muted">Type <span class="text-danger">*</span></span>
             </label>
-            <select asp-for="Type" class="form-control" id="Type">
+            <select asp-for="Type" class="form-control" id="type">
                 @foreach (var type in Enum.GetValues(typeof(eTravelType)))
                 {
                     <option value="@type">@Regex.Replace(type.ToString()!, @"(?<!^)(?=[A-Z])", " ")</option>
@@ -30,35 +30,35 @@
             <label asp-for="Price" class="col-sm-9">
                 <span class="h6 small text-muted">Price <span class="text-danger">*</span></span>
             </label>
-            <input asp-for="Price" type="number" class="form-control" id="Price" placeholder="Enter a price">
+            <input asp-for="Price" type="number" class="form-control" id="price" placeholder="Enter a price">
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
         <div class="mt-2">
             <label asp-for="DateFrom" class="col-sm-9">
                 <span class="h6 small text-muted">Date From <span class="text-danger">*</span></span>
             </label>
-            <input asp-for="DateFrom" type="date" class="form-control" id="DateFrom" placeholder="Select a date">
+            <input asp-for="DateFrom" type="date" class="form-control" id="dateFrom" placeholder="Select a date">
             <span asp-validation-for="DateFrom" class="text-danger"></span>
         </div>
         <div class="mt-2">
             <label asp-for="DateTo" class="col-sm-9">
                 <span class="h6 small text-muted">Date To <span class="text-danger">*</span></span>
             </label>
-            <input asp-for="DateTo" type="date" class="form-control" id="DateTo" placeholder="Select a date">
+            <input asp-for="DateTo" type="date" class="form-control" id="dateTo" placeholder="Select a date">
             <span asp-validation-for="DateTo" class="text-danger"></span>
         </div>
         <div class="mt-2">
             <label asp-for="MaxNumberOfPeople" class="col-sm-9">
                 <span class="h6 small text-muted">Max Number Of People <span class="text-danger">*</span></span>
             </label>
-            <input asp-for="MaxNumberOfPeople" type="number" class="form-control" id="MaxNumberOfPeople" placeholder="Enter the max number of people">
+            <input asp-for="MaxNumberOfPeople" type="number" class="form-control" id="maxNumberOfPeople" placeholder="Enter the max number of people">
             <span asp-validation-for="MaxNumberOfPeople" class="text-danger"></span>
         </div>
         <div class="mt-2">
             <label asp-for="DestinationId" class="col-sm-9">
                 <span class="h6 small text-muted">Destination <span class="text-danger">*</span></span>
             </label>
-            <select asp-for="DestinationId" class="form-control" id="DestinationId">
+            <select asp-for="DestinationId" class="form-control" id="destinationId">
                 <option>Choose a destination:</option>
                 @foreach (var destination in Model.Destinations)
                 {
@@ -71,26 +71,26 @@
             <label asp-for="HotelId" class="col-sm-9">
                 <span class="h6 small text-muted">Hotel</span>
             </label>
-            <select asp-for="HotelId" class="form-control" id="HotelId">
-                <option>Choose a hotel:</option>
+            <select asp-for="HotelId" class="form-control" id="hotelId">
+                <option value="0">Choose a hotel:</option>
                 @foreach (var hotel in Model.Hotels)
                 {
                     <option value="@hotel.Id">
-                        @hotel.Name, @Regex.Replace(hotel.FoodService.ToString()!, @"(?<!^)(?=[A-Z])", " "), @hotel.Rating stars
+                        @hotel.Destination - @hotel.Name - @Regex.Replace(hotel.FoodService.ToString()!, @"(?<!^)(?=[A-Z])", " ") - @hotel.Rating stars
                     </option>
                 }
-                <option>No Hotel</option>
+                <option value="0">No Hotel</option>
             </select>
         </div>
         <div class="mt-2">
             <label asp-for="MeetingLocation" class="col-sm-9">
                 <span class="h6 small text-muted">Meeting Location <span class="text-danger">*</span></span>
             </label>
-            <input asp-for="MeetingLocation" type="text" class="form-control" id="MeetingLocation" placeholder="Enter a meeting location">
+            <input asp-for="MeetingLocation" type="text" class="form-control" id="meetingLocation" placeholder="Enter a meeting location">
             <span asp-validation-for="MeetingLocation" class="text-danger"></span>
         </div>
         <div class="mt-2">
-            <span  class="text-danger"></span>
+            <span class="text-danger"></span>
         </div>
         <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-primary btn-block mt-4 col-md-4" style="font-size: 20px;">

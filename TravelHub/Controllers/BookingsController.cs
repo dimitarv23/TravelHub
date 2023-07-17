@@ -3,6 +3,7 @@
     using TravelHub.Core.Contracts;
     using TravelHub.Core.Extensions;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
 
     public class BookingsController : Controller
     {
@@ -14,25 +15,48 @@
         }
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> CreateBooking(int travelId)
         {
             await this.bookingService.CreateBookingAsync(travelId, User.GetId());
 
-            return RedirectToAction(nameof(My));
+            return RedirectToAction(nameof(Mine));
         }
 
         [HttpPost]
-        public async Task<IActionResult> RemoveBooking(int travelId)
+        public async Task<IActionResult> RemoveBooking(int travelId, string? userId)
         {
-            await this.bookingService.RemoveBookingAsync(travelId, User.GetId());
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                userId = User.GetId();
+            }
 
-            return RedirectToAction(nameof(My));
+            await this.bookingService.RemoveBookingAsync(travelId, userId);
+
+            if (User.IsInRole("Organizer"))
+            {
+                return RedirectToAction(nameof(All));
+            }
+            
+            return RedirectToAction(nameof(Mine));
         }
 
         [HttpGet]
-        public async Task<IActionResult> My()
+        [Authorize(Roles = "Organizer")]
+        public async Task<IActionResult> All()
         {
-            return View();
+            var model = await this.bookingService.GetAllAsync();
+
+            return View(model);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "User")]
+        public async Task<IActionResult> Mine()
+        {
+            var model = await this.bookingService.GetForUserAsync(User.GetId());
+
+            return View(model);
         }
     }
 }

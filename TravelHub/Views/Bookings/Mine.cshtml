@@ -1,0 +1,50 @@
+﻿@model ICollection<BookingViewModel>
+@{
+    ViewData["Title"] = "My Bookings";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+
+    @if (Model.Count == 0)
+    {
+        <div class="text-center">
+            <p class="text-primary display-6">Oops! You don't have any bookings.</p>
+            <a asp-controller="Travels" asp-action="All" style="font-size: 22px;">
+                Book your dream travel now!
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="d-flex flex-column align-items-center">
+            @foreach (var booking in Model)
+            {
+                <div class="col-md-10">
+                    <div class="booking-box row align-items-center justify-content-between w-100">
+                        <div class="col-md-5">
+                            <div class="booking-image">
+                                <img src="@booking.ImageUrl" alt="Booking Image" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-md-5 mt-2">
+                            <h3 class="mb-3">@booking.Destination</h3>
+                            <p><strong>Price:</strong> @booking.Price</p>
+                            <p><strong>Owner:</strong> @booking.Owner</p>
+                            <p><strong>Date From:</strong> @booking.DateFrom</p>
+                            <p><strong>Date To:</strong> @booking.DateTo</p>
+                            <p><strong>Date:</strong> @booking.BookDate</p>
+                        </div>
+                        <div class="col-md-2">
+                            <form asp-controller="Bookings" asp-action="RemoveBooking" asp-route-travelId="@booking.TravelId" method="post" class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-danger">
+                                    Remove Booking
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

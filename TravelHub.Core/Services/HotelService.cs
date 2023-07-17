@@ -24,7 +24,8 @@
                     Id = h.Id,
                     Name = h.Name,
                     FoodService = h.FoodService,
-                    Rating = h.Rating
+                    Rating = h.Rating,
+                    Destination = $"{h.Destination.Place}, {h.Destination.Country}"
                 }).ToListAsync();
         }
     }

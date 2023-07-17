@@ -43,7 +43,7 @@
 
         public ICollection<TravelDestinationViewModel> Destinations { get; set; }
 
-        public int? HotelId { get; set; }
+        public int HotelId { get; set; }
 
         public ICollection<TravelHotelViewModel> Hotels { get; set; }
     }

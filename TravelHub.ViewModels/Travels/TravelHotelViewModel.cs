@@ -11,5 +11,7 @@
         public eFoodService FoodService { get; set; }
 
         public int Rating { get; set; }
+
+        public string Destination { get; set; }
     }
 }

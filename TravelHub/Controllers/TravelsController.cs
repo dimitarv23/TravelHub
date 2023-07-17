@@ -120,7 +120,7 @@
             }
 
             await this.travelService.EditAsync(travelId, model);
-        
+
             return RedirectToAction(nameof(Details), new { travelId = travelId });
         }
 
@@ -136,6 +136,7 @@
         [HttpPost]
         public async Task<IActionResult> AddReview(int travelId)
         {
+
 
             return RedirectToAction(nameof(Details), new { travelId = travelId });
         }

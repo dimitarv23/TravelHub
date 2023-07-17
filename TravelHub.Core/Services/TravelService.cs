@@ -73,7 +73,7 @@
                 MeetingLocation = model.MeetingLocation,
                 MaxNumberOfPeople = model.MaxNumberOfPeople,
                 DestinationId = model.DestinationId,
-                HotelId = model.HotelId
+                HotelId = model.HotelId == 0 ? null : model.HotelId
             };
 
             await this.repository.AddAsync(travelToAdd);
@@ -99,7 +99,7 @@
                 MeetingLocation = travel.MeetingLocation,
                 MaxNumberOfPeople = travel.MaxNumberOfPeople,
                 DestinationId = travel.DestinationId,
-                HotelId = travel.HotelId
+                HotelId = travel.HotelId ?? 0
             };
         }
 
@@ -120,7 +120,7 @@
             travelToEdit.MeetingLocation = model.MeetingLocation;
             travelToEdit.MaxNumberOfPeople = model.MaxNumberOfPeople;
             travelToEdit.DestinationId = model.DestinationId;
-            travelToEdit.HotelId = model.HotelId;
+            travelToEdit.HotelId = model.HotelId == 0 ? null : model.HotelId;
 
             this.repository.Update(travelToEdit);
             await this.repository.SaveChangesAsync();
