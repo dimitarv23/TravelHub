@@ -11,25 +11,33 @@ It has the following functionalities:
 
 ### Organizers can:
 - Organize travels
+- See all travels
+- See details about each travel
 - Edit travels
 - Delete travels
+- See all destinations
+- See details about each destination
 - Add new destinations
 - Edit destinations
 - Delete destinations
+- See all hotels
+- See details about each hotel
 - Add new hotels
 - Edit hotels
 - Delete hotels
-- See all users
-- See users that are enrolled in a certain holiday
-- Make a certain user become an organizer
+- See all bookings made by users
+- Delete a booking from a certain user
 - Logout
 
 ### Users can:
 - See all travels
-- Enroll in a travel
 - See details about each travel
+- See all destinations
 - See details about each destination
+- See all hotels
 - See details about each hotel
+- Create a booking
+- Remove his own booking from a certain travel
 - Logout
 
 ### Guests can:
