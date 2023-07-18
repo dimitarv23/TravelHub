@@ -1,4 +1,4 @@
-﻿function fireSweetAlert(id) {
+﻿function fireSweetAlert(id, entity) {
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -9,7 +9,7 @@
     }).then((result) => {
         if (result.isConfirmed) {
             const baseUrl = window.location.origin;
-            const deleteUrl = `${baseUrl}/Travels/Delete?travelId=${id}`;
+            const deleteUrl = `${baseUrl}/${entity}s/Delete?${entity}Id=${id}`;
             fetch(deleteUrl, {
                 method: 'POST'
             }).then((response) => {
@@ -19,7 +19,7 @@
                         'Deleted successfully.',
                         'success'
                     ).then(() => {
-                        window.location.href = `${baseUrl}/Travels/All`;
+                        window.location.href = `${baseUrl}/${entity}/All`;
                     });
                 } else {
                     Swal.fire(

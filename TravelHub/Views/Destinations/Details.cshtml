@@ -1,0 +1,99 @@
+﻿@model DestinationDetailsViewModel
+@{
+    ViewData["Title"] = "Destination Details";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+        <div class="col-md-6">
+            <img src="@Model.ImageUrl" class="img-fluid rounded" alt="Destination Image">
+        </div>
+    </div>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8">
+            <hr>
+            <dl class="row m-0">
+                <div class="d-flex">
+                    <dt class="col-sm-4">Place: </dt>
+                    <dd class="col-sm-8">@Model.Place</dd>
+                </div>
+            </dl>
+            <dl class="row m-0">
+                <div class="d-flex">
+                    <dt class="col-sm-4">Country: </dt>
+                    <dd class="col-sm-8">@Model.Country</dd>
+                </div>
+            </dl>
+            <dl class="row m-0">
+                <div class="d-flex">
+                    <dt class="col-sm-4">Currency: </dt>
+                    <dd class="col-sm-8">@Model.Currency</dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <hr />
+            <div class="text-center d-flex justify-content-center align-items-center">
+                @if (User.IsInRole("Organizer"))
+                {
+                    <a asp-controller="Destinations" asp-action="Edit" asp-route-destinationId="@Model.Id" class="btn btn-info me-1">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
+                    <a onclick="fireSweetAlert(@Model.Id, @("destination"))" class="btn red-background">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+    @if (Model.Hotels.Any())
+    {
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <hr class="mb-2" />
+                <div class="text-center d-flex flex-column align-items-center">
+                    <h4>Hotels</h4>
+
+                    @foreach (var hotel in Model.Hotels)
+                    {
+
+                    }
+                </div>
+            </div>
+        </div>
+    }
+    @if (User.IsInRole("User"))
+    {
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <hr class="mb-2" />
+                <div class="text-center d-flex flex-column align-items-center">
+                    <h4>Add Review</h4>
+                    <form asp-controller="Reviews" asp-action="AddReview" asp-route-destinationId="@Model.Id" method="post" class="col-md-5 mt-3">
+                        <input class="form-control" id="Comment" placeholder="Enter your comment" required />
+                        <button type="submit" class="btn btn-primary mt-2">
+                            Add Comment
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+    @if (Model.Reviews.Any())
+    {
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <hr class="mb-2" />
+                <div class="text-center d-flex flex-column align-items-center">
+                    @foreach (var review in Model.Reviews)
+                    {
+
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -24,23 +24,26 @@
                     <ul class="navbar-nav flex-grow-1">
                         @if (User.Identity!.IsAuthenticated)
                         {
-                            <li class="nav-item me-2">
-                                <a class="nav-link text-dark" asp-controller="Travels" asp-action="All">All Travels</a>
+                            <li class="nav-item me-3">
+                                <a class="nav-link text-dark navbar-link" asp-controller="Travels" asp-action="All">Travels</a>
                             </li>
-                            <li class="nav-item me-2">
-                                <a class="nav-link text-dark" asp-controller="Destinations" asp-action="All">All Destinations</a>
+                            <li class="nav-item me-3">
+                                <a class="nav-link text-dark navbar-link" asp-controller="Destinations" asp-action="All">Destinations</a>
+                            </li>
+                            <li class="nav-item me-3">
+                                <a class="nav-link text-dark navbar-link" asp-controller="Hotels" asp-action="All">Hotels</a>
                             </li>
 
                             @if (User.IsInRole("Organizer"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="Bookings" asp-action="All">All Bookings</a>
+                                    <a class="nav-link text-dark navbar-link" asp-controller="Bookings" asp-action="All">Bookings</a>
                                 </li>
                             }
                             else
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="Bookings" asp-action="Mine">My Bookings</a>
+                                    <a class="nav-link text-dark navbar-link" asp-controller="Bookings" asp-action="Mine">My Bookings</a>
                                 </li>
                             }
                         }

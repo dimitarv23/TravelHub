@@ -66,7 +66,7 @@
                     <a asp-controller="Travels" asp-action="Edit" asp-route-travelId="@Model.Id" class="btn btn-info me-1">
                         <i class="fas fa-pencil-alt"></i>
                     </a>
-                    <a onclick="fireSweetAlert(@Model.Id)" class="btn red-background">
+                    <a onclick="fireSweetAlert(@Model.Id, @("travel"))" class="btn red-background">
                         <i class="fas fa-trash"></i>
                     </a>
                 }
@@ -94,21 +94,4 @@
             </div>
         </div>
     </div>
-    @if (User.IsInRole("User"))
-    {
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <hr class="mb-2" />
-                <div class="text-center d-flex flex-column align-items-center">
-                    <h4>Add Review</h4>
-                    <form asp-controller="Travels" asp-action="AddReview" asp-route-travelId="@Model.Id" method="post" class="col-md-5 mt-3">
-                        <input class="form-control" id="Comment" placeholder="Enter your comment" required />
-                        <button type="submit" class="btn btn-primary mt-2">
-                            Add Comment
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    }
 </div>
