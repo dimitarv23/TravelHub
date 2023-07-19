@@ -3,6 +3,7 @@
     using TravelHub.Core.Contracts;
     using Microsoft.AspNetCore.Mvc;
     using TravelHub.ViewModels.Travels;
+    using TravelHub.ViewModels.Destinations;
 
     public class DestinationsController : Controller
     {
@@ -31,14 +32,24 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Add()
+        public IActionResult Add()
         {
-            TravelFormModel model = new TravelFormModel()
-            {
-
-            };
+            DestinationFormModel model = new DestinationFormModel();
 
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(DestinationFormModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            //await this.destinationService.AddAsync(model);
+
+            return RedirectToAction(nameof(All));
         }
     }
 }

@@ -26,7 +26,7 @@
             {
                 <div class="col-md-4 mb-4">
                     <div class="card" style="height: 100%;">
-                        <div class="card-img-box-sm">
+                        <div class="card-img-box-md">
                             <img src="@destination.ImageUrl" class="card-image">
                         </div>
                         <div class="card-body d-flex align-items-center justify-content-between">
@@ -41,7 +41,7 @@
                                     <a asp-controller="Destinations" asp-action="Edit" asp-route-destinationId="@destination.Id" class="btn btn-info">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
-                                    <a onclick="fireSweetAlert(@destination.Id, @("destination"))" class="btn red-background">
+                                    <a onclick="fireSweetAlert(@destination.Id, 'destination')" class="btn red-background">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 }

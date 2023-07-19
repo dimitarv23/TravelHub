@@ -8,6 +8,7 @@
         confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
         if (result.isConfirmed) {
+            debugger;
             const baseUrl = window.location.origin;
             const deleteUrl = `${baseUrl}/${entity}s/Delete?${entity}Id=${id}`;
             fetch(deleteUrl, {
@@ -19,7 +20,7 @@
                         'Deleted successfully.',
                         'success'
                     ).then(() => {
-                        window.location.href = `${baseUrl}/${entity}/All`;
+                        window.location.href = `${baseUrl}/${entity}s/All`;
                     });
                 } else {
                     Swal.fire(

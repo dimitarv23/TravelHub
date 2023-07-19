@@ -89,10 +89,10 @@
             <input asp-for="MeetingLocation" type="text" class="form-control" id="meetingLocation" placeholder="Enter a meeting location">
             <span asp-validation-for="MeetingLocation" class="text-danger"></span>
         </div>
-        <div class="mt-2">
-            <span class="text-danger"></span>
-        </div>
         <div class="d-flex justify-content-center">
+            <a asp-controller="Travels" asp-action="All" class="btn btn-secondary btn-block mt-4 me-2 col-md-3" style="font-size: 20px;">
+                Cancel
+            </a>
             <button type="submit" class="btn btn-primary btn-block mt-4 col-md-4" style="font-size: 20px;">
                 Add
             </button>

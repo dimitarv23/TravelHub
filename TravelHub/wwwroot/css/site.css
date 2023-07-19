@@ -22,8 +22,16 @@ body {
         height: 280px;
     }
 
+    .card-img-box-md {
+        height: 280px;
+    }
+
     .card-img-box-sm {
         height: 280px;
+    }
+
+    .card-main-text {
+        font-size: 20px;
     }
 }
 
@@ -32,8 +40,16 @@ body {
         height: 200px;
     }
 
-    .card-img-box-sm {
+    .card-img-box-md {
         height: 130px;
+    }
+
+    .card-img-box-sm {
+        height: 100px;
+    }
+
+    .card-main-text {
+        font-size: 14px;
     }
 }
 
@@ -42,8 +58,16 @@ body {
         height: 250px;
     }
 
-    .card-img-box-sm {
+    .card-img-box-md {
         height: 170px;
+    }
+
+    .card-img-box-sm {
+        height: 120px;
+    }
+
+    .card-main-text {
+        font-size: 16px;
     }
 }
 
@@ -52,8 +76,16 @@ body {
         height: 300px;
     }
 
-    .card-img-box-sm {
+    .card-img-box-md {
         height: 200px;
+    }
+
+    .card-img-box-sm {
+        height: 160px;
+    }
+
+    .card-main-text {
+        font-size: 18px;
     }
 }
 
@@ -62,8 +94,16 @@ body {
         height: 330px;
     }
 
-    .card-img-box-sm {
+    .card-img-box-md {
         height: 230px;
+    }
+
+    .card-img-box-sm {
+        height: 200px;
+    }
+
+    .card-main-text {
+        font-size: 20px;
     }
 }
 

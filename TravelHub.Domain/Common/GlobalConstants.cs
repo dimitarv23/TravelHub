@@ -40,7 +40,7 @@
             public const int PlaceMaxLength = 50;
 
             public const int CurrencyMinLength = 3;
-            public const int CurrencyMaxLength = 20;
+            public const int CurrencyMaxLength = 5;
         }
 
         public static class Hotel

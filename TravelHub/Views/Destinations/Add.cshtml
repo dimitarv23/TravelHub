@@ -1,5 +1,50 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model DestinationFormModel
 @{
+    ViewData["Title"] = "Add Destination";
+}
+
+<div class="container d-flex flex-column align-items-center mt-5">
+    <h2 class="text-center mb-4">@ViewData["Title"]</h2>
+    <form asp-controller="Destinations" asp-action="Add" method="post" class="col-md-8">
+        <div>
+            <label asp-for="Country" class="col-sm-9">
+                <span class="h6 small text-muted">Country <span class="text-danger">*</span></span>
+            </label>
+            <input asp-for="Country" type="text" class="form-control" id="country" placeholder="Enter a country">
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+        <div class="mt-2">
+            <label asp-for="Place" class="col-sm-9">
+                <span class="h6 small text-muted">Place/Town <span class="text-danger">*</span></span>
+            </label>
+            <input asp-for="Place" type="text" class="form-control" id="place" placeholder="Enter a place">
+            <span asp-validation-for="Place" class="text-danger"></span>
+        </div>
+        <div class="mt-2">
+            <label asp-for="Currency" class="col-sm-9">
+                <span class="h6 small text-muted">Currency <span class="text-danger">*</span></span>
+            </label>
+            <input asp-for="Currency" type="text" class="form-control" id="currency" placeholder="Enter a currency">
+            <span asp-validation-for="Currency" class="text-danger"></span>
+        </div>
+        <div class="mt-2">
+            <label asp-for="ImageUrl" class="col-sm-9">
+                <span class="h6 small text-muted">Image URL <span class="text-danger">*</span></span>
+            </label>
+            <input asp-for="ImageUrl" type="text" class="form-control" id="imageUrl" placeholder="Place URL of an image">
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a asp-controller="Destinations" asp-action="All" class="btn btn-secondary btn-block mt-4 me-2 col-md-3" style="font-size: 20px;">
+                Cancel
+            </a>
+            <button type="submit" class="btn btn-primary btn-block mt-4 col-md-4" style="font-size: 20px;">
+                Add
+            </button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }

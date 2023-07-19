@@ -66,7 +66,7 @@
                     <a asp-controller="Travels" asp-action="Edit" asp-route-travelId="@Model.Id" class="btn btn-info me-1">
                         <i class="fas fa-pencil-alt"></i>
                     </a>
-                    <a onclick="fireSweetAlert(@Model.Id, @("travel"))" class="btn red-background">
+                    <a onclick="fireSweetAlert(@Model.Id, 'travel')" class="btn red-background">
                         <i class="fas fa-trash"></i>
                     </a>
                 }
