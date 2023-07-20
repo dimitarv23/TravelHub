@@ -38,7 +38,7 @@ namespace TravelHub.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Country = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Place = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Currency = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Currency = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -80,7 +80,7 @@ namespace TravelHub.Infrastructure.Migrations
                     Rating = table.Column<int>(type: "int", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    DestinationId = table.Column<int>(type: "int", nullable: false)
+                    HotelId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -92,9 +92,9 @@ namespace TravelHub.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Reviews_Destinations_DestinationId",
-                        column: x => x.DestinationId,
-                        principalTable: "Destinations",
+                        name: "FK_Reviews_Hotels_HotelId",
+                        column: x => x.HotelId,
+                        principalTable: "Hotels",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -161,14 +161,18 @@ namespace TravelHub.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4c4fa568-5033-40d9-8064-9db512d3de49", "eb7a88fe-1a8f-46d5-9c11-068a989dab46", "User", "USER" },
-                    { "613e9a9a-de45-4cec-8519-81625c7e603e", "65e5f5b2-a382-4ee9-886b-371e3c3996a5", "Organizer", "ORGANIZER" }
+                    { "4c4fa568-5033-40d9-8064-9db512d3de49", "95355bc5-8fd4-4499-b5fa-5e100771c206", "User", "USER" },
+                    { "613e9a9a-de45-4cec-8519-81625c7e603e", "ff93cf91-2f41-431b-9db7-aa3cbf65fbba", "Organizer", "ORGANIZER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "ac5688a2-417e-4a2d-973c-503b7c8eb951", 0, "af510c1d-4881-4486-b16c-f976616490ab", "User", "organizer@email.com", false, "Organizer", "Organizer", false, null, "ORGANIZER@EMAIL.COM", "ORGANIZER1", "AQAAAAEAACcQAAAAENGZ/Ie6UG58Kc/EhS5NndhBJTPCDbsIZzYwxibwbHZOqzk3bfkTkRWcbMXd6JKBJA==", null, false, "41b9766d-c879-4be2-8b3e-d0f232deb0b5", false, "Organizer1" });
+                values: new object[,]
+                {
+                    { "ac5688a2-417e-4a2d-973c-503b7c8eb951", 0, "e0e6e29e-6902-4f5e-bc5e-dc6a5956570d", "User", "organizer@email.com", false, "Organizer", "Organizer", false, null, "ORGANIZER@EMAIL.COM", "SEEDED_ORGANIZER", "AQAAAAEAACcQAAAAEJsNIpt1QUo/35an+QSaJMP/f+hhcVTbVjh90sKIc8VQQI49zvxO7tmlkSy9YHoAgw==", null, false, "b4edc96b-723f-4864-825e-81b621a10771", false, "Seeded_Organizer" },
+                    { "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", 0, "88ac93d0-2c86-4781-bec6-d18b04432fba", "User", "user@email.com", false, "User", "User", false, null, "USER@EMAIL.COM", "SEEDED_USER", "AQAAAAEAACcQAAAAEJlTCKqLPqmEIclGlygDaLyQY43tHb4Zio12OTQ4LrYuGEr2HWZrJwup8x2GJtjihg==", null, false, "ed6b7b8e-c38a-4f21-9d00-332fa3bee466", false, "Seeded_User" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Destinations",
@@ -182,7 +186,11 @@ namespace TravelHub.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "613e9a9a-de45-4cec-8519-81625c7e603e", "ac5688a2-417e-4a2d-973c-503b7c8eb951" });
+                values: new object[,]
+                {
+                    { "613e9a9a-de45-4cec-8519-81625c7e603e", "ac5688a2-417e-4a2d-973c-503b7c8eb951" },
+                    { "4c4fa568-5033-40d9-8064-9db512d3de49", "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Hotels",
@@ -199,14 +207,23 @@ namespace TravelHub.Infrastructure.Migrations
                 values: new object[] { 3, new DateTime(2023, 7, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "A mountain hike to gorgeous Seven Rila Lakes. We are starting our trip at 8AM on 02/07/2023 and will be back in town around 5PM on the same day. Come with us to enjoy the beauty of our bulgarian nature!", 2, null, 40, "Park 'Bachinovo', Blagoevgrad", 30m, "MountainVacation" });
 
             migrationBuilder.InsertData(
-                table: "Travels",
-                columns: new[] { "Id", "DateFrom", "DateTo", "Description", "DestinationId", "HotelId", "MaxNumberOfPeople", "MeetingLocation", "Price", "Type" },
-                values: new object[] { 1, new DateTime(2023, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 03/07/2023 and we will be back in town at around 7PM on 08/07/2023. Come and party with us!", 1, 1, 58, "Hotel 'Alen Mak', Blagoevgrad", 780m, "BeachVacation" });
+                table: "Reviews",
+                columns: new[] { "Id", "Comment", "HotelId", "Rating", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "Everyting was perfect, except the food, which wasn't that good.", 1, 8, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
+                    { 2, "I am feeling amazed by how beautiful this place is!", 1, 9, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
+                    { 3, "I didn't really like the food, but everything else was just awesome!", 1, 7, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Travels",
                 columns: new[] { "Id", "DateFrom", "DateTo", "Description", "DestinationId", "HotelId", "MaxNumberOfPeople", "MeetingLocation", "Price", "Type" },
-                values: new object[] { 2, new DateTime(2023, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 10/07/2023 and we will be back in town at around 7PM on 16/07/2023. Come and party with us!", 1, 2, 62, "Hotel 'Ezerets', Blagoevgrad", 820m, "BeachVacation" });
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 03/07/2023 and we will be back in town at around 7PM on 08/07/2023. Come and party with us!", 1, 1, 58, "Hotel 'Alen Mak', Blagoevgrad", 780m, "BeachVacation" },
+                    { 2, new DateTime(2023, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 10/07/2023 and we will be back in town at around 7PM on 16/07/2023. Come and party with us!", 1, 2, 62, "Hotel 'Ezerets', Blagoevgrad", 820m, "BeachVacation" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_TravelId",
@@ -214,14 +231,20 @@ namespace TravelHub.Infrastructure.Migrations
                 column: "TravelId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Destinations_Country_Place",
+                table: "Destinations",
+                columns: new[] { "Country", "Place" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Hotels_DestinationId",
                 table: "Hotels",
                 column: "DestinationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reviews_DestinationId",
+                name: "IX_Reviews_HotelId",
                 table: "Reviews",
-                column: "DestinationId");
+                column: "HotelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_UserId",
@@ -257,14 +280,19 @@ namespace TravelHub.Infrastructure.Migrations
                 name: "Destinations");
 
             migrationBuilder.DeleteData(
-                table: "AspNetRoles",
-                keyColumn: "Id",
-                keyValue: "4c4fa568-5033-40d9-8064-9db512d3de49");
+                table: "AspNetUserRoles",
+                keyColumns: new[] { "RoleId", "UserId" },
+                keyValues: new object[] { "613e9a9a-de45-4cec-8519-81625c7e603e", "ac5688a2-417e-4a2d-973c-503b7c8eb951" });
 
             migrationBuilder.DeleteData(
                 table: "AspNetUserRoles",
                 keyColumns: new[] { "RoleId", "UserId" },
-                keyValues: new object[] { "613e9a9a-de45-4cec-8519-81625c7e603e", "ac5688a2-417e-4a2d-973c-503b7c8eb951" });
+                keyValues: new object[] { "4c4fa568-5033-40d9-8064-9db512d3de49", "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" });
+
+            migrationBuilder.DeleteData(
+                table: "AspNetRoles",
+                keyColumn: "Id",
+                keyValue: "4c4fa568-5033-40d9-8064-9db512d3de49");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
@@ -275,6 +303,11 @@ namespace TravelHub.Infrastructure.Migrations
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "ac5688a2-417e-4a2d-973c-503b7c8eb951");
+
+            migrationBuilder.DeleteData(
+                table: "AspNetUsers",
+                keyColumn: "Id",
+                keyValue: "f94b7583-61d5-4a61-a242-8c4b8fcda5a8");
 
             migrationBuilder.DropColumn(
                 name: "Discriminator",

@@ -9,14 +9,10 @@
 
         public Task<ICollection<DestinationViewModel>> GetAllAsync();
 
-        //public Task CreateAsync(DestinationFormModel model);
+        public Task CreateAsync(DestinationFormModel model);
 
         public Task<DestinationDetailsViewModel?> GetByIdForDetailsAsync(int id);
 
-        //public Task<DestinationFormModel?> GetByIdForEditAsync(int id);
-
-        //public Task EditAsync(int id, DestinationFormModel model);
-
-        //public Task DeleteAsync(int id);
+        public Task DeleteAsync(int id);
     }
 }

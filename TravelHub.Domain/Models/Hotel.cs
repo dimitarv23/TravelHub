@@ -43,5 +43,7 @@
         public Destination Destination { get; set; } = null!;
 
         public virtual ICollection<Travel> Travels { get; set; }
+
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

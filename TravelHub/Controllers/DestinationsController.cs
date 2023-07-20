@@ -2,7 +2,6 @@
 {
     using TravelHub.Core.Contracts;
     using Microsoft.AspNetCore.Mvc;
-    using TravelHub.ViewModels.Travels;
     using TravelHub.ViewModels.Destinations;
 
     public class DestinationsController : Controller
@@ -47,9 +46,17 @@
                 return View(model);
             }
 
-            //await this.destinationService.AddAsync(model);
+            await this.destinationService.CreateAsync(model);
 
             return RedirectToAction(nameof(All));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int destinationId)
+        {
+            await this.destinationService.DeleteAsync(destinationId);
+
+            return Ok();
         }
     }
 }

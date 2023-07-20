@@ -51,7 +51,8 @@
                     DateTo = t.DateTo,
                     PlacesLeft = t.PlacesLeft,
                     MeetingLocation = t.MeetingLocation,
-                    IsBooked = t.Bookings.Any(b => b.UserId == userId)
+                    IsBooked = t.Bookings.Any(b => b.UserId == userId),
+                    DestinationId = t.DestinationId
                 }).FirstOrDefaultAsync(t => t.Id == id);
         }
 

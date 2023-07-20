@@ -22,7 +22,7 @@
                 <div class="d-flex mt-2">
                     <dt class="col-sm-4">Destination: </dt>
                     <dd class="col-sm-8">
-                        <a asp-controller="Destinations" asp-action="Details" asp-route-destinationId="">
+                        <a asp-controller="Destinations" asp-action="Details" asp-route-destinationId="@Model.DestinationId">
                             @Model.Destination
                         </a>
                     </dd>

@@ -24,9 +24,9 @@
         public User User { get; set; } = null!;
 
         [Required]
-        public int DestinationId { get; set; }
+        public int HotelId { get; set; }
 
-        [ForeignKey(nameof(DestinationId))]
-        public Destination Destination { get; set; } = null!;
+        [ForeignKey(nameof(HotelId))]
+        public Hotel Hotel { get; set; } = null!;
     }
 }

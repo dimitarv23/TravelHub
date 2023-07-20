@@ -11,7 +11,6 @@
         {
             this.Hotels = new List<Hotel>();
             this.Travels = new List<Travel>();
-            this.Reviews = new List<Review>();
         }
 
         [Key]
@@ -35,7 +34,5 @@
         public virtual ICollection<Hotel> Hotels { get; set; }
 
         public virtual ICollection<Travel> Travels { get; set; }
-
-        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

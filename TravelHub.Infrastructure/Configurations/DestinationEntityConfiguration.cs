@@ -19,10 +19,6 @@
                 .WithOne(t => t.Destination)
                 .HasForeignKey(t => t.DestinationId);
 
-            builder.HasMany(d => d.Reviews)
-                .WithOne(r => r.Destination)
-                .HasForeignKey(r => r.DestinationId);
-
             builder.HasData(this.GenerateDestinations());
         }
 

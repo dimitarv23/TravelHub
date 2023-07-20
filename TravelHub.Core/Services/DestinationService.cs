@@ -4,7 +4,6 @@
     using TravelHub.Core.Repositories;
     using TravelHub.Domain.Models;
     using TravelHub.ViewModels.Destinations;
-    using TravelHub.ViewModels.Reviews;
     using TravelHub.ViewModels.Travels;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
@@ -16,6 +15,20 @@
         public DestinationService(IRepository _repository)
         {
             this.repository = _repository;
+        }
+
+        public async Task CreateAsync(DestinationFormModel model)
+        {
+            Destination destinationToAdd = new Destination()
+            {
+                Country = model.Country,
+                Place = model.Place,
+                Currency = model.Currency,
+                ImageUrl = model.ImageUrl
+            };
+
+            await this.repository.AddAsync(destinationToAdd);
+            await this.repository.SaveChangesAsync();
         }
 
         public async Task<ICollection<DestinationViewModel>> GetAllAsync()
@@ -66,16 +79,14 @@
                             Id = h.Id,
                             Name = h.Name,
                             ImageUrl = h.ImageUrl
-                        }).ToList(),
-                    Reviews = d.Reviews
-                        .Select(r => new ReviewViewModel()
-                        {
-                            Id = r.Id,
-                            Rating = r.Rating,
-                            Comment = r.Comment,
-                            AuthorUsername = r.User.UserName
                         }).ToList()
                 }).FirstOrDefaultAsync(d => d.Id == id);
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            await this.repository.DeleteAsync<Destination>(id);
+            await this.repository.SaveChangesAsync();
         }
     }
 }

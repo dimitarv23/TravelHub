@@ -11,5 +11,7 @@ namespace TravelHub.ViewModels.Travels
         public string MeetingLocation { get; set; } = null!;
 
         public bool IsBooked { get; set; }
+
+        public int DestinationId { get; set; }
     }
 }

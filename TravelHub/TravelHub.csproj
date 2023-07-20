@@ -22,8 +22,4 @@
     <ProjectReference Include="..\TravelHub.Core\TravelHub.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Hotels\" />
-  </ItemGroup>
-
 </Project>

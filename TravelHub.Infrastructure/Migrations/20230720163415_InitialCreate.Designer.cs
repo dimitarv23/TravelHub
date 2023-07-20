@@ -12,8 +12,8 @@ using TravelHub.Infrastructure;
 namespace TravelHub.Infrastructure.Migrations
 {
     [DbContext(typeof(TravelHubContext))]
-    [Migration("20230714165118_MadeDestinationCountryToBeUnique")]
-    partial class MadeDestinationCountryToBeUnique
+    [Migration("20230720163415_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,14 +54,14 @@ namespace TravelHub.Infrastructure.Migrations
                         new
                         {
                             Id = "4c4fa568-5033-40d9-8064-9db512d3de49",
-                            ConcurrencyStamp = "ce6289c2-dd76-417f-90a3-5fce166b8830",
+                            ConcurrencyStamp = "95355bc5-8fd4-4499-b5fa-5e100771c206",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "613e9a9a-de45-4cec-8519-81625c7e603e",
-                            ConcurrencyStamp = "25355ba4-1841-4b12-b401-dad5c2c85bad",
+                            ConcurrencyStamp = "ff93cf91-2f41-431b-9db7-aa3cbf65fbba",
                             Name = "Organizer",
                             NormalizedName = "ORGANIZER"
                         });
@@ -231,6 +231,11 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             UserId = "ac5688a2-417e-4a2d-973c-503b7c8eb951",
                             RoleId = "613e9a9a-de45-4cec-8519-81625c7e603e"
+                        },
+                        new
+                        {
+                            UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8",
+                            RoleId = "4c4fa568-5033-40d9-8064-9db512d3de49"
                         });
                 });
 
@@ -288,8 +293,8 @@ namespace TravelHub.Infrastructure.Migrations
 
                     b.Property<string>("Currency")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -402,7 +407,7 @@ namespace TravelHub.Infrastructure.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("DestinationId")
+                    b.Property<int>("HotelId")
                         .HasColumnType("int");
 
                     b.Property<int>("Rating")
@@ -414,11 +419,37 @@ namespace TravelHub.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DestinationId");
+                    b.HasIndex("HotelId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Reviews");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Comment = "Everyting was perfect, except the food, which wasn't that good.",
+                            HotelId = 1,
+                            Rating = 8,
+                            UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Comment = "I am feeling amazed by how beautiful this place is!",
+                            HotelId = 1,
+                            Rating = 9,
+                            UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Comment = "I didn't really like the food, but everything else was just awesome!",
+                            HotelId = 1,
+                            Rating = 7,
+                            UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8"
+                        });
                 });
 
             modelBuilder.Entity("TravelHub.Domain.Models.Travel", b =>
@@ -530,19 +561,37 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             Id = "ac5688a2-417e-4a2d-973c-503b7c8eb951",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4af79f3d-464d-4405-adfa-6e21278913dd",
+                            ConcurrencyStamp = "e0e6e29e-6902-4f5e-bc5e-dc6a5956570d",
                             Email = "organizer@email.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ORGANIZER@EMAIL.COM",
-                            NormalizedUserName = "ORGANIZER1",
-                            PasswordHash = "AQAAAAEAACcQAAAAELGVFwe6fQGDjtoOCnCzwl6jpAuB+Uts1NVeFYzaP8N4U7jcRwq7eRiTLzXA6NikaA==",
+                            NormalizedUserName = "SEEDED_ORGANIZER",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJsNIpt1QUo/35an+QSaJMP/f+hhcVTbVjh90sKIc8VQQI49zvxO7tmlkSy9YHoAgw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "495d7a3e-484f-4093-ab50-2b8157e6ec08",
+                            SecurityStamp = "b4edc96b-723f-4864-825e-81b621a10771",
                             TwoFactorEnabled = false,
-                            UserName = "Organizer1",
+                            UserName = "Seeded_Organizer",
                             FirstName = "Organizer",
                             LastName = "Organizer"
+                        },
+                        new
+                        {
+                            Id = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "88ac93d0-2c86-4781-bec6-d18b04432fba",
+                            Email = "user@email.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER@EMAIL.COM",
+                            NormalizedUserName = "SEEDED_USER",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJlTCKqLPqmEIclGlygDaLyQY43tHb4Zio12OTQ4LrYuGEr2HWZrJwup8x2GJtjihg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "ed6b7b8e-c38a-4f21-9d00-332fa3bee466",
+                            TwoFactorEnabled = false,
+                            UserName = "Seeded_User",
+                            FirstName = "User",
+                            LastName = "User"
                         });
                 });
 
@@ -629,9 +678,9 @@ namespace TravelHub.Infrastructure.Migrations
 
             modelBuilder.Entity("TravelHub.Domain.Models.Review", b =>
                 {
-                    b.HasOne("TravelHub.Domain.Models.Destination", "Destination")
+                    b.HasOne("TravelHub.Domain.Models.Hotel", "Hotel")
                         .WithMany("Reviews")
-                        .HasForeignKey("DestinationId")
+                        .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -641,7 +690,7 @@ namespace TravelHub.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Destination");
+                    b.Navigation("Hotel");
 
                     b.Navigation("User");
                 });
@@ -667,13 +716,13 @@ namespace TravelHub.Infrastructure.Migrations
                 {
                     b.Navigation("Hotels");
 
-                    b.Navigation("Reviews");
-
                     b.Navigation("Travels");
                 });
 
             modelBuilder.Entity("TravelHub.Domain.Models.Hotel", b =>
                 {
+                    b.Navigation("Reviews");
+
                     b.Navigation("Travels");
                 });
 

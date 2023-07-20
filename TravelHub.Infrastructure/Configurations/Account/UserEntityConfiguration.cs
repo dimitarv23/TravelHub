@@ -18,6 +18,7 @@
                 .HasForeignKey(r => r.UserId);
 
             builder.HasData(GenerateOrganizer());
+            builder.HasData(GenerateUser());
         }
 
         private User GenerateOrganizer()
@@ -29,14 +30,33 @@
                 Id = "ac5688a2-417e-4a2d-973c-503b7c8eb951",
                 FirstName = "Organizer",
                 LastName = "Organizer",
-                UserName = "Organizer1",
-                NormalizedUserName = "ORGANIZER1",
+                UserName = "Seeded_Organizer",
+                NormalizedUserName = "SEEDED_ORGANIZER",
                 Email = "organizer@email.com",
                 NormalizedEmail = "ORGANIZER@EMAIL.COM"
             };
 
             organizer.PasswordHash = hasher.HashPassword(organizer, "Organizer123");
             return organizer;
+        }
+
+        private User GenerateUser()
+        {
+            var hasher = new PasswordHasher<User>();
+
+            var user = new User()
+            {
+                Id = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8",
+                FirstName = "User",
+                LastName = "User",
+                UserName = "Seeded_User",
+                NormalizedUserName = "SEEDED_USER",
+                Email = "user@email.com",
+                NormalizedEmail = "USER@EMAIL.COM"
+            };
+
+            user.PasswordHash = hasher.HashPassword(user, "User12345");
+            return user;
         }
     }
 }

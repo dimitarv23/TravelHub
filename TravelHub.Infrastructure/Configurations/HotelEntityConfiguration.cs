@@ -17,6 +17,10 @@
                 .WithOne(t => t.Hotel)
                 .HasForeignKey(t => t.HotelId);
 
+            builder.HasMany(h => h.Reviews)
+                .WithOne(r => r.Hotel)
+                .HasForeignKey(r => r.HotelId);
+
             builder.Property(h => h.FoodService)
                 .HasConversion(f => f.ToString(),
                     t => (eFoodService)Enum.Parse(typeof(eFoodService), t));
