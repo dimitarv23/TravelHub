@@ -273,7 +273,7 @@ namespace TravelHub.Infrastructure.Migrations
 
                     b.HasIndex("TravelId");
 
-                    b.ToTable("Bookings");
+                    b.ToTable("Bookings", (string)null);
                 });
 
             modelBuilder.Entity("TravelHub.Domain.Models.Destination", b =>
@@ -308,7 +308,7 @@ namespace TravelHub.Infrastructure.Migrations
                     b.HasIndex("Country", "Place")
                         .IsUnique();
 
-                    b.ToTable("Destinations");
+                    b.ToTable("Destinations", (string)null);
 
                     b.HasData(
                         new
@@ -366,7 +366,7 @@ namespace TravelHub.Infrastructure.Migrations
 
                     b.HasIndex("DestinationId");
 
-                    b.ToTable("Hotels");
+                    b.ToTable("Hotels", (string)null);
 
                     b.HasData(
                         new
@@ -421,7 +421,7 @@ namespace TravelHub.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", (string)null);
 
                     b.HasData(
                         new
@@ -495,7 +495,7 @@ namespace TravelHub.Infrastructure.Migrations
 
                     b.HasIndex("HotelId");
 
-                    b.ToTable("Travels");
+                    b.ToTable("Travels", (string)null);
 
                     b.HasData(
                         new

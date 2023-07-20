@@ -6,6 +6,7 @@
     using TravelHub.ViewModels.Travels;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
+    using TravelHub.ViewModels.Hotels;
 
     public class HotelService : IHotelService
     {
@@ -14,6 +15,16 @@
         public HotelService(IRepository _repository)
         {
             this.repository = _repository;
+        }
+
+        public Task CreateAsync(HotelFormModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ICollection<HotelViewModel>> GetAllAsync()
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<ICollection<TravelHotelViewModel>> GetAllForTravelAsync()
@@ -27,6 +38,26 @@
                     Rating = h.Rating,
                     Destination = $"{h.Destination.Place}, {h.Destination.Country}"
                 }).ToListAsync();
+        }
+
+        public Task<HotelDetailsViewModel?> GetByIdForDetailsAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<HotelFormModel?> GetByIdForEditAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task EditAsync(int id, HotelFormModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAsync(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

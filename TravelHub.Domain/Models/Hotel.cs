@@ -11,6 +11,7 @@
         public Hotel()
         {
             this.Travels = new List<Travel>();
+            this.Reviews = new List<Review>();
         }
 
         [Key]
