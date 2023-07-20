@@ -18,7 +18,6 @@ It has the following functionalities:
 - See all destinations
 - See details about each destination
 - Add new destinations
-- Edit destinations
 - Delete destinations
 - See all hotels
 - See details about each hotel
@@ -36,6 +35,7 @@ It has the following functionalities:
 - See details about each destination
 - See all hotels
 - See details about each hotel
+- Add a review with comment to a hotel
 - Create a booking
 - Remove his own booking from a certain travel
 - Logout
@@ -49,5 +49,6 @@ It has the following functionalities:
 - ASP.NET 6
 - Entity Framework Core
 - SQL Server Database
-- HTML, CSS & Javascript
+- HTML, CSS
+- Javascript
 - NUnit
