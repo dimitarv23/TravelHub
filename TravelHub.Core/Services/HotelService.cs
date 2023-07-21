@@ -22,9 +22,17 @@
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<HotelViewModel>> GetAllAsync()
+        public async Task<ICollection<HotelViewModel>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await this.repository.All<Hotel>()
+                .Select(h => new HotelViewModel()
+                {
+                    Id = h.Id,
+                    Name = h.Name,
+                    ImageUrl = h.ImageUrl,
+                    Destination = $"{h.Destination.Place}, {h.Destination.Country}",
+                    Rating = h.Rating
+                }).ToListAsync();
         }
 
         public async Task<ICollection<TravelHotelViewModel>> GetAllForTravelAsync()

@@ -1,6 +1,6 @@
-﻿@*@model List<HotelViewModel>
+﻿@model List<DestinationViewModel>
 @{
-    ViewData["Title"] = "All Hotels";
+    ViewData["Title"] = "All Destinations";
 }
 
 <div class="container mt-5">
@@ -8,7 +8,7 @@
     @if (User.IsInRole("Organizer"))
     {
         <div class="text-center mb-4">
-            <a asp-controller="Hotels" asp-action="Add" class="btn btn-success">
+            <a asp-controller="Destinations" asp-action="Add" class="btn btn-success">
                 Add Destination
             </a>
         </div>
@@ -16,32 +16,29 @@
 
     @if (Model.Count == 0)
     {
-        <p class="text-center text-primary display-6">Oops! No hotels found at the moment.</p>
-        <p class="text-center">We apologize, but currently, there are no hotels available.</p>
+        <p class="text-center text-primary display-6">Oops! No destinations found at the moment.</p>
+        <p class="text-center">We apologize, but currently, there are no destinations available.</p>
     }
     else
     {
         <div class="row">
-            @foreach (var hotel in Model)
+            @foreach (var destination in Model)
             {
                 <div class="col-md-4 mb-4">
                     <div class="card" style="height: 100%;">
                         <div class="card-img-box-md">
-                            <img src="@hotel.ImageUrl" class="card-image">
+                            <img src="@destination.ImageUrl" class="card-image">
                         </div>
                         <div class="card-body d-flex align-items-center justify-content-between">
                             <div style="width: 80%;">
-                                <h5 class="card-title mb-4">@hotel.Destination</h5>
-                                <a asp-controller="Hotels" asp-action="Details" asp-route-hotelId="@hotel.Id" class="btn green-background">
+                                <h5 class="card-title mb-4">@destination.Place, @destination.Country</h5>
+                                <a asp-controller="Destinations" asp-action="Details" asp-route-destinationId="@destination.Id" class="btn green-background">
                                     <i class="fas fa-eye"></i>
                                 </a>
 
                                 @if (User.IsInRole("Organizer"))
                                 {
-                                    <a asp-controller="Hotels" asp-action="Edit" asp-route-hotelId="@hotel.Id" class="btn btn-info">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </a>
-                                    <a onclick="fireSweetAlert(@hotel.Id, 'hotel')" class="btn red-background">
+                                    <a onclick="fireSweetAlert(@destination.Id, 'destination')" class="btn red-background">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 }
@@ -52,4 +49,4 @@
             }
         </div>
     }
-</div>*@
+</div>
