@@ -58,29 +58,41 @@
             <label asp-for="DestinationId" class="col-sm-9">
                 <span class="h6 small text-muted">Destination <span class="text-danger">*</span></span>
             </label>
-            <select asp-for="DestinationId" class="form-control" id="destinationId">
-                <option>Choose a destination:</option>
-                @foreach (var destination in Model.Destinations)
-                {
-                    <option value="@destination.Id">@destination.Place, @destination.Country</option>
-                }
-            </select>
+            <div class="d-flex align-items-center">
+                <select asp-for="DestinationId" class="form-control" id="destinationId">
+                    <option>Choose a destination:</option>
+                    @foreach (var destination in Model.Destinations)
+                    {
+                        <option value="@destination.Id">@destination.Place, @destination.Country</option>
+                    }
+                </select>
+                <span class="mx-2">OR</span>
+                <a asp-controller="Destinations" asp-action="Add" asp-route-returnParams="Travels, Add" class="btn btn-secondary btn-block col-md-3">
+                    Add New Destination
+                </a>
+            </div>
             <span asp-validation-for="DestinationId" class="text-danger"></span>
         </div>
         <div class="mt-2">
             <label asp-for="HotelId" class="col-sm-9">
                 <span class="h6 small text-muted">Hotel</span>
             </label>
-            <select asp-for="HotelId" class="form-control" id="hotelId">
-                <option value="0">Choose a hotel:</option>
-                @foreach (var hotel in Model.Hotels)
-                {
-                    <option value="@hotel.Id">
-                        @hotel.Destination - @hotel.Name - @Regex.Replace(hotel.FoodService.ToString()!, @"(?<!^)(?=[A-Z])", " ") - @hotel.Rating stars
-                    </option>
-                }
-                <option value="0">No Hotel</option>
-            </select>
+            <div class="d-flex align-items-center">
+                <select asp-for="HotelId" class="form-control" id="hotelId">
+                    <option value="0">Choose a hotel:</option>
+                    @foreach (var hotel in Model.Hotels)
+                    {
+                        <option value="@hotel.Id">
+                            @hotel.Destination - @hotel.Name - @Regex.Replace(hotel.FoodService.ToString()!, @"(?<!^)(?=[A-Z])", " ") - @hotel.Rating stars
+                        </option>
+                    }
+                    <option value="0">No Hotel</option>
+                </select>
+                <span class="mx-2">OR</span>
+                <a asp-controller="Hotels" asp-action="Add" asp-route-returnParams="Travels, Add" class="btn btn-secondary btn-block col-md-3">
+                    Add New Hotel
+                </a>
+            </div>
         </div>
         <div class="mt-2">
             <label asp-for="MeetingLocation" class="col-sm-9">

@@ -14,6 +14,6 @@
 
         public Task EditAsync(int id, TravelFormModel model);
 
-        public Task DeleteAsync(int id);
+        public Task<bool> DeleteAsync(int id);
     }
 }

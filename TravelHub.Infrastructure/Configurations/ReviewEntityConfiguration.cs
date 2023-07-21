@@ -26,7 +26,6 @@
                 new Review()
                 {
                     Id = 1,
-                    Rating = 8,
                     Comment = "Everyting was perfect, except the food, which wasn't that good.",
                     UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8",
                     HotelId = 1
@@ -34,7 +33,6 @@
                 new Review()
                 {
                     Id = 2,
-                    Rating = 9,
                     Comment = "I am feeling amazed by how beautiful this place is!",
                     UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8",
                     HotelId = 1
@@ -42,7 +40,6 @@
                 new Review()
                 {
                     Id = 3,
-                    Rating = 7,
                     Comment = "I didn't really like the food, but everything else was just awesome!",
                     UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8",
                     HotelId = 1

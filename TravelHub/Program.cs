@@ -59,8 +59,9 @@ namespace TravelHub
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseStatusCodePagesWithRedirects("/Errors/{0}");
             app.UseRouting();
-
+            
             app.UseAuthentication();
             app.UseAuthorization();
 

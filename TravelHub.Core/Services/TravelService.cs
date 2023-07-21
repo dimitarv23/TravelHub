@@ -22,6 +22,7 @@
         public async Task<ICollection<TravelViewModel>> GetAllAsync()
         {
             return await this.repository.All<Travel>()
+                .Include(t => t.Bookings)
                 .Select(t => new TravelViewModel()
                 {
                     Id = t.Id,
@@ -38,6 +39,7 @@
         public async Task<TravelDetailsViewModel?> GetByIdForDetailsAsync(int id, string userId)
         {
             return await this.repository.All<Travel>()
+                .Include(t => t.Bookings)
                 .Select(t => new TravelDetailsViewModel()
                 {
                     Id = t.Id,
@@ -52,14 +54,9 @@
                     PlacesLeft = t.PlacesLeft,
                     MeetingLocation = t.MeetingLocation,
                     IsBooked = t.Bookings.Any(b => b.UserId == userId),
-                    DestinationId = t.DestinationId
+                    DestinationId = t.DestinationId,
+                    HotelId = t.HotelId
                 }).FirstOrDefaultAsync(t => t.Id == id);
-        }
-
-        public async Task DeleteAsync(int id)
-        {
-            await this.repository.DeleteAsync<Travel>(id);
-            await this.repository.SaveChangesAsync();
         }
 
         public async Task CreateAsync(TravelFormModel model)
@@ -125,6 +122,21 @@
 
             this.repository.Update(travelToEdit);
             await this.repository.SaveChangesAsync();
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var travelToDelete = await this.repository
+                .GetByIdAsync<Travel>(id);
+
+            if (travelToDelete == null)
+            {
+                return false;
+            }
+
+            await this.repository.DeleteAsync<Travel>(id);
+            await this.repository.SaveChangesAsync();
+            return true;
         }
     }
 }

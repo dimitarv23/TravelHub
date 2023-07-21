@@ -3,7 +3,9 @@
     using TravelHub.Core.Contracts;
     using Microsoft.AspNetCore.Mvc;
     using TravelHub.ViewModels.Destinations;
+    using Microsoft.AspNetCore.Authorization;
 
+    [Authorize]
     public class DestinationsController : Controller
     {
         private readonly IDestinationService destinationService;
@@ -31,15 +33,18 @@
         }
 
         [HttpGet]
-        public IActionResult Add()
+        [Authorize(Roles = "Organizer")]
+        public IActionResult Add(string returnParams)
         {
             DestinationFormModel model = new DestinationFormModel();
 
+            ViewData["ReturnParams"] = returnParams ?? "";
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(DestinationFormModel model)
+        [Authorize(Roles = "Organizer")]
+        public async Task<IActionResult> Add(DestinationFormModel model, string returnParams)
         {
             if (!ModelState.IsValid)
             {
@@ -48,15 +53,25 @@
 
             await this.destinationService.CreateAsync(model);
 
-            return RedirectToAction(nameof(All));
+            if (string.IsNullOrWhiteSpace(returnParams))
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            var returnParamsSplit = returnParams
+                .Split(", ", StringSplitOptions.RemoveEmptyEntries)
+                .ToList();
+
+            return RedirectToAction(returnParamsSplit[1], returnParamsSplit[0]);
         }
 
         [HttpPost]
+        [Authorize(Roles = "Organizer")]
         public async Task<IActionResult> Delete(int destinationId)
         {
-            await this.destinationService.DeleteAsync(destinationId);
+            bool isDeleted = await this.destinationService.DeleteAsync(destinationId);
 
-            return Ok();
+            return isDeleted ? Ok() : NotFound();
         }
     }
 }

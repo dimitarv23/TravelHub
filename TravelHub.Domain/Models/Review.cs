@@ -10,10 +10,6 @@
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        [Range(RatingMinValue, RatingMaxValue)]
-        public int Rating { get; set; }
-
         [StringLength(CommentMaxLength, MinimumLength = CommentMinLength)]
         public string? Comment { get; set; }
 

@@ -4,12 +4,13 @@
     using static TravelHub.Domain.Common.GlobalConstants.Shared;
     using TravelHub.Domain.Enums;
     using System.ComponentModel.DataAnnotations;
+    using TravelHub.ViewModels.Destinations;
 
     public class TravelFormModel
     {
         public TravelFormModel()
         {
-            this.Destinations = new List<TravelDestinationViewModel>();
+            this.Destinations = new List<SelectDestinationViewModel>();
             this.Hotels = new List<TravelHotelViewModel>();
         }
 
@@ -41,7 +42,7 @@
         [Required]
         public int DestinationId { get; set; }
 
-        public ICollection<TravelDestinationViewModel> Destinations { get; set; }
+        public ICollection<SelectDestinationViewModel> Destinations { get; set; }
 
         public int HotelId { get; set; }
 

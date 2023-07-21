@@ -5,7 +5,7 @@
 
 <div class="container d-flex flex-column align-items-center mt-5">
     <h2 class="text-center mb-4">@ViewData["Title"]</h2>
-    <form asp-controller="Destinations" asp-action="Add" method="post" class="col-md-8">
+    <form asp-controller="Destinations" asp-action="Add" asp-route-returnParams="@ViewData["ReturnParams"]" method="post" class="col-md-8">
         <div>
             <label asp-for="Country" class="col-sm-9">
                 <span class="h6 small text-muted">Country <span class="text-danger">*</span></span>
@@ -35,9 +35,26 @@
             <span asp-validation-for="ImageUrl" class="text-danger"></span>
         </div>
         <div class="d-flex justify-content-center">
-            <a asp-controller="Destinations" asp-action="All" class="btn btn-secondary btn-block mt-4 me-2 col-md-3" style="font-size: 20px;">
-                Cancel
-            </a>
+            @{
+                var returnParamsSplit = ViewData["ReturnParams"]!
+                .ToString()!
+                .Split(", ", StringSplitOptions.RemoveEmptyEntries)
+                .ToList();
+            }
+
+            @if (!string.IsNullOrWhiteSpace(ViewData["ReturnParams"]!.ToString()))
+            {
+                <a asp-controller="@returnParamsSplit[0]" asp-action="@returnParamsSplit[1]" class="btn btn-secondary btn-block mt-4 me-2 col-md-3" style="font-size: 20px;">
+                    Cancel
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Destinations" asp-action="All" class="btn btn-secondary btn-block mt-4 me-2 col-md-3" style="font-size: 20px;">
+                    Cancel
+                </a>
+            }
+
             <button type="submit" class="btn btn-primary btn-block mt-4 col-md-4" style="font-size: 20px;">
                 Add
             </button>

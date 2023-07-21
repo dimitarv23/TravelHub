@@ -24,6 +24,13 @@
             return View();
         }
 
+        [HttpGet]
+        [Route("Errors/{statusCode}")]
+        public IActionResult HttpStatusCodeHandler(int statusCode)
+        {
+            return View($"{statusCode}");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

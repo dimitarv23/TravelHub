@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
 
+    [Authorize]
     public class BookingsController : Controller
     {
         private readonly IBookingService bookingService;

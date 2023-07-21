@@ -17,6 +17,6 @@
 
         public Task EditAsync(int id, HotelFormModel model);
 
-        public Task DeleteAsync(int id);
+        public Task<bool> DeleteAsync(int id);
     }
 }

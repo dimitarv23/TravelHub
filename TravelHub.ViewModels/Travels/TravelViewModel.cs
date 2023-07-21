@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using TravelHub.Domain.Enums;
-
-namespace TravelHub.ViewModels.Travels
+﻿namespace TravelHub.ViewModels.Travels
 {
     public class TravelViewModel
     {

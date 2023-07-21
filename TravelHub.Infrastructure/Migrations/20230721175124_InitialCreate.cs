@@ -77,7 +77,6 @@ namespace TravelHub.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Rating = table.Column<int>(type: "int", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     HotelId = table.Column<int>(type: "int", nullable: false)
@@ -161,8 +160,8 @@ namespace TravelHub.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4c4fa568-5033-40d9-8064-9db512d3de49", "95355bc5-8fd4-4499-b5fa-5e100771c206", "User", "USER" },
-                    { "613e9a9a-de45-4cec-8519-81625c7e603e", "ff93cf91-2f41-431b-9db7-aa3cbf65fbba", "Organizer", "ORGANIZER" }
+                    { "4c4fa568-5033-40d9-8064-9db512d3de49", "21f837f2-b73a-4642-b704-33eef40bb289", "User", "USER" },
+                    { "613e9a9a-de45-4cec-8519-81625c7e603e", "5b1638f5-fa43-4317-a500-901b8f0f1a67", "Organizer", "ORGANIZER" }
                 });
 
             migrationBuilder.InsertData(
@@ -170,8 +169,8 @@ namespace TravelHub.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "ac5688a2-417e-4a2d-973c-503b7c8eb951", 0, "e0e6e29e-6902-4f5e-bc5e-dc6a5956570d", "User", "organizer@email.com", false, "Organizer", "Organizer", false, null, "ORGANIZER@EMAIL.COM", "SEEDED_ORGANIZER", "AQAAAAEAACcQAAAAEJsNIpt1QUo/35an+QSaJMP/f+hhcVTbVjh90sKIc8VQQI49zvxO7tmlkSy9YHoAgw==", null, false, "b4edc96b-723f-4864-825e-81b621a10771", false, "Seeded_Organizer" },
-                    { "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", 0, "88ac93d0-2c86-4781-bec6-d18b04432fba", "User", "user@email.com", false, "User", "User", false, null, "USER@EMAIL.COM", "SEEDED_USER", "AQAAAAEAACcQAAAAEJlTCKqLPqmEIclGlygDaLyQY43tHb4Zio12OTQ4LrYuGEr2HWZrJwup8x2GJtjihg==", null, false, "ed6b7b8e-c38a-4f21-9d00-332fa3bee466", false, "Seeded_User" }
+                    { "ac5688a2-417e-4a2d-973c-503b7c8eb951", 0, "a549e61f-6799-4698-a019-6e91f1b0563f", "User", "organizer@email.com", false, "Organizer", "Organizer", false, null, "ORGANIZER@EMAIL.COM", "SEEDED_ORGANIZER", "AQAAAAEAACcQAAAAELGwtiYsbkca0rXgvY7e4HcAeP9psgnENVO3qAahyFhOSTStP6dq+Zd97zIoMLAH/Q==", null, false, "63bdec60-43a3-4823-bcf8-4424bf188616", false, "Seeded_Organizer" },
+                    { "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", 0, "1c9bcf91-c818-44a7-a1ff-aebf351b086f", "User", "user@email.com", false, "User", "User", false, null, "USER@EMAIL.COM", "SEEDED_USER", "AQAAAAEAACcQAAAAEF7p7slPdcyfY23sYHu6e6E+T2EEQvVHDPOLd3rfjfVhk02JQnv8oGCxGEmWpoZk0w==", null, false, "72945097-5b1c-482b-a9d6-bcae6c2b2b4f", false, "Seeded_User" }
                 });
 
             migrationBuilder.InsertData(
@@ -208,12 +207,12 @@ namespace TravelHub.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Reviews",
-                columns: new[] { "Id", "Comment", "HotelId", "Rating", "UserId" },
+                columns: new[] { "Id", "Comment", "HotelId", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Everyting was perfect, except the food, which wasn't that good.", 1, 8, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
-                    { 2, "I am feeling amazed by how beautiful this place is!", 1, 9, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
-                    { 3, "I didn't really like the food, but everything else was just awesome!", 1, 7, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" }
+                    { 1, "Everyting was perfect, except the food, which wasn't that good.", 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
+                    { 2, "I am feeling amazed by how beautiful this place is!", 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
+                    { 3, "I didn't really like the food, but everything else was just awesome!", 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" }
                 });
 
             migrationBuilder.InsertData(

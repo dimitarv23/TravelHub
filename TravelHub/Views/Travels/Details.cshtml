@@ -27,16 +27,20 @@
                         </a>
                     </dd>
                 </div>
-                @if (Model.HotelName != null)
+                @if (Model.HotelId != null)
                 {
                     <div class="d-flex mt-2">
                         <dt class="col-sm-4">Hotel: </dt>
-                        <dd class="col-sm-8">@Model.HotelName</dd>
+                        <dd class="col-sm-8">
+                            <a asp-controller="Hotels" asp-action="Details" asp-route-hotelId="@Model.HotelId">
+                                @Model.HotelName
+                            </a>
+                        </dd>
                     </div>
                 }
                 <div class="d-flex mt-2">
                     <dt class="col-sm-4">Price: </dt>
-                    <dd class="col-sm-8">$@Model.Price</dd>
+                    <dd class="col-sm-8">@Model.Price BGN</dd>
                 </div>
                 <div class="d-flex mt-2">
                     <dt class="col-sm-4">Date From: </dt>

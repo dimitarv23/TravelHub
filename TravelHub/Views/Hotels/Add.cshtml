@@ -1,1 +1,82 @@
-﻿
+﻿@model HotelFormModel
+@{
+    ViewData["Title"] = "Add Hotel";
+}
+
+<div class="container d-flex flex-column align-items-center mt-5">
+    <h2 class="text-center mb-4">@ViewData["Title"]</h2>
+    <form asp-controller="Hotels" asp-action="Add" asp-route-returnParams="@ViewData["ReturnParams"]" method="post" class="col-md-8">
+        <div>
+            <label asp-for="Name" class="col-sm-9">
+                <span class="h6 small text-muted">Name <span class="text-danger">*</span></span>
+            </label>
+            <input asp-for="Name" class="form-control" id="name" placeholder="Enter a name">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mt-2">
+            <label asp-for="ImageUrl" class="col-sm-9">
+                <span class="h6 small text-muted">Image Url <span class="text-danger">*</span></span>
+            </label>
+            <input asp-for="ImageUrl" type="text" class="form-control" id="imageUrl" placeholder="Place URL of an image">
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        </div>
+        <div class="mt-2">
+            <label asp-for="Rating" class="col-sm-9">
+                <span class="h6 small text-muted">Rating <span class="text-danger">*</span></span>
+            </label>
+            <input asp-for="Rating" type="number" class="form-control" id="rating" placeholder="Enter the number of stars the hotel has">
+            <span asp-validation-for="Rating" class="text-danger"></span>
+        </div>
+        <div class="mt-2">
+            <label asp-for="FoodService" class="col-sm-9">
+                <span class="h6 small text-muted">FoodService <span class="text-danger">*</span></span>
+            </label>
+            <select asp-for="FoodService" class="form-control" id="foodService">
+                @foreach (var foodService in Enum.GetValues(typeof(eFoodService)))
+                {
+                    <option value="@foodService">@Regex.Replace(foodService.ToString()!, @"(?<!^)(?=[A-Z])", " ")</option>
+                }
+            </select>
+            <span asp-validation-for="FoodService" class="text-danger"></span>
+        </div>
+        <div class="mt-2">
+            <label asp-for="DestinationId" class="col-sm-9">
+                <span class="h6 small text-muted">Destination <span class="text-danger">*</span></span>
+            </label>
+            <select asp-for="DestinationId" class="form-control" id="destinationId">
+                <option>Choose a destination:</option>
+                @foreach (var destination in Model.Destinations)
+                {
+                    <option value="@destination.Id">@destination.Place, @destination.Country</option>
+                }
+            </select>
+            <span asp-validation-for="DestinationId" class="text-danger"></span>
+        </div>
+        <div class="mt-3">
+            <label class="form-check-label me-2" for="hasPool">
+                Does it have pool?
+            </label>
+            <input asp-for="HasPool" class="form-check-input" id="hasPool" />
+            <span asp-validation-for="HasPool" class="text-danger"></span>
+        </div>
+        <div class="mt-2">
+            <label class="form-check-label me-2" for="hasSpa">
+                Does it have SPA?
+            </label>
+            <input asp-for="HasSpa" class="form-check-input" id="hasSpa" />
+            <span asp-validation-for="HasSpa" class="text-danger"></span>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a asp-controller="Hotels" asp-action="All" class="btn btn-secondary btn-block mt-4 me-2 col-md-3" style="font-size: 20px;">
+                Cancel
+            </a>
+            <button type="submit" class="btn btn-primary btn-block mt-4 col-md-4" style="font-size: 20px;">
+                Add
+            </button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

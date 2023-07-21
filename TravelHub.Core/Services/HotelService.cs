@@ -3,10 +3,12 @@
     using TravelHub.Core.Contracts;
     using TravelHub.Core.Repositories;
     using TravelHub.Domain.Models;
+    using TravelHub.ViewModels.Hotels;
+    using TravelHub.ViewModels.Reviews;
     using TravelHub.ViewModels.Travels;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
-    using TravelHub.ViewModels.Hotels;
 
     public class HotelService : IHotelService
     {
@@ -17,9 +19,21 @@
             this.repository = _repository;
         }
 
-        public Task CreateAsync(HotelFormModel model)
+        public async Task CreateAsync(HotelFormModel model)
         {
-            throw new NotImplementedException();
+            Hotel hotelToAdd = new Hotel()
+            {
+                Name = model.Name,
+                ImageUrl = model.ImageUrl,
+                Rating = model.Rating,
+                FoodService = model.FoodService,
+                HasPool = model.HasPool,
+                HasSpa = model.HasSpa,
+                DestinationId = model.DestinationId
+            };
+
+            await this.repository.AddAsync(hotelToAdd);
+            await this.repository.SaveChangesAsync();
         }
 
         public async Task<ICollection<HotelViewModel>> GetAllAsync()
@@ -48,24 +62,85 @@
                 }).ToListAsync();
         }
 
-        public Task<HotelDetailsViewModel?> GetByIdForDetailsAsync(int id)
+        public async Task<HotelDetailsViewModel?> GetByIdForDetailsAsync(int id)
         {
-            throw new NotImplementedException();
+            return await this.repository.All<Hotel>()
+                .Select(h => new HotelDetailsViewModel()
+                {
+                    Id = h.Id,
+                    Name = h.Name,
+                    ImageUrl = h.ImageUrl,
+                    Destination = $"{h.Destination.Place}, {h.Destination.Country}",
+                    Rating = h.Rating,
+                    FoodService = Regex.Replace(h.FoodService.ToString(), @"(?<!^)(?=[A-Z])", " "),
+                    HasPool = h.HasPool,
+                    HasSpa = h.HasSpa,
+                    DestinationId = h.DestinationId,
+                    Reviews = h.Reviews
+                    .Select(r => new ReviewViewModel()
+                    {
+                        Id = r.Id,
+                        Comment = r.Comment,
+                        AuthorUsername = r.User.UserName
+                    }).ToList()
+                }).FirstOrDefaultAsync(h => h.Id == id);
         }
 
-        public Task<HotelFormModel?> GetByIdForEditAsync(int id)
+        public async Task<HotelFormModel?> GetByIdForEditAsync(int id)
         {
-            throw new NotImplementedException();
+            var hotel = await this.repository.GetByIdAsync<Hotel>(id);
+
+            if (hotel == null)
+            {
+                return null;
+            }
+
+            return new HotelFormModel()
+            {
+                Name = hotel.Name,
+                ImageUrl = hotel.ImageUrl,
+                Rating = hotel.Rating,
+                FoodService = hotel.FoodService,
+                HasPool = hotel.HasPool,
+                HasSpa = hotel.HasSpa,
+                DestinationId = hotel.DestinationId
+            };
+        }
+        
+        public async Task EditAsync(int id, HotelFormModel model)
+        {
+            var hotelToEdit = await this.repository.GetByIdAsync<Hotel>(id);
+
+            if (hotelToEdit == null)
+            {
+                return;
+            }
+
+            hotelToEdit.Name = model.Name;
+            hotelToEdit.ImageUrl = model.ImageUrl;
+            hotelToEdit.Rating = model.Rating;
+            hotelToEdit.FoodService = model.FoodService;
+            hotelToEdit.HasPool = model.HasPool;
+            hotelToEdit.HasSpa = model.HasSpa;
+            hotelToEdit.DestinationId = model.DestinationId;
+
+            this.repository.Update(hotelToEdit);
+            await this.repository.SaveChangesAsync();
         }
 
-        public Task EditAsync(int id, HotelFormModel model)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
-        }
+            var hotelToDelete = await this.repository
+                .GetByIdAsync<Hotel>(id);
 
-        public Task DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
+            if (hotelToDelete == null)
+            {
+                return false;
+            }
+
+            await this.repository.DeleteAsync<Hotel>(id);
+            await this.repository.SaveChangesAsync();
+            return true;
         }
     }
 }

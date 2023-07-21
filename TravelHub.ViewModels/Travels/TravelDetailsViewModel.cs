@@ -1,6 +1,4 @@
-﻿using TravelHub.Domain.Enums;
-
-namespace TravelHub.ViewModels.Travels
+﻿namespace TravelHub.ViewModels.Travels
 {
     public class TravelDetailsViewModel : TravelViewModel
     {
@@ -13,5 +11,7 @@ namespace TravelHub.ViewModels.Travels
         public bool IsBooked { get; set; }
 
         public int DestinationId { get; set; }
+
+        public int? HotelId { get; set; }
     }
 }

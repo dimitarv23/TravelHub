@@ -38,7 +38,7 @@
         {
             TravelFormModel model = new TravelFormModel()
             {
-                Destinations = await this.destinationService.GetAllForTravelAsync(),
+                Destinations = await this.destinationService.GetAllForSelectionAsync(),
                 Hotels = await this.hotelService.GetAllForTravelAsync()
             };
 
@@ -58,7 +58,7 @@
             {
                 model = new TravelFormModel()
                 {
-                    Destinations = await this.destinationService.GetAllForTravelAsync(),
+                    Destinations = await this.destinationService.GetAllForSelectionAsync(),
                     Hotels = await this.hotelService.GetAllForTravelAsync()
                 };
 
@@ -95,7 +95,7 @@
                 return NotFound();
             }
 
-            model.Destinations = await this.destinationService.GetAllForTravelAsync();
+            model.Destinations = await this.destinationService.GetAllForSelectionAsync();
             model.Hotels = await this.hotelService.GetAllForTravelAsync();
             ViewData["TravelId"] = travelId;
 
@@ -113,7 +113,7 @@
 
             if (!ModelState.IsValid)
             {
-                model.Destinations = await this.destinationService.GetAllForTravelAsync();
+                model.Destinations = await this.destinationService.GetAllForSelectionAsync();
                 model.Hotels = await this.hotelService.GetAllForTravelAsync();
 
                 return View(model);
@@ -128,17 +128,9 @@
         [Authorize(Roles = "Organizer")]
         public async Task<IActionResult> Delete(int travelId)
         {
-            await this.travelService.DeleteAsync(travelId);
+            bool isDeleted = await this.travelService.DeleteAsync(travelId);
 
-            return Ok();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> AddReview(int travelId)
-        {
-
-
-            return RedirectToAction(nameof(Details), new { travelId = travelId });
+            return isDeleted ? Ok() : NotFound();
         }
     }
 }

@@ -4,7 +4,6 @@
     using TravelHub.Core.Repositories;
     using TravelHub.Domain.Models;
     using TravelHub.ViewModels.Destinations;
-    using TravelHub.ViewModels.Travels;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
 
@@ -43,23 +42,15 @@
                 }).ToListAsync();
         }
 
-        public async Task<ICollection<TravelDestinationViewModel>> GetAllForTravelAsync()
+        public async Task<ICollection<SelectDestinationViewModel>> GetAllForSelectionAsync()
         {
             return await this.repository.All<Destination>()
                 .Include(d => d.Hotels)
-                .Select(d => new TravelDestinationViewModel()
+                .Select(d => new SelectDestinationViewModel()
                 {
                     Id = d.Id,
                     Country = d.Country,
-                    Place = d.Place,
-                    Hotels = d.Hotels
-                        .Select(h => new TravelHotelViewModel()
-                        {
-                            Id = h.Id,
-                            Name = h.Name,
-                            FoodService = h.FoodService,
-                            Rating = h.Rating
-                        }).ToList()
+                    Place = d.Place
                 }).ToListAsync();
         }
 
@@ -83,10 +74,19 @@
                 }).FirstOrDefaultAsync(d => d.Id == id);
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
+            var destinationToDelete = await this.repository
+                .GetByIdAsync<Destination>(id);
+
+            if (destinationToDelete == null)
+            {
+                return false;
+            }
+
             await this.repository.DeleteAsync<Destination>(id);
             await this.repository.SaveChangesAsync();
+            return true;
         }
     }
 }

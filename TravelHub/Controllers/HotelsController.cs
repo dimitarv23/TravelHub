@@ -1,17 +1,22 @@
 ﻿namespace TravelHub.Controllers
 {
     using TravelHub.Core.Contracts;
-    using Microsoft.AspNetCore.Mvc;
     using TravelHub.ViewModels.Hotels;
-    using TravelHub.ViewModels.Travels;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
 
+    [Authorize]
     public class HotelsController : Controller
     {
         private readonly IHotelService hotelService;
 
-        public HotelsController(IHotelService _hotelService)
+        private readonly IDestinationService destinationService;
+
+        public HotelsController(IHotelService _hotelService,
+            IDestinationService _destinationService)
         {
             this.hotelService = _hotelService;
+            this.destinationService = _destinationService;
         }
 
         [HttpGet]
@@ -31,53 +36,83 @@
         }
 
         [HttpGet]
-        public IActionResult Add() 
+        [Authorize(Roles = "Organizer")]
+        public async Task<IActionResult> Add(string returnParams)
         {
-            var model = new TravelFormModel();
+            var model = new HotelFormModel()
+            {
+                Destinations = await this.destinationService.GetAllForSelectionAsync()
+            };
 
+            ViewData["ReturnParams"] = returnParams ?? "";
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(HotelFormModel model)
+        [Authorize(Roles = "Organizer")]
+        public async Task<IActionResult> Add(HotelFormModel model, string returnParams)
         {
             if (!ModelState.IsValid)
             {
+                model.Destinations = await this.destinationService.GetAllForSelectionAsync();
+
                 return View(model);
             }
 
             await this.hotelService.CreateAsync(model);
 
-            return RedirectToAction(nameof(All));
+            if (string.IsNullOrWhiteSpace(returnParams))
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            var returnParamsSplit = returnParams
+                .Split(", ", StringSplitOptions.RemoveEmptyEntries)
+                .ToList();
+
+            return RedirectToAction(returnParamsSplit[1], returnParamsSplit[0]);
         }
 
         [HttpGet]
+        [Authorize(Roles = "Organizer")]
         public async Task<IActionResult> Edit(int hotelId)
         {
             var model = await this.hotelService.GetByIdForEditAsync(hotelId);
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            model.Destinations = await this.destinationService.GetAllForSelectionAsync();
+            ViewData["HotelId"] = hotelId;
 
             return View(model);
         }
 
         [HttpPost]
+        [Authorize(Roles = "Organizer")]
         public async Task<IActionResult> Edit(HotelFormModel model, int hotelId)
         {
             if (!ModelState.IsValid)
             {
+                model.Destinations = await this.destinationService.GetAllForSelectionAsync();
+
                 return View(model);
             }
 
             await this.hotelService.EditAsync(hotelId, model);
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction(nameof(Details), new { hotelId = hotelId });
         }
 
         [HttpPost]
+        [Authorize(Roles = "Organizer")]
         public async Task<IActionResult> Delete(int hotelId)
         {
-            await this.hotelService.DeleteAsync(hotelId);
+            bool isDeleted = await this.hotelService.DeleteAsync(hotelId);
 
-            return RedirectToAction(nameof(All));
+            return isDeleted ? Ok() : NotFound();
         }
     }
 }

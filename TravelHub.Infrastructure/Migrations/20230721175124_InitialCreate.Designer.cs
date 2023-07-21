@@ -12,7 +12,7 @@ using TravelHub.Infrastructure;
 namespace TravelHub.Infrastructure.Migrations
 {
     [DbContext(typeof(TravelHubContext))]
-    [Migration("20230720163415_InitialCreate")]
+    [Migration("20230721175124_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,14 +54,14 @@ namespace TravelHub.Infrastructure.Migrations
                         new
                         {
                             Id = "4c4fa568-5033-40d9-8064-9db512d3de49",
-                            ConcurrencyStamp = "95355bc5-8fd4-4499-b5fa-5e100771c206",
+                            ConcurrencyStamp = "21f837f2-b73a-4642-b704-33eef40bb289",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "613e9a9a-de45-4cec-8519-81625c7e603e",
-                            ConcurrencyStamp = "ff93cf91-2f41-431b-9db7-aa3cbf65fbba",
+                            ConcurrencyStamp = "5b1638f5-fa43-4317-a500-901b8f0f1a67",
                             Name = "Organizer",
                             NormalizedName = "ORGANIZER"
                         });
@@ -410,9 +410,6 @@ namespace TravelHub.Infrastructure.Migrations
                     b.Property<int>("HotelId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -431,7 +428,6 @@ namespace TravelHub.Infrastructure.Migrations
                             Id = 1,
                             Comment = "Everyting was perfect, except the food, which wasn't that good.",
                             HotelId = 1,
-                            Rating = 8,
                             UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8"
                         },
                         new
@@ -439,7 +435,6 @@ namespace TravelHub.Infrastructure.Migrations
                             Id = 2,
                             Comment = "I am feeling amazed by how beautiful this place is!",
                             HotelId = 1,
-                            Rating = 9,
                             UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8"
                         },
                         new
@@ -447,7 +442,6 @@ namespace TravelHub.Infrastructure.Migrations
                             Id = 3,
                             Comment = "I didn't really like the food, but everything else was just awesome!",
                             HotelId = 1,
-                            Rating = 7,
                             UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8"
                         });
                 });
@@ -561,15 +555,15 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             Id = "ac5688a2-417e-4a2d-973c-503b7c8eb951",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e0e6e29e-6902-4f5e-bc5e-dc6a5956570d",
+                            ConcurrencyStamp = "a549e61f-6799-4698-a019-6e91f1b0563f",
                             Email = "organizer@email.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ORGANIZER@EMAIL.COM",
                             NormalizedUserName = "SEEDED_ORGANIZER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJsNIpt1QUo/35an+QSaJMP/f+hhcVTbVjh90sKIc8VQQI49zvxO7tmlkSy9YHoAgw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELGwtiYsbkca0rXgvY7e4HcAeP9psgnENVO3qAahyFhOSTStP6dq+Zd97zIoMLAH/Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b4edc96b-723f-4864-825e-81b621a10771",
+                            SecurityStamp = "63bdec60-43a3-4823-bcf8-4424bf188616",
                             TwoFactorEnabled = false,
                             UserName = "Seeded_Organizer",
                             FirstName = "Organizer",
@@ -579,15 +573,15 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             Id = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "88ac93d0-2c86-4781-bec6-d18b04432fba",
+                            ConcurrencyStamp = "1c9bcf91-c818-44a7-a1ff-aebf351b086f",
                             Email = "user@email.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@EMAIL.COM",
                             NormalizedUserName = "SEEDED_USER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJlTCKqLPqmEIclGlygDaLyQY43tHb4Zio12OTQ4LrYuGEr2HWZrJwup8x2GJtjihg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF7p7slPdcyfY23sYHu6e6E+T2EEQvVHDPOLd3rfjfVhk02JQnv8oGCxGEmWpoZk0w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ed6b7b8e-c38a-4f21-9d00-332fa3bee466",
+                            SecurityStamp = "72945097-5b1c-482b-a9d6-bcae6c2b2b4f",
                             TwoFactorEnabled = false,
                             UserName = "Seeded_User",
                             FirstName = "User",

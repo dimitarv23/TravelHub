@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Page Not Found";
+}
+
+<div class="container" style="text-align: center;  color: #888;">
+    <h1 style="font-size: 120px; color: #888; margin-bottom: 0px;">404</h1>
+    <p style="font-size: 50px; ">@ViewData["Title"]</p>
+    <p style="font-size: 24px;">The page you are looking for doesn't exists or another issue occurred.</p>
+    <a asp-controller="Home" asp-action="Index" style="font-size: 24px;">
+        Go back to Home page
+    </a>
+</div>

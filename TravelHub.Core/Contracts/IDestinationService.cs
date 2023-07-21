@@ -1,11 +1,10 @@
 ﻿namespace TravelHub.Core.Contracts
 {
     using TravelHub.ViewModels.Destinations;
-    using TravelHub.ViewModels.Travels;
 
     public interface IDestinationService
     {
-        public Task<ICollection<TravelDestinationViewModel>> GetAllForTravelAsync();
+        public Task<ICollection<SelectDestinationViewModel>> GetAllForSelectionAsync();
 
         public Task<ICollection<DestinationViewModel>> GetAllAsync();
 
@@ -13,6 +12,6 @@
 
         public Task<DestinationDetailsViewModel?> GetByIdForDetailsAsync(int id);
 
-        public Task DeleteAsync(int id);
+        public Task<bool> DeleteAsync(int id);
     }
 }
