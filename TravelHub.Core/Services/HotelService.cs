@@ -81,8 +81,12 @@
                     {
                         Id = r.Id,
                         Comment = r.Comment,
-                        AuthorUsername = r.User.UserName
-                    }).ToList()
+                        AuthorUsername = r.User.UserName,
+                        AuthorId = r.UserId,
+                        DateAdded = r.DateAdded
+                    })
+                    .OrderByDescending(r => r.DateAdded)
+                    .ToList()
                 }).FirstOrDefaultAsync(h => h.Id == id);
         }
 

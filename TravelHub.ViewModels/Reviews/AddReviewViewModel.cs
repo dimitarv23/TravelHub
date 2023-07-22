@@ -1,30 +1,19 @@
-﻿namespace TravelHub.Domain.Models
+﻿namespace TravelHub.ViewModels.Reviews
 {
     using static TravelHub.Domain.Common.GlobalConstants.Review;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("Reviews")]
-    public class Review
+    public class AddReviewViewModel
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [StringLength(CommentMaxLength, MinimumLength = CommentMinLength)]
         public string Comment { get; set; } = null!;
 
         [Required]
-        public string UserId { get; set; } = null!;
-
-        [ForeignKey(nameof(UserId))]
-        public User User { get; set; } = null!;
+        public string AuthorId { get; set; } = null!;
 
         [Required]
         public int HotelId { get; set; }
-
-        [ForeignKey(nameof(HotelId))]
-        public Hotel Hotel { get; set; } = null!;
 
         [Required]
         public DateTime DateAdded { get; set; }

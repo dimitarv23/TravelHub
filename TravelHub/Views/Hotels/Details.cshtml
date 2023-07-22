@@ -73,15 +73,12 @@
     </div>
     @if (User.IsInRole("User"))
     {
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <hr class="mb-2" />
-                <div class="text-center d-flex flex-column align-items-center">
-                    <h4>Leave a Review</h4>
-
-                </div>
-            </div>
-        </div>
+        await Html.RenderPartialAsync("_AddReviewPartial", new AddReviewViewModel()
+                {
+                    AuthorId = User.GetId(),
+                    HotelId = Model.Id,
+                    DateAdded = DateTime.UtcNow
+                });
     }
     @if (Model.Reviews.Any())
     {
@@ -89,12 +86,33 @@
             <div class="col-md-8">
                 <hr class="mb-2" />
                 <div class="text-center d-flex flex-column align-items-center">
-                    <h4>Reviews</h4>
-
-                    <div class="row col-md-12">
+                    <h4 class="mb-3">Reviews</h4>
+                    <div class="row col-md-12" id="reviewsContainer">
                         @foreach (var review in Model.Reviews)
                         {
-
+                            <div class="col-md-12 mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="col-md-2 text-center">
+                                                <h6 class="m-0">@review.AuthorUsername: </h6>
+                                                <p class="m-0 text-muted text-nowrap">@review.DateAdded.ToString("d")</p>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p class="m-0">@review.Comment</p>
+                                            </div>
+                                            @if (User.IsInRole("Organizer") || review.AuthorId == User.GetId())
+                                            {
+                                                <form asp-controller="Reviews" asp-action="Delete" asp-route-reviewId="@review.Id" method="post" class="d-flex justify-content-center">
+                                                    <button type="submit" class="btn red-background">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         }
                     </div>
                 </div>

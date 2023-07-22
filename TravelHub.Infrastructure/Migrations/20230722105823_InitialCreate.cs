@@ -77,9 +77,10 @@ namespace TravelHub.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Comment = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    HotelId = table.Column<int>(type: "int", nullable: false)
+                    HotelId = table.Column<int>(type: "int", nullable: false),
+                    DateAdded = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -160,8 +161,8 @@ namespace TravelHub.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4c4fa568-5033-40d9-8064-9db512d3de49", "21f837f2-b73a-4642-b704-33eef40bb289", "User", "USER" },
-                    { "613e9a9a-de45-4cec-8519-81625c7e603e", "5b1638f5-fa43-4317-a500-901b8f0f1a67", "Organizer", "ORGANIZER" }
+                    { "4c4fa568-5033-40d9-8064-9db512d3de49", "d0ae1c40-a9bd-4b25-a11a-47262755b600", "User", "USER" },
+                    { "613e9a9a-de45-4cec-8519-81625c7e603e", "35dc2f12-9ed5-4242-8a59-f7bc75e7321d", "Organizer", "ORGANIZER" }
                 });
 
             migrationBuilder.InsertData(
@@ -169,8 +170,8 @@ namespace TravelHub.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "ac5688a2-417e-4a2d-973c-503b7c8eb951", 0, "a549e61f-6799-4698-a019-6e91f1b0563f", "User", "organizer@email.com", false, "Organizer", "Organizer", false, null, "ORGANIZER@EMAIL.COM", "SEEDED_ORGANIZER", "AQAAAAEAACcQAAAAELGwtiYsbkca0rXgvY7e4HcAeP9psgnENVO3qAahyFhOSTStP6dq+Zd97zIoMLAH/Q==", null, false, "63bdec60-43a3-4823-bcf8-4424bf188616", false, "Seeded_Organizer" },
-                    { "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", 0, "1c9bcf91-c818-44a7-a1ff-aebf351b086f", "User", "user@email.com", false, "User", "User", false, null, "USER@EMAIL.COM", "SEEDED_USER", "AQAAAAEAACcQAAAAEF7p7slPdcyfY23sYHu6e6E+T2EEQvVHDPOLd3rfjfVhk02JQnv8oGCxGEmWpoZk0w==", null, false, "72945097-5b1c-482b-a9d6-bcae6c2b2b4f", false, "Seeded_User" }
+                    { "ac5688a2-417e-4a2d-973c-503b7c8eb951", 0, "2d093f4e-f9f4-4e9f-a1c0-44cb6324a827", "User", "organizer@email.com", false, "Organizer", "Organizer", false, null, "ORGANIZER@EMAIL.COM", "SEEDED_ORGANIZER", "AQAAAAEAACcQAAAAEOiHFjexTxWk3bwv5gE75/W3sHKsUmAo02A8nkGU4B8ckpxPu3Wrt4A8/5ErQy9ScA==", null, false, "2184151e-a2c6-4e72-915b-663bb233a152", false, "Seeded_Organizer" },
+                    { "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", 0, "71d77647-4c63-4d80-b31e-0aebd20839a2", "User", "user@email.com", false, "User", "User", false, null, "USER@EMAIL.COM", "SEEDED_USER", "AQAAAAEAACcQAAAAEM/jpW0cJbS3hlChdgTJzi8MXp3Ff281kVJHWEMyGWK4EOFbcBXy4Y61wU8FrCQFCA==", null, false, "021d2e07-de05-478b-9c91-82e431a0de99", false, "Seeded_User" }
                 });
 
             migrationBuilder.InsertData(
@@ -206,13 +207,18 @@ namespace TravelHub.Infrastructure.Migrations
                 values: new object[] { 3, new DateTime(2023, 7, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "A mountain hike to gorgeous Seven Rila Lakes. We are starting our trip at 8AM on 02/07/2023 and will be back in town around 5PM on the same day. Come with us to enjoy the beauty of our bulgarian nature!", 2, null, 40, "Park 'Bachinovo', Blagoevgrad", 30m, "MountainVacation" });
 
             migrationBuilder.InsertData(
+                table: "Bookings",
+                columns: new[] { "TravelId", "UserId", "BookDate" },
+                values: new object[] { 3, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", new DateTime(2023, 7, 22, 10, 58, 23, 61, DateTimeKind.Utc).AddTicks(1784) });
+
+            migrationBuilder.InsertData(
                 table: "Reviews",
-                columns: new[] { "Id", "Comment", "HotelId", "UserId" },
+                columns: new[] { "Id", "Comment", "DateAdded", "HotelId", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Everyting was perfect, except the food, which wasn't that good.", 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
-                    { 2, "I am feeling amazed by how beautiful this place is!", 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
-                    { 3, "I didn't really like the food, but everything else was just awesome!", 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" }
+                    { 1, "Everyting was perfect, except the food, which wasn't that good.", new DateTime(2023, 7, 12, 10, 58, 23, 62, DateTimeKind.Utc).AddTicks(5253), 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
+                    { 2, "I am feeling amazed by how beautiful this place is!", new DateTime(2023, 7, 2, 10, 58, 23, 62, DateTimeKind.Utc).AddTicks(5261), 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
+                    { 3, "I didn't really like the food, but everything else was just awesome!", new DateTime(2023, 6, 2, 10, 58, 23, 62, DateTimeKind.Utc).AddTicks(5262), 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" }
                 });
 
             migrationBuilder.InsertData(
@@ -223,6 +229,11 @@ namespace TravelHub.Infrastructure.Migrations
                     { 1, new DateTime(2023, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 03/07/2023 and we will be back in town at around 7PM on 08/07/2023. Come and party with us!", 1, 1, 58, "Hotel 'Alen Mak', Blagoevgrad", 780m, "BeachVacation" },
                     { 2, new DateTime(2023, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 10/07/2023 and we will be back in town at around 7PM on 16/07/2023. Come and party with us!", 1, 2, 62, "Hotel 'Ezerets', Blagoevgrad", 820m, "BeachVacation" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Bookings",
+                columns: new[] { "TravelId", "UserId", "BookDate" },
+                values: new object[] { 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", new DateTime(2023, 7, 22, 10, 58, 23, 61, DateTimeKind.Utc).AddTicks(1777) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_TravelId",

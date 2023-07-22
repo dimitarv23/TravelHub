@@ -1,0 +1,23 @@
+﻿@model AddReviewViewModel
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <hr class="mb-2" />
+        <div class="text-center d-flex flex-column align-items-center">
+            <h4 class="mb-3">Leave a Review</h4>
+            <form asp-controller="Reviews" asp-action="Add" method="post" class="w-100 d-flex align-items-center justify-content-between box-padding">
+                <input type="hidden" asp-for="@Model.AuthorId" />
+                <input type="hidden" asp-for="@Model.HotelId" />
+                <input type="hidden" asp-for="@Model.DateAdded" />
+                <div class="w-75 me-2">
+                    <textarea asp-for="Comment" class="form-control" id="comment" placeholder="Enter a comment" rows="3">
+                    </textarea>
+                    <span asp-validation-for="Comment" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block w-25" style="font-size: 20px;">
+                    Add
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -52,14 +52,14 @@ namespace TravelHub.Infrastructure.Migrations
                         new
                         {
                             Id = "4c4fa568-5033-40d9-8064-9db512d3de49",
-                            ConcurrencyStamp = "21f837f2-b73a-4642-b704-33eef40bb289",
+                            ConcurrencyStamp = "d0ae1c40-a9bd-4b25-a11a-47262755b600",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "613e9a9a-de45-4cec-8519-81625c7e603e",
-                            ConcurrencyStamp = "5b1638f5-fa43-4317-a500-901b8f0f1a67",
+                            ConcurrencyStamp = "35dc2f12-9ed5-4242-8a59-f7bc75e7321d",
                             Name = "Organizer",
                             NormalizedName = "ORGANIZER"
                         });
@@ -274,6 +274,20 @@ namespace TravelHub.Infrastructure.Migrations
                     b.HasIndex("TravelId");
 
                     b.ToTable("Bookings");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8",
+                            TravelId = 1,
+                            BookDate = new DateTime(2023, 7, 22, 10, 58, 23, 61, DateTimeKind.Utc).AddTicks(1777)
+                        },
+                        new
+                        {
+                            UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8",
+                            TravelId = 3,
+                            BookDate = new DateTime(2023, 7, 22, 10, 58, 23, 61, DateTimeKind.Utc).AddTicks(1784)
+                        });
                 });
 
             modelBuilder.Entity("TravelHub.Domain.Models.Destination", b =>
@@ -402,8 +416,12 @@ namespace TravelHub.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Comment")
+                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("HotelId")
                         .HasColumnType("int");
@@ -425,6 +443,7 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             Id = 1,
                             Comment = "Everyting was perfect, except the food, which wasn't that good.",
+                            DateAdded = new DateTime(2023, 7, 12, 10, 58, 23, 62, DateTimeKind.Utc).AddTicks(5253),
                             HotelId = 1,
                             UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8"
                         },
@@ -432,6 +451,7 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             Id = 2,
                             Comment = "I am feeling amazed by how beautiful this place is!",
+                            DateAdded = new DateTime(2023, 7, 2, 10, 58, 23, 62, DateTimeKind.Utc).AddTicks(5261),
                             HotelId = 1,
                             UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8"
                         },
@@ -439,6 +459,7 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             Id = 3,
                             Comment = "I didn't really like the food, but everything else was just awesome!",
+                            DateAdded = new DateTime(2023, 6, 2, 10, 58, 23, 62, DateTimeKind.Utc).AddTicks(5262),
                             HotelId = 1,
                             UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8"
                         });
@@ -553,15 +574,15 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             Id = "ac5688a2-417e-4a2d-973c-503b7c8eb951",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a549e61f-6799-4698-a019-6e91f1b0563f",
+                            ConcurrencyStamp = "2d093f4e-f9f4-4e9f-a1c0-44cb6324a827",
                             Email = "organizer@email.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ORGANIZER@EMAIL.COM",
                             NormalizedUserName = "SEEDED_ORGANIZER",
-                            PasswordHash = "AQAAAAEAACcQAAAAELGwtiYsbkca0rXgvY7e4HcAeP9psgnENVO3qAahyFhOSTStP6dq+Zd97zIoMLAH/Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOiHFjexTxWk3bwv5gE75/W3sHKsUmAo02A8nkGU4B8ckpxPu3Wrt4A8/5ErQy9ScA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "63bdec60-43a3-4823-bcf8-4424bf188616",
+                            SecurityStamp = "2184151e-a2c6-4e72-915b-663bb233a152",
                             TwoFactorEnabled = false,
                             UserName = "Seeded_Organizer",
                             FirstName = "Organizer",
@@ -571,15 +592,15 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             Id = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1c9bcf91-c818-44a7-a1ff-aebf351b086f",
+                            ConcurrencyStamp = "71d77647-4c63-4d80-b31e-0aebd20839a2",
                             Email = "user@email.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@EMAIL.COM",
                             NormalizedUserName = "SEEDED_USER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEF7p7slPdcyfY23sYHu6e6E+T2EEQvVHDPOLd3rfjfVhk02JQnv8oGCxGEmWpoZk0w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEM/jpW0cJbS3hlChdgTJzi8MXp3Ff281kVJHWEMyGWK4EOFbcBXy4Y61wU8FrCQFCA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "72945097-5b1c-482b-a9d6-bcae6c2b2b4f",
+                            SecurityStamp = "021d2e07-de05-478b-9c91-82e431a0de99",
                             TwoFactorEnabled = false,
                             UserName = "Seeded_User",
                             FirstName = "User",

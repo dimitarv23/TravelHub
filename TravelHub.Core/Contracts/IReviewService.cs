@@ -4,6 +4,10 @@
 
     public interface IReviewService
     {
-        public Task<ICollection<ReviewViewModel>> GetAllAsync();
+        public Task AddAsync(AddReviewViewModel model);
+
+        public Task<int> DeleteAsync(int id);
+
+        public Task<ICollection<ReviewViewModel>> GetAllAsync(int hotelId);
     }
 }

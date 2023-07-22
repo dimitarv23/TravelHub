@@ -130,7 +130,7 @@
         {
             bool isDeleted = await this.travelService.DeleteAsync(travelId);
 
-            return isDeleted ? Ok() : NotFound();
+            return isDeleted ? Ok() : BadRequest();
         }
     }
 }

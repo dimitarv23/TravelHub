@@ -160,3 +160,9 @@ body {
 .navbar-link {
     font-size: 20px;
 }
+
+@media (min-width: 768px) {
+    .box-padding {
+        padding: 0 12px;
+    }
+}

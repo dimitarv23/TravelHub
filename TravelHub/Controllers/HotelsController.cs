@@ -44,13 +44,13 @@
                 Destinations = await this.destinationService.GetAllForSelectionAsync()
             };
 
-            ViewData["ReturnParams"] = returnParams ?? "";
+            ViewData["ReturnParams"] = returnParams ?? string.Empty;
             return View(model);
         }
 
         [HttpPost]
         [Authorize(Roles = "Organizer")]
-        public async Task<IActionResult> Add(HotelFormModel model, string returnParams)
+        public async Task<IActionResult> Add(HotelFormModel model, string? returnParams)
         {
             if (!ModelState.IsValid)
             {
@@ -112,7 +112,7 @@
         {
             bool isDeleted = await this.hotelService.DeleteAsync(hotelId);
 
-            return isDeleted ? Ok() : NotFound();
+            return isDeleted ? Ok() : BadRequest();
         }
     }
 }

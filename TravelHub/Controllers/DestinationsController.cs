@@ -38,13 +38,13 @@
         {
             DestinationFormModel model = new DestinationFormModel();
 
-            ViewData["ReturnParams"] = returnParams ?? "";
+            ViewData["ReturnParams"] = returnParams ?? string.Empty;
             return View(model);
         }
 
         [HttpPost]
         [Authorize(Roles = "Organizer")]
-        public async Task<IActionResult> Add(DestinationFormModel model, string returnParams)
+        public async Task<IActionResult> Add(DestinationFormModel model, string? returnParams)
         {
             if (!ModelState.IsValid)
             {
@@ -71,7 +71,7 @@
         {
             bool isDeleted = await this.destinationService.DeleteAsync(destinationId);
 
-            return isDeleted ? Ok() : NotFound();
+            return isDeleted ? Ok() : BadRequest();
         }
     }
 }
