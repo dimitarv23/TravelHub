@@ -53,6 +53,28 @@
                     HasPool = true,
                     HasSpa = true,
                     DestinationId = 1
+                },
+                new Hotel()
+                {
+                    Id = 3,
+                    Name = "Grand Hotel Plovdiv",
+                    ImageUrl = "https://cf.bstatic.com/xdata/images/hotel/max1024x768/207378277.jpg?k=a3ff6dfc7bc9855ae08aacacb71f51863a8b0e41b90d0384c700456a79e7b72c&o=&hp=1",
+                    Rating = 5,
+                    FoodService = eFoodService.AllInclusive,
+                    HasPool = true,
+                    HasSpa = true,
+                    DestinationId = 3
+                },
+                new Hotel()
+                {
+                    Id = 4,
+                    Name = "Galaxy Hotel",
+                    ImageUrl = "https://ak-d.tripcdn.com/images/200l0m000000dw3kcBD54_R_550_412_R5.jpg",
+                    Rating = 4,
+                    FoodService = eFoodService.BreakfastOnly,
+                    HasPool = true,
+                    HasSpa = false,
+                    DestinationId = 4
                 }
             };
         }

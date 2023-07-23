@@ -161,8 +161,8 @@ namespace TravelHub.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4c4fa568-5033-40d9-8064-9db512d3de49", "d0ae1c40-a9bd-4b25-a11a-47262755b600", "User", "USER" },
-                    { "613e9a9a-de45-4cec-8519-81625c7e603e", "35dc2f12-9ed5-4242-8a59-f7bc75e7321d", "Organizer", "ORGANIZER" }
+                    { "4c4fa568-5033-40d9-8064-9db512d3de49", "9b541119-1855-4ff0-8598-47adbc27fe78", "User", "USER" },
+                    { "613e9a9a-de45-4cec-8519-81625c7e603e", "3af7c84a-5942-488b-9e14-5e568294a488", "Organizer", "ORGANIZER" }
                 });
 
             migrationBuilder.InsertData(
@@ -170,8 +170,8 @@ namespace TravelHub.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "ac5688a2-417e-4a2d-973c-503b7c8eb951", 0, "2d093f4e-f9f4-4e9f-a1c0-44cb6324a827", "User", "organizer@email.com", false, "Organizer", "Organizer", false, null, "ORGANIZER@EMAIL.COM", "SEEDED_ORGANIZER", "AQAAAAEAACcQAAAAEOiHFjexTxWk3bwv5gE75/W3sHKsUmAo02A8nkGU4B8ckpxPu3Wrt4A8/5ErQy9ScA==", null, false, "2184151e-a2c6-4e72-915b-663bb233a152", false, "Seeded_Organizer" },
-                    { "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", 0, "71d77647-4c63-4d80-b31e-0aebd20839a2", "User", "user@email.com", false, "User", "User", false, null, "USER@EMAIL.COM", "SEEDED_USER", "AQAAAAEAACcQAAAAEM/jpW0cJbS3hlChdgTJzi8MXp3Ff281kVJHWEMyGWK4EOFbcBXy4Y61wU8FrCQFCA==", null, false, "021d2e07-de05-478b-9c91-82e431a0de99", false, "Seeded_User" }
+                    { "ac5688a2-417e-4a2d-973c-503b7c8eb951", 0, "f88bfdd1-8268-4dfe-b49a-601a1c83e624", "User", "organizer@email.com", false, "Organizer", "Organizer", false, null, "ORGANIZER@EMAIL.COM", "SEEDED_ORGANIZER", "AQAAAAEAACcQAAAAEC9QPxfOR9GcQQsRAECML07m+DbI1MpgaVkyDJPoWEcL43Qm/qiV8e0CdTLIE54vEQ==", null, false, "97a43606-2525-4b14-8e61-a42d679cce9e", false, "Seeded_Organizer" },
+                    { "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", 0, "fe5a6969-ef2e-4f34-8c8e-dc88801457b3", "User", "user@email.com", false, "User", "User", false, null, "USER@EMAIL.COM", "SEEDED_USER", "AQAAAAEAACcQAAAAEHSCnIu02taA7ue3zFlEGmYu5ybFeqvBRhohpIWsrMmrzk1iIr8k5CRRYsM/owDFJQ==", null, false, "5afdc947-a827-44da-ab85-1dbccded4f12", false, "Seeded_User" }
                 });
 
             migrationBuilder.InsertData(
@@ -180,7 +180,9 @@ namespace TravelHub.Infrastructure.Migrations
                 values: new object[,]
                 {
                     { 1, "Bulgaria", "BGN", "https://i2-prod.mylondon.news/incoming/article26617964.ece/ALTERNATES/s615b/1_GettyImages-1312067182.jpg", "Sunny Beach" },
-                    { 2, "Bulgaria", "BGN", "https://freesofiatour.com/wp-content/uploads/2018/05/seven-rila-lakes-how-to-get-to-1200x675.jpeg", "The Seven Rila Lakes" }
+                    { 2, "Bulgaria", "BGN", "https://freesofiatour.com/wp-content/uploads/2018/05/seven-rila-lakes-how-to-get-to-1200x675.jpeg", "The Seven Rila Lakes" },
+                    { 3, "Bulgaria", "BGN", "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/d3/27/9e/photo0jpg.jpg?w=1200&h=-1&s=1", "Plovdiv" },
+                    { 4, "Greece", "EUR", "https://www.feelgreece.com/cx/m/0/0/244/35239-viewom.jpg", "Nea Peramos" }
                 });
 
             migrationBuilder.InsertData(
@@ -198,7 +200,9 @@ namespace TravelHub.Infrastructure.Migrations
                 values: new object[,]
                 {
                     { 1, 1, "AllInclusive", true, true, "https://cf.bstatic.com/xdata/images/hotel/max1024x768/340492725.jpg?k=e27fd2bc7277de6b6794b15d1d258441ecb5e85929edc499bff3cb69e8742779&o=&hp=1", "Diamant Residence", 4 },
-                    { 2, 1, "UltraAllInclusive", true, true, "https://cf.bstatic.com/xdata/images/hotel/max1024x768/60906632.jpg?k=845e3aa0d06eba8ca8a546425f6100f8b9609e836228d3c3966d45607b4807cb&o=&hp=1", "Effect Grand Victoria Hotel", 4 }
+                    { 2, 1, "UltraAllInclusive", true, true, "https://cf.bstatic.com/xdata/images/hotel/max1024x768/60906632.jpg?k=845e3aa0d06eba8ca8a546425f6100f8b9609e836228d3c3966d45607b4807cb&o=&hp=1", "Effect Grand Victoria Hotel", 4 },
+                    { 3, 3, "AllInclusive", true, true, "https://cf.bstatic.com/xdata/images/hotel/max1024x768/207378277.jpg?k=a3ff6dfc7bc9855ae08aacacb71f51863a8b0e41b90d0384c700456a79e7b72c&o=&hp=1", "Grand Hotel Plovdiv", 5 },
+                    { 4, 4, "BreakfastOnly", true, false, "https://ak-d.tripcdn.com/images/200l0m000000dw3kcBD54_R_550_412_R5.jpg", "Galaxy Hotel", 4 }
                 });
 
             migrationBuilder.InsertData(
@@ -209,16 +213,16 @@ namespace TravelHub.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Bookings",
                 columns: new[] { "TravelId", "UserId", "BookDate" },
-                values: new object[] { 3, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", new DateTime(2023, 7, 22, 10, 58, 23, 61, DateTimeKind.Utc).AddTicks(1784) });
+                values: new object[] { 3, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", new DateTime(2023, 7, 23, 13, 49, 22, 84, DateTimeKind.Utc).AddTicks(4923) });
 
             migrationBuilder.InsertData(
                 table: "Reviews",
                 columns: new[] { "Id", "Comment", "DateAdded", "HotelId", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Everyting was perfect, except the food, which wasn't that good.", new DateTime(2023, 7, 12, 10, 58, 23, 62, DateTimeKind.Utc).AddTicks(5253), 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
-                    { 2, "I am feeling amazed by how beautiful this place is!", new DateTime(2023, 7, 2, 10, 58, 23, 62, DateTimeKind.Utc).AddTicks(5261), 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
-                    { 3, "I didn't really like the food, but everything else was just awesome!", new DateTime(2023, 6, 2, 10, 58, 23, 62, DateTimeKind.Utc).AddTicks(5262), 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" }
+                    { 1, "Everyting was perfect, except the food, which wasn't that good.", new DateTime(2023, 7, 13, 13, 49, 22, 85, DateTimeKind.Utc).AddTicks(2124), 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
+                    { 2, "I am feeling amazed by how beautiful this place is!", new DateTime(2023, 7, 3, 13, 49, 22, 85, DateTimeKind.Utc).AddTicks(2131), 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
+                    { 3, "I didn't really like the food, but everything else was just awesome!", new DateTime(2023, 6, 3, 13, 49, 22, 85, DateTimeKind.Utc).AddTicks(2132), 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" }
                 });
 
             migrationBuilder.InsertData(
@@ -227,13 +231,15 @@ namespace TravelHub.Infrastructure.Migrations
                 values: new object[,]
                 {
                     { 1, new DateTime(2023, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 03/07/2023 and we will be back in town at around 7PM on 08/07/2023. Come and party with us!", 1, 1, 58, "Hotel 'Alen Mak', Blagoevgrad", 780m, "BeachVacation" },
-                    { 2, new DateTime(2023, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 10/07/2023 and we will be back in town at around 7PM on 16/07/2023. Come and party with us!", 1, 2, 62, "Hotel 'Ezerets', Blagoevgrad", 820m, "BeachVacation" }
+                    { 2, new DateTime(2023, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 10/07/2023 and we will be back in town at around 7PM on 16/07/2023. Come and party with us!", 1, 2, 62, "Hotel 'Ezerets', Blagoevgrad", 820m, "BeachVacation" },
+                    { 4, new DateTime(2023, 8, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "A city tour trip to Plovdiv, Bulgaria. Plovdiv is a very beautiful city and it also won the European Capital of Culture in 2019.", 3, 3, 50, "Hotel 'Alen Mak', Blagoevgrad", 600m, "CityTour" },
+                    { 5, new DateTime(2023, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 8, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "A 3-day beach holiday to Nea Peramos, Greece. We'll have fun on the calm and clear Greece beaches!", 4, 4, 35, "Hotel 'Alen Mak', Blagoevgrad", 400m, "BeachVacation" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Bookings",
                 columns: new[] { "TravelId", "UserId", "BookDate" },
-                values: new object[] { 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", new DateTime(2023, 7, 22, 10, 58, 23, 61, DateTimeKind.Utc).AddTicks(1777) });
+                values: new object[] { 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", new DateTime(2023, 7, 23, 13, 49, 22, 84, DateTimeKind.Utc).AddTicks(4919) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_TravelId",

@@ -42,6 +42,22 @@
                     Currency = "BGN",
                     ImageUrl = "https://freesofiatour.com/wp-content/uploads/2018/05/seven-rila-lakes-how-to-get-to-1200x675.jpeg"
                 },
+                new Destination()
+                {
+                    Id = 3,
+                    Country = "Bulgaria",
+                    Place = "Plovdiv",
+                    Currency = "BGN",
+                    ImageUrl = "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/d3/27/9e/photo0jpg.jpg?w=1200&h=-1&s=1"
+                },
+                new Destination()
+                {
+                    Id = 4,
+                    Country = "Greece",
+                    Place = "Nea Peramos",
+                    Currency = "EUR",
+                    ImageUrl = "https://www.feelgreece.com/cx/m/0/0/244/35239-viewom.jpg"
+                }
             };
         }
     }

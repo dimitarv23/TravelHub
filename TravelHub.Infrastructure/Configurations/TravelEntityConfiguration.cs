@@ -69,6 +69,32 @@
                     MeetingLocation = "Park 'Bachinovo', Blagoevgrad",
                     MaxNumberOfPeople = 40,
                     DestinationId = 2
+                },
+                new Travel()
+                {
+                    Id = 4,
+                    Type = eTravelType.CityTour,
+                    Description = "A city tour trip to Plovdiv, Bulgaria. Plovdiv is a very beautiful city and it also won the European Capital of Culture in 2019.",
+                    Price = 600,
+                    DateFrom = new DateTime(2023, 8, 18),
+                    DateTo = new DateTime(2023, 8, 20),
+                    MeetingLocation = "Hotel 'Alen Mak', Blagoevgrad",
+                    MaxNumberOfPeople = 50,
+                    DestinationId = 3,
+                    HotelId = 3
+                },
+                new Travel()
+                {
+                    Id = 5,
+                    Type = eTravelType.BeachVacation,
+                    Description = "A 3-day beach holiday to Nea Peramos, Greece. We'll have fun on the calm and clear Greece beaches!",
+                    Price = 400,
+                    DateFrom = new DateTime(2023, 8, 25),
+                    DateTo = new DateTime(2023, 8, 27),
+                    MeetingLocation = "Hotel 'Alen Mak', Blagoevgrad",
+                    MaxNumberOfPeople = 35,
+                    DestinationId = 4,
+                    HotelId = 4
                 }
             };
         }

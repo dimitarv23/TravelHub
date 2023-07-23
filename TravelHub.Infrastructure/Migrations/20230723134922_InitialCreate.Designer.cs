@@ -12,7 +12,7 @@ using TravelHub.Infrastructure;
 namespace TravelHub.Infrastructure.Migrations
 {
     [DbContext(typeof(TravelHubContext))]
-    [Migration("20230722105823_InitialCreate")]
+    [Migration("20230723134922_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,14 +54,14 @@ namespace TravelHub.Infrastructure.Migrations
                         new
                         {
                             Id = "4c4fa568-5033-40d9-8064-9db512d3de49",
-                            ConcurrencyStamp = "d0ae1c40-a9bd-4b25-a11a-47262755b600",
+                            ConcurrencyStamp = "9b541119-1855-4ff0-8598-47adbc27fe78",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "613e9a9a-de45-4cec-8519-81625c7e603e",
-                            ConcurrencyStamp = "35dc2f12-9ed5-4242-8a59-f7bc75e7321d",
+                            ConcurrencyStamp = "3af7c84a-5942-488b-9e14-5e568294a488",
                             Name = "Organizer",
                             NormalizedName = "ORGANIZER"
                         });
@@ -282,13 +282,13 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8",
                             TravelId = 1,
-                            BookDate = new DateTime(2023, 7, 22, 10, 58, 23, 61, DateTimeKind.Utc).AddTicks(1777)
+                            BookDate = new DateTime(2023, 7, 23, 13, 49, 22, 84, DateTimeKind.Utc).AddTicks(4919)
                         },
                         new
                         {
                             UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8",
                             TravelId = 3,
-                            BookDate = new DateTime(2023, 7, 22, 10, 58, 23, 61, DateTimeKind.Utc).AddTicks(1784)
+                            BookDate = new DateTime(2023, 7, 23, 13, 49, 22, 84, DateTimeKind.Utc).AddTicks(4923)
                         });
                 });
 
@@ -342,6 +342,22 @@ namespace TravelHub.Infrastructure.Migrations
                             Currency = "BGN",
                             ImageUrl = "https://freesofiatour.com/wp-content/uploads/2018/05/seven-rila-lakes-how-to-get-to-1200x675.jpeg",
                             Place = "The Seven Rila Lakes"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Country = "Bulgaria",
+                            Currency = "BGN",
+                            ImageUrl = "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/d3/27/9e/photo0jpg.jpg?w=1200&h=-1&s=1",
+                            Place = "Plovdiv"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Country = "Greece",
+                            Currency = "EUR",
+                            ImageUrl = "https://www.feelgreece.com/cx/m/0/0/244/35239-viewom.jpg",
+                            Place = "Nea Peramos"
                         });
                 });
 
@@ -406,6 +422,28 @@ namespace TravelHub.Infrastructure.Migrations
                             ImageUrl = "https://cf.bstatic.com/xdata/images/hotel/max1024x768/60906632.jpg?k=845e3aa0d06eba8ca8a546425f6100f8b9609e836228d3c3966d45607b4807cb&o=&hp=1",
                             Name = "Effect Grand Victoria Hotel",
                             Rating = 4
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DestinationId = 3,
+                            FoodService = "AllInclusive",
+                            HasPool = true,
+                            HasSpa = true,
+                            ImageUrl = "https://cf.bstatic.com/xdata/images/hotel/max1024x768/207378277.jpg?k=a3ff6dfc7bc9855ae08aacacb71f51863a8b0e41b90d0384c700456a79e7b72c&o=&hp=1",
+                            Name = "Grand Hotel Plovdiv",
+                            Rating = 5
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DestinationId = 4,
+                            FoodService = "BreakfastOnly",
+                            HasPool = true,
+                            HasSpa = false,
+                            ImageUrl = "https://ak-d.tripcdn.com/images/200l0m000000dw3kcBD54_R_550_412_R5.jpg",
+                            Name = "Galaxy Hotel",
+                            Rating = 4
                         });
                 });
 
@@ -445,7 +483,7 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             Id = 1,
                             Comment = "Everyting was perfect, except the food, which wasn't that good.",
-                            DateAdded = new DateTime(2023, 7, 12, 10, 58, 23, 62, DateTimeKind.Utc).AddTicks(5253),
+                            DateAdded = new DateTime(2023, 7, 13, 13, 49, 22, 85, DateTimeKind.Utc).AddTicks(2124),
                             HotelId = 1,
                             UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8"
                         },
@@ -453,7 +491,7 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             Id = 2,
                             Comment = "I am feeling amazed by how beautiful this place is!",
-                            DateAdded = new DateTime(2023, 7, 2, 10, 58, 23, 62, DateTimeKind.Utc).AddTicks(5261),
+                            DateAdded = new DateTime(2023, 7, 3, 13, 49, 22, 85, DateTimeKind.Utc).AddTicks(2131),
                             HotelId = 1,
                             UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8"
                         },
@@ -461,7 +499,7 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             Id = 3,
                             Comment = "I didn't really like the food, but everything else was just awesome!",
-                            DateAdded = new DateTime(2023, 6, 2, 10, 58, 23, 62, DateTimeKind.Utc).AddTicks(5262),
+                            DateAdded = new DateTime(2023, 6, 3, 13, 49, 22, 85, DateTimeKind.Utc).AddTicks(2132),
                             HotelId = 1,
                             UserId = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8"
                         });
@@ -552,6 +590,32 @@ namespace TravelHub.Infrastructure.Migrations
                             MeetingLocation = "Park 'Bachinovo', Blagoevgrad",
                             Price = 30m,
                             Type = "MountainVacation"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DateFrom = new DateTime(2023, 8, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateTo = new DateTime(2023, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A city tour trip to Plovdiv, Bulgaria. Plovdiv is a very beautiful city and it also won the European Capital of Culture in 2019.",
+                            DestinationId = 3,
+                            HotelId = 3,
+                            MaxNumberOfPeople = 50,
+                            MeetingLocation = "Hotel 'Alen Mak', Blagoevgrad",
+                            Price = 600m,
+                            Type = "CityTour"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DateFrom = new DateTime(2023, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateTo = new DateTime(2023, 8, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A 3-day beach holiday to Nea Peramos, Greece. We'll have fun on the calm and clear Greece beaches!",
+                            DestinationId = 4,
+                            HotelId = 4,
+                            MaxNumberOfPeople = 35,
+                            MeetingLocation = "Hotel 'Alen Mak', Blagoevgrad",
+                            Price = 400m,
+                            Type = "BeachVacation"
                         });
                 });
 
@@ -576,15 +640,15 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             Id = "ac5688a2-417e-4a2d-973c-503b7c8eb951",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2d093f4e-f9f4-4e9f-a1c0-44cb6324a827",
+                            ConcurrencyStamp = "f88bfdd1-8268-4dfe-b49a-601a1c83e624",
                             Email = "organizer@email.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ORGANIZER@EMAIL.COM",
                             NormalizedUserName = "SEEDED_ORGANIZER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOiHFjexTxWk3bwv5gE75/W3sHKsUmAo02A8nkGU4B8ckpxPu3Wrt4A8/5ErQy9ScA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC9QPxfOR9GcQQsRAECML07m+DbI1MpgaVkyDJPoWEcL43Qm/qiV8e0CdTLIE54vEQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2184151e-a2c6-4e72-915b-663bb233a152",
+                            SecurityStamp = "97a43606-2525-4b14-8e61-a42d679cce9e",
                             TwoFactorEnabled = false,
                             UserName = "Seeded_Organizer",
                             FirstName = "Organizer",
@@ -594,15 +658,15 @@ namespace TravelHub.Infrastructure.Migrations
                         {
                             Id = "f94b7583-61d5-4a61-a242-8c4b8fcda5a8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "71d77647-4c63-4d80-b31e-0aebd20839a2",
+                            ConcurrencyStamp = "fe5a6969-ef2e-4f34-8c8e-dc88801457b3",
                             Email = "user@email.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@EMAIL.COM",
                             NormalizedUserName = "SEEDED_USER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEM/jpW0cJbS3hlChdgTJzi8MXp3Ff281kVJHWEMyGWK4EOFbcBXy4Y61wU8FrCQFCA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHSCnIu02taA7ue3zFlEGmYu5ybFeqvBRhohpIWsrMmrzk1iIr8k5CRRYsM/owDFJQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "021d2e07-de05-478b-9c91-82e431a0de99",
+                            SecurityStamp = "5afdc947-a827-44da-ab85-1dbccded4f12",
                             TwoFactorEnabled = false,
                             UserName = "Seeded_User",
                             FirstName = "User",

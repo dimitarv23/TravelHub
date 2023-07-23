@@ -25,11 +25,28 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(int page)
         {
-            var travels = await this.travelService.GetAllAsync();
+            var travels = (await this.travelService.GetAllAsync())
+                .OrderBy(t => t.DateFrom)
+                .ThenBy(t => t.Price)
+                .ToList();
 
-            return View(travels);
+            if (page == 0)
+            {
+                page = 1;
+            }
+
+            ViewData["NumberOfTravels"] = travels.Count;
+            ViewData["CurrPageNumber"] = page;
+            int travelsPerPage = 4;
+
+            var model = travels
+                .Skip((page - 1) * travelsPerPage)
+                .Take(travelsPerPage)
+                .ToList();
+
+            return View(model);
         }
 
         [HttpGet]

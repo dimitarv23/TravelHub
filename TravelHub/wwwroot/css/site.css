@@ -130,6 +130,14 @@ body {
     z-index: 100;
 }
 
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    z-index: 100;
+}
+
 .header-logo {
     max-height: 50px;
     margin-left: 24px;
@@ -138,6 +146,10 @@ body {
 
 .footer-logo {
     max-width: 175px;
+}
+
+.footer-element {
+    max-height: 65px;
 }
 
 .booking-box {
@@ -166,3 +178,28 @@ body {
         padding: 0 12px;
     }
 }
+
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.pagination .page-link {
+    color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 50px;
+    padding: 5px 12px;
+    transition: all 0.2s;
+}
+
+    .pagination .page-link:hover {
+        background-color: #007bff;
+        color: #fff;
+    }

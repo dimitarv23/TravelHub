@@ -1,6 +1,11 @@
 ﻿@model ICollection<BookingViewModel>
 @{
     ViewData["Title"] = "All Bookings";
+
+    if (TempData["ToastrMessage"] != null)
+    {
+        @Html.Raw(TempData["ToastrMessage"])
+    }
 }
 
 <div class="container mt-5">
