@@ -6,6 +6,7 @@
         <div class="text-center d-flex flex-column align-items-center">
             <h4 class="mb-3">Leave a Review</h4>
             <form asp-controller="Reviews" asp-action="Add" method="post" class="w-100 d-flex align-items-center justify-content-between box-padding">
+                @Html.AntiForgeryToken()
                 <input type="hidden" asp-for="@Model.AuthorId" />
                 <input type="hidden" asp-for="@Model.HotelId" />
                 <input type="hidden" asp-for="@Model.DateAdded" />

@@ -69,6 +69,7 @@
 
         [HttpPost]
         [Authorize(Roles = "Organizer")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(HotelFormModel model, string? returnParams)
         {
             if (!ModelState.IsValid)
@@ -111,6 +112,7 @@
 
         [HttpPost]
         [Authorize(Roles = "Organizer")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(HotelFormModel model, int hotelId)
         {
             if (!ModelState.IsValid)

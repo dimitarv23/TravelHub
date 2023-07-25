@@ -19,6 +19,7 @@ namespace TravelHub.Controllers
 
         [HttpPost]
         [Authorize(Roles = "User")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(AddReviewViewModel model)
         {
             if (!ModelState.IsValid)

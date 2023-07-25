@@ -6,6 +6,7 @@
 <div class="container d-flex flex-column align-items-center mt-5">
     <h2 class="text-center mb-4">@ViewData["Title"]</h2>
     <form asp-controller="Travels" asp-action="Add" method="post" class="col-md-8">
+        @Html.AntiForgeryToken()
         <div>
             <label asp-for="Description" class="col-sm-9">
                 <span class="h6 small text-muted">Description <span class="text-danger">*</span></span>

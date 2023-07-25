@@ -69,6 +69,7 @@
 
         [HttpPost]
         [Authorize(Roles = "Organizer")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(TravelFormModel model)
         {
             if (model.DateTo < model.DateFrom)
@@ -126,6 +127,7 @@
 
         [HttpPost]
         [Authorize(Roles = "Organizer")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(TravelFormModel model, int travelId)
         {
             if (model.DateTo < model.DateFrom)

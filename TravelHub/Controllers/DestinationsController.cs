@@ -63,6 +63,7 @@
 
         [HttpPost]
         [Authorize(Roles = "Organizer")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(DestinationFormModel model, string? returnParams)
         {
             if (!ModelState.IsValid)
