@@ -50,7 +50,7 @@
                     @for (int i = 1; i <= Math.Ceiling((int)ViewData["NumberOfTravels"]! / 4.0); i++)
                     {
                         <li class="page-item @(i == (int)ViewData["CurrPageNumber"]! ? "active" : string.Empty)">
-                            <a asp-controller="Bookings" asp-action="All" asp-route-page="@i" class="page-link">
+                            <a asp-controller="Bookings" asp-action="Mine" asp-route-page="@i" class="page-link">
                                 @i
                             </a>
                         </li>

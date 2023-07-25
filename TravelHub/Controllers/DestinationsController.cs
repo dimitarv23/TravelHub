@@ -27,11 +27,11 @@
 
             ViewData["NumberOfTravels"] = destinations.Count;
             ViewData["CurrPageNumber"] = page;
-            int travelsPerPage = 6;
+            int destinationsPerPage = 6;
 
             var model = destinations
-                .Skip((page - 1) * travelsPerPage)
-                .Take(travelsPerPage)
+                .Skip((page - 1) * destinationsPerPage)
+                .Take(destinationsPerPage)
                 .ToList();
 
             if (destinations.Any() && !model.Any())
