@@ -16,9 +16,28 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(int page)
         {
-            var model = await this.destinationService.GetAllAsync();
+            var destinations = (await this.destinationService.GetAllAsync());
+
+            if (page == 0)
+            {
+                page = 1;
+            }
+
+            ViewData["NumberOfTravels"] = destinations.Count;
+            ViewData["CurrPageNumber"] = page;
+            int travelsPerPage = 6;
+
+            var model = destinations
+                .Skip((page - 1) * travelsPerPage)
+                .Take(travelsPerPage)
+                .ToList();
+
+            if (destinations.Any() && !model.Any())
+            {
+                return NotFound();
+            }
 
             return View(model);
         }

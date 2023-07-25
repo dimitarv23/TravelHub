@@ -47,6 +47,18 @@
                     </div>
                 </div>
             }
+            <div class="pagination">
+                <ul class="pagination justify-content-center">
+                    @for (int i = 1; i <= Math.Ceiling((int)ViewData["NumberOfTravels"]! / 6.0); i++)
+                    {
+                        <li class="page-item @(i == (int)ViewData["CurrPageNumber"]! ? "active" : string.Empty)">
+                            <a asp-controller="Destinations" asp-action="All" asp-route-page="@i" class="page-link">
+                                @i
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
         </div>
     }
 </div>

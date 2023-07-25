@@ -4,6 +4,8 @@
     using TravelHub.Core.Extensions;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+    using TravelHub.Domain.Models;
 
     [Authorize]
     public class BookingsController : Controller
@@ -44,18 +46,54 @@
 
         [HttpGet]
         [Authorize(Roles = "Organizer")]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(int page)
         {
-            var model = await this.bookingService.GetAllAsync();
+            var bookings = await this.bookingService.GetAllAsync();
+
+            if (page == 0)
+            {
+                page = 1;
+            }
+
+            ViewData["NumberOfTravels"] = bookings.Count;
+            ViewData["CurrPageNumber"] = page;
+            int travelsPerPage = 4;
+            var model = bookings
+                .Skip((page - 1) * travelsPerPage)
+                .Take(travelsPerPage)
+            .ToList();
+
+            if (bookings.Any() && !model.Any())
+            {
+                return NotFound();
+            }
 
             return View(model);
         }
 
         [HttpGet]
         [Authorize(Roles = "User")]
-        public async Task<IActionResult> Mine()
+        public async Task<IActionResult> Mine(int page)
         {
-            var model = await this.bookingService.GetForUserAsync(User.GetId());
+            var bookings = await this.bookingService.GetForUserAsync(User.GetId());
+
+            if (page == 0)
+            {
+                page = 1;
+            }
+
+            ViewData["NumberOfTravels"] = bookings.Count;
+            ViewData["CurrPageNumber"] = page;
+            int travelsPerPage = 4;
+            var model = bookings
+                .Skip((page - 1) * travelsPerPage)
+                .Take(travelsPerPage)
+                .ToList();
+
+            if (bookings.Any() && !model.Any())
+            {
+                return NotFound();
+            }
 
             return View(model);
         }

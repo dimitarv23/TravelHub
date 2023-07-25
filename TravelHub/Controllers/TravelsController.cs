@@ -46,6 +46,11 @@
                 .Take(travelsPerPage)
                 .ToList();
 
+            if (travels.Any() && !model.Any())
+            {
+                return NotFound();
+            }
+
             return View(model);
         }
 

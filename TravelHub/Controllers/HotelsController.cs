@@ -20,9 +20,28 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(int page)
         {
-            var model = await this.hotelService.GetAllAsync();
+            var hotels = await this.hotelService.GetAllAsync();
+
+            if (page == 0)
+            {
+                page = 1;
+            }
+
+            ViewData["NumberOfTravels"] = hotels.Count;
+            ViewData["CurrPageNumber"] = page;
+            int travelsPerPage = 6;
+
+            var model = hotels
+                .Skip((page - 1) * travelsPerPage)
+                .Take(travelsPerPage)
+                .ToList();
+
+            if (hotels.Any() && !model.Any())
+            {
+                return NotFound();
+            }
 
             return View(model);
         }
