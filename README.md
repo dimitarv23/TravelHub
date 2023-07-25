@@ -9,6 +9,24 @@ It has the following functionalities:
 - User - People that have registered. They can enroll in organized holidays.
 - Organizer - People with this role can organize holidays.
 
+### Guests can:
+- See the welcome page
+- Register
+- Login
+
+### Users can:
+- See all travels
+- See details about each travel
+- See all destinations
+- See details about each destination
+- See all hotels
+- See details about each hotel
+- Add a review to a hotel
+- See only his bookings
+- Create a booking
+- Remove his own booking from a certain travel
+- Logout
+
 ### Organizers can:
 - Organize travels
 - See all travels
@@ -28,27 +46,10 @@ It has the following functionalities:
 - Delete a booking from a certain user
 - Logout
 
-### Users can:
-- See all travels
-- See details about each travel
-- See all destinations
-- See details about each destination
-- See all hotels
-- See details about each hotel
-- Add a review with comment to a hotel
-- Create a booking
-- Remove his own booking from a certain travel
-- Logout
-
-### Guests can:
-- See the welcome page
-- Register
-- Login
-
 ## 🔧 Technologies Used
 - ASP.NET 6
 - Entity Framework Core
 - SQL Server Database
-- HTML, CSS
+- HTML & CSS
 - Javascript
 - NUnit
