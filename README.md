@@ -1,4 +1,4 @@
-# Recipes
+# TravelHub
 ## ℹ️ About
 An ASP.NET Core 6 application for SoftUni's final project assignment.
 A Travel Agency, in which the organisers can organise trips/holidays and users can enroll for a certain trip/holiday.
