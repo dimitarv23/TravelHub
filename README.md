@@ -4,9 +4,10 @@ An ASP.NET Core 6 application for SoftUni's final project assignment.
 A Travel Agency, in which the organisers can organise trips/holidays and users can enroll for a certain trip/holiday.
 It has the following functionalities:
 
-### Areas:
-- Guest - People that haven't registered yet.
-- User - People that have registered. They can enroll in organized holidays.
+## 🔬 Functionalities
+There are three roles in the application:
+- Guest - People that haven't registered / logged in.
+- User - People that have logged in. They cannot organize holidays, but can enroll in already organized ones.
 - Organizer - People with this role can organize holidays.
 
 ### Guests can:
@@ -15,7 +16,7 @@ It has the following functionalities:
 - Login
 
 ### Users can:
-- See all travels
+- See all travels (their home page)
 - See details about each travel
 - See all destinations
 - See details about each destination
@@ -28,9 +29,9 @@ It has the following functionalities:
 - Logout
 
 ### Organizers can:
-- Organize travels
-- See all travels
+- See all travels (their home page)
 - See details about each travel
+- Organize travels
 - Edit travels
 - Delete travels
 - See all destinations
