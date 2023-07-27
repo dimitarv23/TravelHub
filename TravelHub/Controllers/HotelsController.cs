@@ -22,7 +22,9 @@
         [HttpGet]
         public async Task<IActionResult> All(int page)
         {
-            var hotels = await this.hotelService.GetAllAsync();
+            var hotels = (await this.hotelService.GetAllAsync())
+                .OrderByDescending(h => h.Id)
+                .ToList();
 
             if (page == 0)
             {

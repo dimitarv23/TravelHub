@@ -3,8 +3,8 @@ namespace TravelHub
     using TravelHub.Core.Extensions;
     using TravelHub.Domain.Models;
     using TravelHub.Infrastructure;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
 
     public class Program
     {

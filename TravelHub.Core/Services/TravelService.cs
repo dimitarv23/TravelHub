@@ -2,7 +2,6 @@
 {
     using TravelHub.Core.Contracts;
     using TravelHub.Core.Repositories;
-    using TravelHub.Domain.Enums;
     using TravelHub.Domain.Models;
     using TravelHub.ViewModels.Travels;
     using System.Collections.Generic;

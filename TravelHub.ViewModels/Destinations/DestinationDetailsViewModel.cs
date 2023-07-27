@@ -1,6 +1,4 @@
-﻿using TravelHub.ViewModels.Reviews;
-
-namespace TravelHub.ViewModels.Destinations
+﻿namespace TravelHub.ViewModels.Destinations
 {
     public class DestinationDetailsViewModel : DestinationViewModel
     {

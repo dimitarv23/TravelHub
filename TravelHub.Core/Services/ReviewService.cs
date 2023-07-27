@@ -1,11 +1,11 @@
 ﻿namespace TravelHub.Core.Services
 {
-    using Microsoft.EntityFrameworkCore;
-    using System.Collections.Generic;
     using TravelHub.Core.Contracts;
     using TravelHub.Core.Repositories;
     using TravelHub.Domain.Models;
     using TravelHub.ViewModels.Reviews;
+    using System.Collections.Generic;
+    using Microsoft.EntityFrameworkCore;
 
     public class ReviewService : IReviewService
     {

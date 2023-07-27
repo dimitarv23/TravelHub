@@ -1,9 +1,9 @@
 ﻿namespace TravelHub.Core.Extensions
 {
-    using Microsoft.Extensions.DependencyInjection;
     using TravelHub.Core.Contracts;
     using TravelHub.Core.Repositories;
     using TravelHub.Core.Services;
+    using Microsoft.Extensions.DependencyInjection;
 
     public static class TravelHubBuilderExtension
     {

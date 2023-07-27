@@ -6,13 +6,6 @@
 
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> logger;
-
-        public HomeController(ILogger<HomeController> _logger)
-        {
-            this.logger = _logger;
-        }
-
         [HttpGet]
         public IActionResult Index()
         {

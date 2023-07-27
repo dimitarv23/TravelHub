@@ -33,19 +33,21 @@
             </dl>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <hr />
-            <div class="text-center d-flex justify-content-center align-items-center">
-                @if (User.IsInRole("Organizer"))
-                {
+    @if (User.IsInRole("Organizer"))
+    {
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <hr />
+                <div class="text-center d-flex justify-content-center align-items-center">
+
                     <a onclick="fireSweetAlert(@Model.Id, 'destination')" class="btn red-background">
                         <i class="fas fa-trash"></i>
                     </a>
-                }
+
+                </div>
             </div>
         </div>
-    </div>
+    }
     @if (Model.Hotels.Any())
     {
         <div class="row justify-content-center">

@@ -1,6 +1,4 @@
-﻿using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-
-namespace TravelHub.Controllers
+﻿namespace TravelHub.Controllers
 {
     using TravelHub.Core.Contracts;
     using TravelHub.ViewModels.Reviews;

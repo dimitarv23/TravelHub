@@ -2,9 +2,9 @@
 {
     using TravelHub.Core.Contracts;
     using TravelHub.Core.Extensions;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Authorization;
     using TravelHub.ViewModels.Travels;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
 
     [Authorize]
     public class TravelsController : Controller
@@ -28,8 +28,7 @@
         public async Task<IActionResult> All(int page)
         {
             var travels = (await this.travelService.GetAllAsync())
-                .OrderBy(t => t.DateFrom)
-                .ThenBy(t => t.Price)
+                .OrderByDescending(t => t.Id)
                 .ToList();
 
             if (page == 0)

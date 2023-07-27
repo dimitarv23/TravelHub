@@ -3,9 +3,9 @@
     using TravelHub.Core.Contracts;
     using TravelHub.Core.Repositories;
     using TravelHub.Domain.Models;
-    using Microsoft.EntityFrameworkCore;
-    using System.Collections.Generic;
     using TravelHub.ViewModels.Bookings;
+    using System.Collections.Generic;
+    using Microsoft.EntityFrameworkCore;
 
     public class BookingService : IBookingService
     {

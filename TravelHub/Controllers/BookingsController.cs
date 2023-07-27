@@ -4,8 +4,6 @@
     using TravelHub.Core.Extensions;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
-    using TravelHub.Domain.Models;
 
     [Authorize]
     public class BookingsController : Controller

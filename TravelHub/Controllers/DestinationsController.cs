@@ -1,9 +1,9 @@
 ﻿namespace TravelHub.Controllers
 {
     using TravelHub.Core.Contracts;
-    using Microsoft.AspNetCore.Mvc;
     using TravelHub.ViewModels.Destinations;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
 
     [Authorize]
     public class DestinationsController : Controller
@@ -18,7 +18,9 @@
         [HttpGet]
         public async Task<IActionResult> All(int page)
         {
-            var destinations = (await this.destinationService.GetAllAsync());
+            var destinations = (await this.destinationService.GetAllAsync())
+                .OrderByDescending(d => d.Id)
+                .ToList();
 
             if (page == 0)
             {

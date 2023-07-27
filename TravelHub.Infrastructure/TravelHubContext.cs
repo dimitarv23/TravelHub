@@ -4,7 +4,6 @@
     using System.Reflection;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.AspNetCore.Identity;
 
     public class TravelHubContext : IdentityDbContext
     {
