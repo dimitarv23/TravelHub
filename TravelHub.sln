@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelHub", "TravelHub\TravelHub.csproj", "{A908E382-154E-49C1-8366-E57615C8C9C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelHub", "TravelHub\TravelHub.csproj", "{A908E382-154E-49C1-8366-E57615C8C9C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelHub.Core", "TravelHub.Core\TravelHub.Core.csproj", "{A9E6446F-F08D-4A87-A884-5886E76AF092}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelHub.Core", "TravelHub.Core\TravelHub.Core.csproj", "{A9E6446F-F08D-4A87-A884-5886E76AF092}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelHub.Infrastructure", "TravelHub.Infrastructure\TravelHub.Infrastructure.csproj", "{697C4B00-F0CE-44CD-A159-0C24A0A969FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelHub.Infrastructure", "TravelHub.Infrastructure\TravelHub.Infrastructure.csproj", "{697C4B00-F0CE-44CD-A159-0C24A0A969FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelHub.Domain", "TravelHub.Domain\TravelHub.Domain.csproj", "{A531B398-DF7C-420E-BF5A-9773F6E38BF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelHub.Domain", "TravelHub.Domain\TravelHub.Domain.csproj", "{A531B398-DF7C-420E-BF5A-9773F6E38BF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelHub.ViewModels", "TravelHub.ViewModels\TravelHub.ViewModels.csproj", "{7B0484D6-E3F6-4627-A0D7-A07F0A15C727}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelHub.ViewModels", "TravelHub.ViewModels\TravelHub.ViewModels.csproj", "{7B0484D6-E3F6-4627-A0D7-A07F0A15C727}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelHub.UnitTests", "TravelHub.UnitTests\TravelHub.UnitTests.csproj", "{1D5AAC3E-227D-4E2C-8237-32320B2D6C7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{7B0484D6-E3F6-4627-A0D7-A07F0A15C727}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B0484D6-E3F6-4627-A0D7-A07F0A15C727}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B0484D6-E3F6-4627-A0D7-A07F0A15C727}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D5AAC3E-227D-4E2C-8237-32320B2D6C7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D5AAC3E-227D-4E2C-8237-32320B2D6C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D5AAC3E-227D-4E2C-8237-32320B2D6C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D5AAC3E-227D-4E2C-8237-32320B2D6C7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
