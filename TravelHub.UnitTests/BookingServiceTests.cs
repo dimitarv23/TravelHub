@@ -7,6 +7,7 @@
     using TravelHub.Domain.Enums;
     using TravelHub.Infrastructure;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.AspNetCore.Identity;
 
     [TestFixture]
     public class BookingServiceTests
@@ -33,7 +34,7 @@
         }
 
         [Test]
-        public async Task TestCreateBooking()
+        public async Task TestCreate()
         {
             var user = new User()
             {
@@ -46,11 +47,8 @@
                 NormalizedEmail = "TEST@EMAIL.COM"
             };
 
-            await this.repo.AddAsync(user);
-
             var travel = new Travel()
             {
-                Id = 100,
                 Type = eTravelType.BeachVacation,
                 Description = "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 03/07/2023 and we will be back in town at around 7PM on 08/07/2023. Come and party with us!",
                 Price = 780,
@@ -62,16 +60,18 @@
                 HotelId = 1
             };
 
+            await this.repo.AddAsync(user);
             await this.repo.AddAsync(travel);
+            await this.repo.SaveChangesAsync();
 
+            var initCount = this.repo.AllReadonly<Booking>().Count();
             await this.bookingService.CreateBookingAsync(travel.Id, user.Id);
 
-            // Because there are 2 seeded bookings and when we add one, there should be 3
-            Assert.That(this.repo.AllReadonly<Booking>().Count(), Is.EqualTo(3));
+            Assert.That(this.repo.AllReadonly<Booking>().Count(), Is.EqualTo(initCount + 1));
         }
 
         [Test]
-        public async Task TestCreateDuplicateBooking()
+        public async Task TestCreateDuplicate()
         {
             var user = new User()
             {
@@ -84,11 +84,8 @@
                 NormalizedEmail = "TEST@EMAIL.COM"
             };
 
-            await this.repo.AddAsync(user);
-
             var travel = new Travel()
             {
-                Id = 100,
                 Type = eTravelType.BeachVacation,
                 Description = "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 03/07/2023 and we will be back in town at around 7PM on 08/07/2023. Come and party with us!",
                 Price = 780,
@@ -100,56 +97,149 @@
                 HotelId = 1
             };
 
+            await this.repo.AddAsync(user);
             await this.repo.AddAsync(travel);
+            await this.repo.SaveChangesAsync();
+
+            var initCount = this.repo.AllReadonly<Booking>().Count();
 
             await this.bookingService.CreateBookingAsync(travel.Id, user.Id);
             await this.bookingService.CreateBookingAsync(travel.Id, user.Id);
 
-            // We add 2 duplicate bookings, only one of them should be added
-            Assert.That(this.repo.AllReadonly<Booking>().Count(), Is.EqualTo(3));
+            Assert.That(this.repo.AllReadonly<Booking>().Count(), Is.EqualTo(initCount + 1));
         }
 
         [Test]
-        public async Task TestRemoveBooking()
+        public async Task TestRemove()
         {
-            await this.bookingService.RemoveBookingAsync(1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8");
+            var user = new User()
+            {
+                Id = "3642082d-33c9-45d0-9dbb-755e9024c068",
+                FirstName = "TestUser",
+                LastName = "TestUser",
+                UserName = "Test_User",
+                NormalizedUserName = "TEST_USER",
+                Email = "test@email.com",
+                NormalizedEmail = "TEST@EMAIL.COM"
+            };
 
-            // Because there are 2 seeded bookings and when we remove one, there should be only 1 left
-            Assert.That(this.repo.AllReadonly<Booking>().Count(), Is.EqualTo(1));
-            Assert.That(!this.repo.All<Booking>().Any(b => b.TravelId == 1 &&
-                b.UserId == "f94b7583-61d5-4a61-a242-8c4b8fcda5a8"));
+            var travel = new Travel()
+            {
+                Type = eTravelType.BeachVacation,
+                Description = "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 03/07/2023 and we will be back in town at around 7PM on 08/07/2023. Come and party with us!",
+                Price = 780,
+                DateFrom = new DateTime(2023, 7, 3),
+                DateTo = new DateTime(2023, 7, 8),
+                MeetingLocation = "Hotel 'Alen Mak', Blagoevgrad",
+                MaxNumberOfPeople = 58,
+                DestinationId = 1,
+                HotelId = 1
+            };
+
+            await this.repo.AddAsync(user);
+            await this.repo.AddAsync(travel);
+            await this.repo.AddAsync(new Booking()
+            {
+                UserId = "3642082d-33c9-45d0-9dbb-755e9024c068",
+                TravelId = travel.Id,
+                BookDate = DateTime.UtcNow
+            });
+
+            await this.repo.SaveChangesAsync();
+
+            var initCount = this.repo.AllReadonly<Booking>().Count();
+
+            await this.bookingService.RemoveBookingAsync(travel.Id, "3642082d-33c9-45d0-9dbb-755e9024c068");
+
+            Assert.That(this.repo.AllReadonly<Booking>().Count(), Is.EqualTo(initCount - 1));
+            Assert.That(!this.repo.All<Booking>().Any(b => b.TravelId == travel.Id &&
+                b.UserId == "3642082d-33c9-45d0-9dbb-755e9024c068"));
         }
 
         [Test]
-        public async Task TestRemoveNonExistingBooking()
+        public async Task TestRemoveNonExisting()
         {
-            await this.bookingService.RemoveBookingAsync(20, "15c69173-cf4f-4048-8da6-98f8f55463a2");
+            await this.bookingService.RemoveBookingAsync(2000, "15c69173-cf4f-4048-8da6-98f8f55463a2");
 
-            // Because there's no booking with these IDs, nothing should change
-            Assert.That(this.repo.AllReadonly<Booking>().Count(), Is.EqualTo(2));
+            var initCount = this.repo.AllReadonly<Booking>().Count();
+
+            Assert.That(this.repo.AllReadonly<Booking>().Count(), Is.EqualTo(initCount));
         }
 
         [Test]
-        public async Task TestGetAllBookings()
+        public async Task TestGetAll()
         {
             var bookings = await this.bookingService.GetAllAsync();
 
-            // The already seeded 2 bookings
-            Assert.That(bookings.Count, Is.EqualTo(2));
+            var initCount = this.repo.AllReadonly<Booking>().Count();
+
+            Assert.That(bookings.Count, Is.EqualTo(initCount));
+
+            foreach (var booking in bookings)
+            {
+                Assert.That(booking, Has.Property("Destination"));
+                Assert.That(booking, Has.Property("ImageUrl"));
+                Assert.That(booking, Has.Property("Price"));
+                Assert.That(booking, Has.Property("Owner"));
+                Assert.That(booking, Has.Property("DateFrom"));
+                Assert.That(booking, Has.Property("DateTo"));
+                Assert.That(booking, Has.Property("BookDate"));
+                Assert.That(booking, Has.Property("TravelId"));
+                Assert.That(booking, Has.Property("UserId"));
+            }
         }
 
         [Test]
-        public async Task TestGetAllBookingsForUser()
+        public async Task TestGetAllForUser()
         {
-            var firstUserBookings = await this.bookingService
-                .GetForUserAsync("f94b7583-61d5-4a61-a242-8c4b8fcda5a8");
+            var user = new User()
+            {
+                Id = "8924d72c-d316-4826-b86c-e975ea33ba4f",
+                FirstName = "TestUser",
+                LastName = "TestUser",
+                UserName = "Test_User",
+                NormalizedUserName = "TEST_USER",
+                Email = "test@email.com",
+                NormalizedEmail = "TEST@EMAIL.COM"
+            };
 
-            var secondUserBookings = await this.bookingService
-                .GetForUserAsync("ac5688a2-417e-4a2d-973c-503b7c8eb951");
+            var travel = new Travel()
+            {
+                Type = eTravelType.BeachVacation,
+                Description = "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 03/07/2023 and we will be back in town at around 7PM on 08/07/2023. Come and party with us!",
+                Price = 780,
+                DateFrom = new DateTime(2023, 7, 3),
+                DateTo = new DateTime(2023, 7, 8),
+                MeetingLocation = "Hotel 'Alen Mak', Blagoevgrad",
+                MaxNumberOfPeople = 58,
+                DestinationId = 1,
+                HotelId = 1
+            };
 
-            // All the seeded bookings belong to the first user
-            Assert.That(firstUserBookings.Count, Is.EqualTo(2));
-            Assert.That(secondUserBookings.Count, Is.EqualTo(0));
+            await this.repo.AddAsync(user);
+            await this.repo.AddAsync(travel);
+            await this.repo.AddRangeAsync(new List<Booking>()
+            {
+                new Booking()
+                {
+                    UserId = "8924d72c-d316-4826-b86c-e975ea33ba4f",
+                    TravelId = travel.Id,
+                    BookDate = DateTime.UtcNow
+                }
+            });
+
+            await this.repo.SaveChangesAsync();
+
+            var userBookings = await this.bookingService
+                .GetForUserAsync("8924d72c-d316-4826-b86c-e975ea33ba4f");
+
+            Assert.That(userBookings.Count, Is.EqualTo(1));
+        }
+
+        [TearDown]
+        public async Task TearDown()
+        {
+            await this.dbContext.DisposeAsync();
         }
     }
 }

@@ -18,6 +18,14 @@
 
         public async Task CreateAsync(DestinationFormModel model)
         {
+            bool isDuplicate = await this.repository.All<Destination>()
+                .AnyAsync(d => d.Country == model.Country && d.Place == model.Place);
+
+            if (isDuplicate)
+            {
+                return;
+            }
+
             Destination destinationToAdd = new Destination()
             {
                 Country = model.Country,
