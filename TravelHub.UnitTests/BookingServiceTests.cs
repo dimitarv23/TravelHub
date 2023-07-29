@@ -71,6 +71,45 @@
         }
 
         [Test]
+        public async Task TestCreateDuplicateBooking()
+        {
+            var user = new User()
+            {
+                Id = "fe40d434-3a94-4f74-91aa-bb9d0beab3b9",
+                FirstName = "Test",
+                LastName = "Test",
+                UserName = "Test_User",
+                NormalizedUserName = "TEST_USER",
+                Email = "test@email.com",
+                NormalizedEmail = "TEST@EMAIL.COM"
+            };
+
+            await this.repo.AddAsync(user);
+
+            var travel = new Travel()
+            {
+                Id = 100,
+                Type = eTravelType.BeachVacation,
+                Description = "A vacation on sunny beach for 6 days for a great amount of money! The bus leaves at 4AM on 03/07/2023 and we will be back in town at around 7PM on 08/07/2023. Come and party with us!",
+                Price = 780,
+                DateFrom = new DateTime(2023, 7, 3),
+                DateTo = new DateTime(2023, 7, 8),
+                MeetingLocation = "Hotel 'Alen Mak', Blagoevgrad",
+                MaxNumberOfPeople = 58,
+                DestinationId = 1,
+                HotelId = 1
+            };
+
+            await this.repo.AddAsync(travel);
+
+            await this.bookingService.CreateBookingAsync(travel.Id, user.Id);
+            await this.bookingService.CreateBookingAsync(travel.Id, user.Id);
+
+            // We add 2 duplicate bookings, only one of them should be added
+            Assert.That(this.repo.AllReadonly<Booking>().Count(), Is.EqualTo(3));
+        }
+
+        [Test]
         public async Task TestRemoveBooking()
         {
             await this.bookingService.RemoveBookingAsync(1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8");
@@ -79,6 +118,15 @@
             Assert.That(this.repo.AllReadonly<Booking>().Count(), Is.EqualTo(1));
             Assert.That(!this.repo.All<Booking>().Any(b => b.TravelId == 1 &&
                 b.UserId == "f94b7583-61d5-4a61-a242-8c4b8fcda5a8"));
+        }
+
+        [Test]
+        public async Task TestRemoveNonExistingBooking()
+        {
+            await this.bookingService.RemoveBookingAsync(20, "15c69173-cf4f-4048-8da6-98f8f55463a2");
+
+            // Because there's no booking with these IDs, nothing should change
+            Assert.That(this.repo.AllReadonly<Booking>().Count(), Is.EqualTo(2));
         }
 
         [Test]
