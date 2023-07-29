@@ -8,6 +8,6 @@
 
         public Task<int> DeleteAsync(int id);
 
-        public Task<ICollection<ReviewViewModel>> GetAllAsync(int hotelId);
+        public Task<ICollection<ReviewViewModel>> GetAllForHotelAsync(int hotelId);
     }
 }

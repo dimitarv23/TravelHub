@@ -7,7 +7,6 @@
     using TravelHub.Domain.Enums;
     using TravelHub.Infrastructure;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.AspNetCore.Identity;
 
     [TestFixture]
     public class BookingServiceTests

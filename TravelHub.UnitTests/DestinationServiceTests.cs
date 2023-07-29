@@ -127,7 +127,7 @@
         public async Task TestGetByIdForDetailsWithInvalidId()
         {
             var destination = await this.destinationService
-                .GetByIdForDetailsAsync(int.MaxValue);
+                .GetByIdForDetailsAsync(-1);
 
             Assert.That(destination, Is.Null);
         }
@@ -157,7 +157,7 @@
         public async Task TestDeleteNonExisting()
         {
             var initCount = this.repo.AllReadonly<Destination>().Count();
-            bool isDeleted = await this.destinationService.DeleteAsync(int.MaxValue);
+            bool isDeleted = await this.destinationService.DeleteAsync(-1);
 
             Assert.That(isDeleted, Is.False);
             Assert.That(this.repo.AllReadonly<Destination>().Count(), Is.EqualTo(initCount));

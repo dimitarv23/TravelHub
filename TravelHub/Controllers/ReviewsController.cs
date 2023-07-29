@@ -47,7 +47,7 @@
         [HttpGet]
         public async Task<IActionResult> GetAll(int hotelId)
         {
-            var reviews = await this.reviewService.GetAllAsync(hotelId);
+            var reviews = await this.reviewService.GetAllForHotelAsync(hotelId);
 
             return Ok(reviews);
         }

@@ -75,7 +75,7 @@
                 FoodService = eFoodService.AllInclusive,
                 HasPool = true,
                 HasSpa = true,
-                DestinationId = int.MaxValue
+                DestinationId = -1
             };
 
             var initCount = this.repo.AllReadonly<Hotel>().Count();
@@ -157,7 +157,7 @@
         public async Task TestGetByIdForDetailsWithInvalidId()
         {
             var hotel = await this.hotelService
-                .GetByIdForDetailsAsync(int.MaxValue);
+                .GetByIdForDetailsAsync(-1);
 
             Assert.That(hotel, Is.Null);
         }
@@ -207,7 +207,7 @@
         public async Task TestGetByIdForEditWithInvalidId()
         {
             var hotel = await this.hotelService
-                .GetByIdForEditAsync(int.MaxValue);
+                .GetByIdForEditAsync(-1);
 
             Assert.That(hotel, Is.Null);
         }
@@ -242,19 +242,14 @@
 
             var hotelForEdit = new HotelFormModel()
             {
-                Name = hotel.Name,
+                Name = "NYC Test Hotel",
                 ImageUrl = hotel.ImageUrl,
-                Rating = hotel.Rating,
-                FoodService = hotel.FoodService,
+                Rating = 4,
+                FoodService = eFoodService.UltraAllInclusive,
                 HasPool = hotel.HasPool,
-                HasSpa = hotel.HasSpa,
+                HasSpa = false,
                 DestinationId = hotel.DestinationId
             };
-
-            hotelForEdit.Name = "NYC Test Hotel";
-            hotelForEdit.Rating = 4;
-            hotelForEdit.FoodService = eFoodService.UltraAllInclusive;
-            hotelForEdit.HasSpa = false;
 
             await this.hotelService.EditAsync(hotel.Id, hotelForEdit);
             var editedHotel = await this.repo.GetByIdAsync<Hotel>(hotel.Id);
@@ -304,7 +299,7 @@
         public async Task TestDeleteNonExisting()
         {
             var initCount = this.repo.AllReadonly<Hotel>().Count();
-            bool isDeleted = await this.hotelService.DeleteAsync(int.MaxValue);
+            bool isDeleted = await this.hotelService.DeleteAsync(-1);
 
             Assert.That(isDeleted, Is.False);
             Assert.That(this.repo.AllReadonly<Hotel>().Count(), Is.EqualTo(initCount));

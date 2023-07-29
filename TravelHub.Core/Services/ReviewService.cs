@@ -48,7 +48,7 @@
             return hotelId;
         }
 
-        public async Task<ICollection<ReviewViewModel>> GetAllAsync(int hotelId)
+        public async Task<ICollection<ReviewViewModel>> GetAllForHotelAsync(int hotelId)
         {
             return await this.repository.All<Review>()
                 .Where(h => h.HotelId == hotelId)
