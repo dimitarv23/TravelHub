@@ -21,6 +21,14 @@
 
         public async Task CreateAsync(HotelFormModel model)
         {
+            bool doesDestinationExist = await this.repository.All<Destination>()
+                .AnyAsync(d => d.Id == model.DestinationId);
+
+            if (!doesDestinationExist)
+            {
+                return;
+            }
+
             Hotel hotelToAdd = new Hotel()
             {
                 Name = model.Name,
