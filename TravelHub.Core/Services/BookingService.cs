@@ -18,8 +18,7 @@
 
         public async Task CreateBookingAsync(int travelId, string userId)
         {
-            bool doesTravelExist = await this.repository.All<Travel>()
-                .AnyAsync(t => t.Id == travelId);
+            var travel = await this.repository.GetByIdAsync<Travel>(travelId);
 
             bool doesUserExist = await this.repository.All<User>()
                 .AnyAsync(u => u.Id == userId);
@@ -28,7 +27,7 @@
                 .AnyAsync(b => b.TravelId == travelId
                     && b.UserId == userId);
 
-            if (!doesTravelExist || !doesUserExist || doesBookingExist)
+            if (travel == null || travel?.PlacesLeft <= 0 || !doesUserExist || doesBookingExist)
             {
                 return;
             }

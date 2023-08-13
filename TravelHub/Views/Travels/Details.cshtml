@@ -76,7 +76,7 @@
                 }
                 else
                 {
-                    if (!Model.IsBooked)
+                    if (!Model.IsBooked && Model.PlacesLeft > 0)
                     {
                         <form asp-controller="Bookings" asp-action="CreateBooking" asp-route-travelId="@Model.Id" method="post">
                             <button type="submit" class="btn green-background">

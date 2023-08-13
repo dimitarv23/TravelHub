@@ -161,8 +161,8 @@ namespace TravelHub.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4c4fa568-5033-40d9-8064-9db512d3de49", "9b541119-1855-4ff0-8598-47adbc27fe78", "User", "USER" },
-                    { "613e9a9a-de45-4cec-8519-81625c7e603e", "3af7c84a-5942-488b-9e14-5e568294a488", "Organizer", "ORGANIZER" }
+                    { "4c4fa568-5033-40d9-8064-9db512d3de49", "b278d596-dab3-4d76-ac6f-0a942db58462", "User", "USER" },
+                    { "613e9a9a-de45-4cec-8519-81625c7e603e", "d75df73d-9216-4ae3-b59b-6848a52d3d0d", "Organizer", "ORGANIZER" }
                 });
 
             migrationBuilder.InsertData(
@@ -170,8 +170,8 @@ namespace TravelHub.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "ac5688a2-417e-4a2d-973c-503b7c8eb951", 0, "f88bfdd1-8268-4dfe-b49a-601a1c83e624", "User", "organizer@email.com", false, "Organizer", "Organizer", false, null, "ORGANIZER@EMAIL.COM", "SEEDED_ORGANIZER", "AQAAAAEAACcQAAAAEC9QPxfOR9GcQQsRAECML07m+DbI1MpgaVkyDJPoWEcL43Qm/qiV8e0CdTLIE54vEQ==", null, false, "97a43606-2525-4b14-8e61-a42d679cce9e", false, "Seeded_Organizer" },
-                    { "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", 0, "fe5a6969-ef2e-4f34-8c8e-dc88801457b3", "User", "user@email.com", false, "User", "User", false, null, "USER@EMAIL.COM", "SEEDED_USER", "AQAAAAEAACcQAAAAEHSCnIu02taA7ue3zFlEGmYu5ybFeqvBRhohpIWsrMmrzk1iIr8k5CRRYsM/owDFJQ==", null, false, "5afdc947-a827-44da-ab85-1dbccded4f12", false, "Seeded_User" }
+                    { "ac5688a2-417e-4a2d-973c-503b7c8eb951", 0, "7c691852-c737-4a99-9b3d-d1d069f5ceb1", "User", "organizer@email.com", false, "Organizer", "Organizer", false, null, "ORGANIZER@EMAIL.COM", "SEEDED_ORGANIZER", "AQAAAAEAACcQAAAAEO1I9th0BY+jXXRpsR5/OrnLBZoNAuRikDtwZSWT1OClH0TUjShvMFuqFU332tyEMw==", null, false, "749f74c4-32c4-4ce7-83cc-d5e05086428d", false, "Seeded_Organizer" },
+                    { "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", 0, "fab3a3cb-107f-4dd0-9bce-d0b1a08531db", "User", "user@email.com", false, "User", "User", false, null, "USER@EMAIL.COM", "SEEDED_USER", "AQAAAAEAACcQAAAAEEOrMmModGTMWs1mm01piaq9xo8YjUA5e+pryg3hG2AgUKCXdWTU48ATy3kXEEtkCA==", null, false, "fff3ca16-3080-43a4-8db1-c8aef66d5bbd", false, "Seeded_User" }
                 });
 
             migrationBuilder.InsertData(
@@ -213,16 +213,16 @@ namespace TravelHub.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Bookings",
                 columns: new[] { "TravelId", "UserId", "BookDate" },
-                values: new object[] { 3, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", new DateTime(2023, 7, 23, 13, 49, 22, 84, DateTimeKind.Utc).AddTicks(4923) });
+                values: new object[] { 3, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", new DateTime(2023, 8, 12, 14, 43, 36, 750, DateTimeKind.Utc).AddTicks(4140) });
 
             migrationBuilder.InsertData(
                 table: "Reviews",
                 columns: new[] { "Id", "Comment", "DateAdded", "HotelId", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Everyting was perfect, except the food, which wasn't that good.", new DateTime(2023, 7, 13, 13, 49, 22, 85, DateTimeKind.Utc).AddTicks(2124), 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
-                    { 2, "I am feeling amazed by how beautiful this place is!", new DateTime(2023, 7, 3, 13, 49, 22, 85, DateTimeKind.Utc).AddTicks(2131), 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
-                    { 3, "I didn't really like the food, but everything else was just awesome!", new DateTime(2023, 6, 3, 13, 49, 22, 85, DateTimeKind.Utc).AddTicks(2132), 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" }
+                    { 1, "Everyting was perfect, except the food, which wasn't that good.", new DateTime(2023, 8, 2, 14, 43, 36, 750, DateTimeKind.Utc).AddTicks(9596), 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
+                    { 2, "I am feeling amazed by how beautiful this place is!", new DateTime(2023, 7, 23, 14, 43, 36, 750, DateTimeKind.Utc).AddTicks(9604), 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" },
+                    { 3, "I didn't really like the food, but everything else was just awesome!", new DateTime(2023, 6, 23, 14, 43, 36, 750, DateTimeKind.Utc).AddTicks(9605), 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8" }
                 });
 
             migrationBuilder.InsertData(
@@ -239,7 +239,7 @@ namespace TravelHub.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Bookings",
                 columns: new[] { "TravelId", "UserId", "BookDate" },
-                values: new object[] { 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", new DateTime(2023, 7, 23, 13, 49, 22, 84, DateTimeKind.Utc).AddTicks(4919) });
+                values: new object[] { 1, "f94b7583-61d5-4a61-a242-8c4b8fcda5a8", new DateTime(2023, 8, 12, 14, 43, 36, 750, DateTimeKind.Utc).AddTicks(4136) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_TravelId",
